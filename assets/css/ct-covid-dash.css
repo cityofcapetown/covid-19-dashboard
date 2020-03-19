@@ -10,7 +10,7 @@
   position: fixed; /* Sit on top of the page content */
   overflow-y: scroll;
   width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  height: auto; /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
@@ -19,4 +19,10 @@
   color: #f1f1f1;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   font-size: 1 rem;
+  margin-top: 76px !important;
+}
+
+#navbar {
+  z-index: 3;
+  width: 100%;
 }
