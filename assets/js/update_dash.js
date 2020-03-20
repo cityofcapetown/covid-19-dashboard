@@ -25,3 +25,15 @@ function updateSADashboard() {
         $("#deaths").text(latest_deaths);
     });
 };
+
+function updateIntDashboard() {
+    $.getJSON('widgets/latest_values.json', function( data ) {
+        var latest_update = data.global_last_updated;
+        var latest_confirmed = data.global_last_confirmed_val;
+        var latest_deaths = data.global_last_deaths_val;
+
+        $("#last_updated").text(latest_update);
+        $("#confirmed_cases").text(latest_confirmed);
+        $("#deaths").text(latest_deaths);
+    });
+};

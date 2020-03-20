@@ -53,13 +53,13 @@
 </nav>
 
 <div class="container" id="overlay">
-        <div class="row row-cols-3 mt-2">
+    <div class="row row-cols-3 mt-2">
         <div class="col">
             <div class="card bg-dark border-light bg-primary">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title">2020-03-19T21:45</h4>
+                    <h4 class="card-title" id="last_updated">Loading...</h4>
                     <p class="card-text ">Last Updated</p>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                 <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title">236,420</h4>
+                    <h4 class="card-title" id="confirmed_cases">Loading...</h4>
                     <p class="card-text ">Confirmed Cases</p>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title">9,970</h4>
+                    <h4 class="card-title" id="deaths">Loading...</h4>
                     <p class="card-text ">Deaths</p>
                 </div>
             </div>
@@ -88,13 +88,15 @@
     <div class="row mt-2 row-cols-2">
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/global_timeline_confirmed.html"></iframe>
+                <iframe class="embed-responsive-item align-middle"
+                        src="./widgets/global_timeline_confirmed.html"></iframe>
             </div>
         </div>
 
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle w-100" src="widgets/global_treemap_placeholder.html"></iframe>
+                <iframe class="embed-responsive-item align-middle w-100"
+                        src="./widgets/global_treemap_placeholder.html"></iframe>
             </div>
         </div>
     </div>
@@ -102,13 +104,15 @@
     <div class="row mt-2 row-cols-2">
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle w-100" src="widgets/global_mortality_rate_placeholder.html"></iframe>
+                <iframe class="embed-responsive-item align-middle w-100"
+                        src="./widgets/global_mortality_rate_placeholder.html"></iframe>
             </div>
         </div>
 
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/global_demographic_breakdown_placeholder.html"></iframe>
+                <iframe class="embed-responsive-item align-middle"
+                        src="./widgets/global_demographic_breakdown_placeholder.html"></iframe>
             </div>
         </div>
     </div>
@@ -122,7 +126,8 @@
         <div class="row text-center text-muted mt-3">
             <div class="col">
                 <p>
-                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance Management <br/>
+                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance
+                    Management <br/>
                     Notice something wrong? Please
                     <a href='mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za'>
                         let us know</a> straight away!
@@ -133,7 +138,16 @@
 </div>
 
 <!-- bootstrap scripts -->
-<script src="assets/js/jquery-3.4.1.slim.min.js"/>
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        updateIntDashboard();
+    });
+
+</script>
+
 <script src="assets/js/popper.min.js"/>
 <script src="assets/js/bootstrap.min.js"/>
 
