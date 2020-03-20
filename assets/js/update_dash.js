@@ -1,5 +1,5 @@
 function updateCityDashboard() {
-    $.getJSON('widgets/latest_values.json', function( data ) {
+    $.getJSON('widgets/public/latest_values.json', function( data ) {
         var latest_update = data.wc_latest_update;
         var latest_tested = data.rsa_latest_tested;
         var latest_confirmed = data.wc_latest_confirmed;
@@ -13,7 +13,7 @@ function updateCityDashboard() {
 };
 
 function updateSADashboard() {
-    $.getJSON('widgets/latest_values.json', function( data ) {
+    $.getJSON('widgets/public/latest_values.json', function( data ) {
         var latest_update = data.rsa_latest_update;
         var latest_tested = data.rsa_latest_tested;
         var latest_confirmed = data.rsa_latest_confirmed;
@@ -27,7 +27,7 @@ function updateSADashboard() {
 };
 
 function updateIntDashboard() {
-    $.getJSON('widgets/latest_values.json', function( data ) {
+    $.getJSON('widgets/public/latest_values.json', function( data ) {
         var latest_update = data.global_last_updated;
         var latest_confirmed = data.global_last_confirmed_val;
         var latest_deaths = data.global_last_deaths_val;
