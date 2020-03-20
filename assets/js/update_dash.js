@@ -37,3 +37,15 @@ function updateIntDashboard() {
         $("#deaths").text(latest_deaths);
     });
 };
+
+function updateBehaviouralDashboard() {
+    $.getJSON('widgets/private/behavioural_values.json', function( data ) {
+        var last_updated = data.last_updated;
+        var mentions = data.mentions;
+        var nett_sentiment = data.nett_sentiment;
+
+        $("#last_updated").text(last_updated);
+        $("#mentions").text(mentions);
+        $("#nett_sentiment").text(nett_sentiment + " %");
+    });
+};
