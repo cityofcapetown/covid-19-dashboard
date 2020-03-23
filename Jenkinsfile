@@ -9,9 +9,21 @@ podTemplate(containers: [
             container('cct-datascience-python') {
                     sh label: 'package_script', script: '''#!/usr/bin/env bash
                         set -e
-                        ./bin/build-dash.sh'''
+                        ./bin/build-dash.sh
+                        '''
             }
             updateGitlabCommitStatus name: 'build', state: 'success'
+        }
+        stage('covid-19-dashboard build') {
+            container('cct-datascience-python') {
+                withCredentials([usernamePassword(credentialsId: 'minio-edge-credentials', passwordVariable: 'MINIO_SECRET', usernameVariable: 'MINIO_ACCESS')]) {
+                    sh label: 'package_script', script: '''#!/usr/bin/env bash
+                      set -e
+                      ./bin/minio-upload.sh dist/covid-19-dashboard.zip "application/octet-stream" covid-19-dashboard-deploy
+                    '''
+                }
+            }
+            updateGitlabCommitStatus name: 'upload', state: 'success'
         }
         stage('covid-19-dashboard deploy') {
             container('cct-datascience-python') {
@@ -25,4 +37,3 @@ podTemplate(containers: [
         }
     }
 }
-
