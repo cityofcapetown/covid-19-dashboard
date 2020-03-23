@@ -14,7 +14,7 @@ podTemplate(containers: [
             }
             updateGitlabCommitStatus name: 'build', state: 'success'
         }
-        stage('covid-19-dashboard build') {
+        stage('covid-19-dashboard upload') {
             container('cct-datascience-python') {
                 withCredentials([usernamePassword(credentialsId: 'minio-edge-credentials', passwordVariable: 'MINIO_SECRET', usernameVariable: 'MINIO_ACCESS')]) {
                     sh label: 'package_script', script: '''#!/usr/bin/env bash
