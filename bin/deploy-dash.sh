@@ -27,10 +27,15 @@ done
 
 # Assets - JS
 for js_file in $(ls dist/assets/js/*.js); do
-  ./bin/minio-upload.sh "$js_file" "text/js" "$BUCKET_NAME"/assets/js
+  ./bin/minio-upload.sh "$js_file" "text/javascript" "$BUCKET_NAME"/assets/js
 done
 
 # Assets - imgs
-for js_file in $(ls dist/assets/imgs/*); do
-  ./bin/minio-upload.sh "$js_file" "application/octet-stream" "$BUCKET_NAME"/assets/imgs
+# PNGs
+for js_file in $(ls dist/assets/imgs/*.png); do
+  ./bin/minio-upload.sh "$js_file" "image/png" "$BUCKET_NAME"/assets/imgs
+done
+
+for js_file in $(ls dist/assets/imgs/*.svg); do
+  ./bin/minio-upload.sh "$js_file" "image/svg+xml" "$BUCKET_NAME"/assets/imgs
 done
