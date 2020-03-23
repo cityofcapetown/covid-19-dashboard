@@ -34,12 +34,6 @@
                 <a class="nav-link" href="./ct-covid-dash-sa.html">South Africa</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-int.html">International</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-int-data.html">International Data</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="./ct-covid-dash-city-business-cont.html">Business Continuity</a>
             </li>
             <li class="nav-item">
@@ -47,6 +41,12 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Behavioural<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-int.html">International</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-int-data.html">International Data</a>
             </li>
         </ul>
     </div>
@@ -89,13 +89,15 @@
     <div class="row mt-2 row-cols-2">
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/private/behavioural_line_social_media_plot.html"></iframe>
+                <iframe class="embed-responsive-item align-middle"
+                        src="widgets/private/behavioural_line_social_media_plot.html"></iframe>
             </div>
         </div>
 
         <div class="col">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/private/behavioural_line_sentiment_social_media_plot.html"></iframe>
+                <iframe class="embed-responsive-item align-middle"
+                        src="widgets/private/behavioural_line_sentiment_social_media_plot.html"></iframe>
             </div>
         </div>
     </div>
@@ -103,7 +105,8 @@
     <div class="row mt-2 row-cols-1">
         <div class="col datatable-iframe">
             <div class="card border-light embed-responsive datatable-iframe embed-responsive-4by3" style="height:200px">
-                <iframe scrolling="no" class="embed-responsive-item" src="widgets/private/behavioural_media_links_table.html"></iframe>
+                <iframe scrolling="no" class="embed-responsive-item"
+                        src="widgets/private/behavioural_media_links_table.html"></iframe>
             </div>
         </div>
     </div>
@@ -111,13 +114,15 @@
     <div class="row mt-2 row-cols-2">
         <div class="col datatable-iframe ">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe scrolling="no" class="embed-responsive-item" src="widgets/private/behavioural_positive_comments_table.html"></iframe>
+                <iframe scrolling="no" class="embed-responsive-item"
+                        src="widgets/private/behavioural_positive_comments_table.html"></iframe>
             </div>
         </div>
 
         <div class="col datatable-iframe ">
             <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe scrolling="no" class="embed-responsive-item" src="widgets/private/behavioural_negative_comments_table.html"></iframe>
+                <iframe scrolling="no" class="embed-responsive-item"
+                        src="widgets/private/behavioural_negative_comments_table.html"></iframe>
             </div>
         </div>
     </div>
@@ -150,6 +155,7 @@
     $(() => {
         updateBehaviouralDashboard();
     });
+
 
 </script>
 
