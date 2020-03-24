@@ -55,7 +55,7 @@
 <div class="container" id="overlay">
     <div class="row row-cols-4 mt-2">
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/notes-medical-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -95,38 +95,70 @@
             </div>
         </div>
     </div>
-    <div class="row mt-2 row-cols-3">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/public/rsa_provincial_confirmed_timeseries.html"></iframe>
+    <div class="container-fluid" style="height:72vh">
+        <div class="row mt-2 row-cols-3" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Countrywide Cases by Province</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/public/rsa_provincial_confirmed_timeseries.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Country Case Trajectory over Time</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/public/future_trajectory.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Countrywide Tests Conducted vs Cases</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/public/rsa_tests_vs_cases_rebased.html"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/public/future_trajectory.html"></iframe>
-            </div>
-        </div>
+        <div class="row" style="height:1%"></div>
 
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/public/rsa_tests_vs_cases_rebased.html"></iframe>
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Countrywide Fatality Rate Age Demographics</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/public/rsa_demographic_mortality_plot.html"></iframe>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row mt-2 row-cols-2">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/public/rsa_demographic_mortality_plot.html"></iframe>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/public/rsa_comobidities_placeholder.html"></iframe>
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Countrywide Comorbities Fatality Rate</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/public/rsa_comobidities_placeholder.html"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
