@@ -55,9 +55,9 @@
 <div class="container" id="overlay">
     <div class="row row-cols-4 mt-2">
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
-                <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/clock-regular.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
                 <div class="card-img-overlay">
                     <h4 class="card-title" id="last_updated">Loading...</h4>
                     <p class="card-text">Last Updated</p>
@@ -65,9 +65,9 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
-                <img src="assets/imgs/notes-medical-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/notes-medical-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
                 <div class="card-img-overlay">
                     <h4 class="card-title" id="tests_conducted">Loading...</h4>
                     <p class="card-text">Tests Conducted (SA)</p>
@@ -75,9 +75,9 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
-                <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/ambulance-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
                 <div class="card-img-overlay">
                     <h4 class="card-title" id="confirmed_cases">Loading...</h4>
                     <p class="card-text ">Confirmed Cases (WC) </p>
@@ -85,9 +85,9 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
-                <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/skull-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
                 <div class="card-img-overlay">
                     <h4 class="card-title" id="deaths">Loading...</h4>
                     <p class="card-text ">Deaths (SA)</p>
@@ -98,21 +98,31 @@
 
     <div class="row mt-2 rows-cols-2">
         <div class="col">
-            <div class="container" style="height:600px">
-                <div class="row" style="height:300px">
-                    <div class="card border-light embed-responsive embed-responsive-4by3" style="height:295px">
-                        <iframe class="embed-responsive-item align-middle"
-                                src="widgets/public/wc_confirmed_timeseries.html"
-                                style="height:295px"
-                        ></iframe>
+            <div class="container" style="height:32rem">
+                <div class="row" style="height:16rem">
+                    <div class="card border-light w-100 bg-info" style="height:16rem">
+                        <div class="card-header" style="height:3rem">
+                            <h5>Provincial Cases over Time</h5>
+                        </div>
+                        <div class="card-body embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item"
+                                    src="widgets/public/wc_confirmed_timeseries.html"
+                                    style="height:13rem"
+                            ></iframe>
+                        </div>
                     </div>
                 </div>
-                <div class="row" style="height:300px">
-                    <div class="card border-light embed-responsive embed-responsive-4by3" style="height:295px">
-                        <iframe class="embed-responsive-item align-middle"
-                                src="widgets/public/cct_demographic_mortality_plot.html"
-                                style="height:295px"
-                        ></iframe>
+                <div class="row mt-1" style="height:16rem">
+                    <div class="card border-light w-100 bg-info" style="height:16rem;">
+                        <div class="card-header" style="height:3rem">
+                            <h5>City Fatality Rate Age Demographics</h5>
+                        </div>
+                        <div class="card-body embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item"
+                                    src="widgets/public/cct_demographic_mortality_plot.html"
+                                    style="height:14rem"
+                            ></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,11 +130,16 @@
         </div>
 
         <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3" style="height:600px">
-                <iframe class="embed-responsive-item align-middle" src="widgets/public/ct_heatmap.html"
-                        style="height:600px"
-                ></iframe>
-            </div>
+                <div class="card border-light" style="height:32rem">
+                    <div class="card-header bg-info" style="height:3rem">
+                        <h5>City Population Density</h5>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="widgets/public/ct_heatmap.html"
+                                style="height:29rem"
+                        ></iframe>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -156,6 +171,16 @@
     $(() => {
         updateCityDashboard();
     });
+
+
+
+
+
+
+
+
+
+
 
 
 
