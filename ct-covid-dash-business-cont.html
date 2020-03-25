@@ -55,7 +55,7 @@
 <div class="container" id="overlay">
     <div class="row row-cols-4 mt-2">
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="row card bg-dark border-light bg-primary">
+            <div class="row card border-light bg-info">
                 <img src="assets/imgs/cogs-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/wifi-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -96,25 +96,57 @@
         </div>
     </div>
 
-    <div class="row mt-2 row-cols-2">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3 h-100">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/private/business_continuity_org_placeholder.html"></iframe>
+    <div class="container-fluid" style="height:72vh">
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>City Workforce Absenteeism (**NB Synthetic Data**)</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/business_continuity_org_placeholder.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>City Workforce Absenteeism by Facility(**NB Synthetic Data**)</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/business_continuity_org_placeholder.html"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="row row-cols-1">
-                <div class="card border-light embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item align-middle"
-                            src="widgets/private/business_continuity_service_requests_placeholder.html"></iframe>
+        <div class="row" style="height:1%"></div>
+
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Service Request Performance</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/business_continuity_service_requests_placeholder.html"></iframe>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-1 row-cols-1">
-                <div class="card border-light embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item align-middle"
-                            src="widgets/private/business_continuity_line_income_plot.html"></iframe>
+
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>City Financial Flows</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/business_continuity_line_income_plot.html"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
