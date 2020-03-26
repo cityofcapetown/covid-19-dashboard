@@ -55,7 +55,7 @@
 <div class="container" id="overlay">
     <div class="row row-cols-3 mt-2">
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card-header bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card-header bg-info">
                 <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card-header bg-info">
                 <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -85,10 +85,14 @@
             </div>
         </div>
     </div>
-    <div class="row mt-2 row-cols-1">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle" src="widgets/public/browsable_global.html"></iframe>
+
+    <div class="container-fluid" style="height:110vh">
+        <div class="row mt-2 row-cols-1 h-100">
+            <div class="col h-100">
+                <div class="card-body embed-responsive embed-responsive-4by3 p-2">
+                    <iframe class="embed-responsive-item align-middle"
+                            src="widgets/public/browsable_global.html"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -121,8 +125,6 @@
     $(() => {
         updateIntDashboard();
     });
-
-
 </script>
 
 <script src="assets/js/popper.min.js"/>
