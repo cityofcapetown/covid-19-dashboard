@@ -55,7 +55,7 @@
 <div class="container" id="overlay">
     <div class="row row-cols-3 mt-2">
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="row card bg-dark border-light bg-primary">
+            <div class="row card border-light bg-info">
                 <img src="assets/imgs/chart-line-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card bg-dark border-light bg-primary">
+            <div class="card border-light bg-info">
                 <img src="assets/imgs/surprise-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
@@ -86,43 +86,74 @@
         </div>
     </div>
 
-    <div class="row mt-2 row-cols-2">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/private/behavioural_line_social_media_plot.html"></iframe>
+    <div class="container-fluid" style="height:72vh">
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Media Mentions over Time</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/behavioural_line_social_media_plot.html"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Nett Media Sentiment over Time</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item"
+                                src="widgets/private/behavioural_line_sentiment_social_media_plot.html"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/private/behavioural_line_sentiment_social_media_plot.html"></iframe>
+        <div class="row" style="height:1%"></div>
+
+        <div class="row mt-2 row-cols-1" style="height:49%">
+            <div class="col h-100">
+                <div class="card border-light h-100">
+                    <div class="card-header bg-info" style="height:2rem">
+                        <span class="align-text-top"><h6>Media Links</h6></span>
+                    </div>
+                    <div class="card-body embed-responsive embed-responsive-4by3">
+                        <iframe scrolling="no" class="embed-responsive-item"
+                                src="widgets/private/behavioural_media_links_table.html"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-2 row-cols-1">
-        <div class="col datatable-iframe">
-            <div class="card border-light embed-responsive datatable-iframe embed-responsive-4by3" style="height:200px">
-                <iframe scrolling="no" class="embed-responsive-item"
-                        src="widgets/private/behavioural_media_links_table.html"></iframe>
-            </div>
-        </div>
-    </div>
+    <div class="row" style="height:1%"></div>
 
     <div class="row mt-2 row-cols-2">
-        <div class="col datatable-iframe ">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe scrolling="no" class="embed-responsive-item"
-                        src="widgets/private/behavioural_positive_comments_table.html"></iframe>
+        <div class="col h-100">
+            <div class="card border-light h-100">
+                <div class="card-header bg-info" style="height:2rem">
+                    <span class="align-text-top"><h6>Most Popular Positive Facebook Comments</h6></span>
+                </div>
+                <div class="card-body embed-responsive embed-responsive-4by3">
+                    <iframe scrolling="no" class="embed-responsive-item"
+                            src="widgets/private/behavioural_positive_comments_table.html"></iframe>
+                </div>
             </div>
         </div>
 
-        <div class="col datatable-iframe ">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe scrolling="no" class="embed-responsive-item"
-                        src="widgets/private/behavioural_negative_comments_table.html"></iframe>
+        <div class="col h-100">
+            <div class="card border-light h-100">
+                <div class="card-header bg-info" style="height:2rem">
+                    <span class="align-text-top"><h6>Most Popular Negative Facebook Comments</h6></span>
+                </div>
+                <div class="card-body embed-responsive embed-responsive-4by3">
+                    <iframe scrolling="no" class="embed-responsive-item"
+                            src="widgets/private/behavioural_negative_comments_table.html"></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -155,6 +186,8 @@
     $(() => {
         updateBehaviouralDashboard();
     });
+
+
 
 
 </script>
