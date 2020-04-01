@@ -1,8 +1,8 @@
 function updateCityDashboard() {
-    $.getJSON('widgets/public/latest_values.json', function( data ) {
-        var latest_update = data.wc_latest_update;
+    $.getJSON('widgets/private/latest_values.json', function( data ) {
+        var latest_update = data.ct_latest_update;
         var latest_tested = data.rsa_latest_tested;
-        var latest_confirmed = data.wc_latest_confirmed;
+        var latest_confirmed = data.ct_latest_confirmed;
         var latest_deaths = data.rsa_latest_deaths;
 
         $("#last_updated").text(latest_update);
