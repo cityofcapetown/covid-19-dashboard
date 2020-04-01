@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <div class="row mt-2 rows-cols-2" style="height: 72vh">
+    <div class="row mt-2 rows-cols-2" style="height: 73vh">
         <div class="col h-100">
             <div class="container-fluid h-100">
                 <div class="row" style="height:49%">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" style="height:2%"> </div>
+                <div class="row" style="height:2%"></div>
                 <div class="row" style="height:49%">
                     <div class="card border-light w-100 bg-info h-100" style="">
                         <div class="card-header" style="height:3rem">
@@ -132,6 +132,21 @@
                 <div class="card-body embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item" src="widgets/private/case_count_map.html"
                     ></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-2 row-cols-1 h-100">
+        <div class="col h-100">
+            <div class="card border-light h-100" style="height:32rem">
+                <div class="card-header bg-info" style="height:3rem">
+                    <h5>Health Subdistrict Timelines</h5>
+                </div>
+                <div class="card-body embed-responsive embed-responsive-4by3 p-2">
+                    <iframe class="embed-responsive-item align-middle"
+                            src="widgets/private/cct_subdistrict_bar_chart.html"></iframe>
                 </div>
             </div>
         </div>
@@ -166,6 +181,8 @@
         $.ajaxSetup({ cache: false });
         updateCityDashboard();
     });
+
+
 </script>
 
 <script src="assets/js/popper.min.js"/>
