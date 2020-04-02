@@ -97,14 +97,44 @@
         <div class="col h-100">
             <div class="container-fluid h-100">
                 <div class="row" style="height:49%">
-                    <div class="card border-light w-100 bg-info h-100" style="">
-                        <div class="card-header" style="height:3rem">
-                            <h5>City Cases over Time</h5>
+                    <div class="card border-light w-100 bg-info h-100">
+                        <div class="card-header mb-0" style="height:3rem">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>City Cases over Time</h5>
+                                </div>
+                                <div class="col">
+                                    <ul class="nav nav-tabs card-header-tabs justify-content-end" id="tabList"
+                                        role="tablist">
+                                        <li class="nav-item">
+                                            <a class="card-link nav-link" id="linear-tab" data-toggle="tab"
+                                               href="#linear" role="tab"
+                                               aria-controls="linear" aria-selected="false">Linear</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="card-link nav-link active" id="log-tab" data-toggle="tab"
+                                               href="#log" role="tab"
+                                               aria-controls="log" aria-selected="true">Log</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body embed-responsive embed-responsive-4by3">
-                            <iframe class="embed-responsive-item"
-                                    src="widgets/private/ct_confirmed_timeseries_log.html"
-                            ></iframe>
+                            <div class="tab-content" id="tabContent">
+                                <div class="tab-pane fade show active" id="log" role="tabpanel"
+                                     aria-labelledby="log-tab">
+                                    <iframe class="embed-responsive-item"
+                                            src="widgets/private/ct_confirmed_timeseries_log.html"
+                                    ></iframe>
+                                </div>
+                                <div class="tab-pane fade" id="linear" role="tabpanel"
+                                     aria-labelledby="linear-tab">
+                                    <iframe class="embed-responsive-item"
+                                            src="widgets/private/ct_confirmed_timeseries.html"
+                                    ></iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,11 +212,10 @@
         updateCityDashboard();
     });
 
-
 </script>
 
-<script src="assets/js/popper.min.js"/>
-<script src="assets/js/bootstrap.min.js"/>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 

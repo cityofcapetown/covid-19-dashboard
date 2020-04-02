@@ -30,3 +30,7 @@
 .datatable-iframe {
   overflow: hidden;
 }
+
+.card-link:not(.active) {
+    color: #f8f9fa!important;
+}
