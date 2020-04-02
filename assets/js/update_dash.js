@@ -1,3 +1,8 @@
+function setExpandLink(expandElementId, link) {
+    document.getElementById(expandElementId).href = link;
+    return true;
+}
+
 function updateCityDashboard() {
     $.getJSON('widgets/private/latest_values.json', function( data ) {
         var latest_update = data.ct_latest_update;
