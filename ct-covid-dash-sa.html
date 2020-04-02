@@ -49,7 +49,7 @@
 </nav>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-4 mt-2">
+    <div class="row row-cols-4 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
@@ -91,12 +91,12 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" style="height:72vh">
-        <div class="row mt-2 row-cols-3" style="height:49%">
+    <div class="container-fluid" style="height:75vh">
+        <div class="row mt-1 row-cols-3" style="height:49%">
             <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Countrywide Cases by Province</h6></span>
+                <div class="card border-light h-100 bg-info">
+                    <div class="card-header p-1" style="height:2rem">
+                        <span class="align-text-top"><h6><small> Countrywide Cases by Province</small></h6></span>
                     </div>
                     <div class="card-body embed-responsive embed-responsive-4by3">
                         <iframe class="embed-responsive-item"
@@ -106,21 +106,54 @@
             </div>
 
             <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Country Case Trajectory over Time</h6></span>
+                <div class="card border-light bg-info h-100">
+                    <div class="card-header p-1" style="height:2rem">
+                        <div class="row w-100">
+                            <div class="col-7">
+                                <h6>
+                                    <small> Country Case Trajectory </small>
+                                </h6>
+                            </div>
+                            <div class="col-5">
+                                <ul class="nav nav-tabs card-header-tabs justify-content-end" id="tabList"
+                                    role="tablist">
+                                    <li class="nav-item">
+                                        <a class="card-link nav-link" id="linear-tab" data-toggle="tab"
+                                           href="#linear" role="tab"
+                                           aria-controls="linear" aria-selected="false"><small class="align-top">Linear</small></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="card-link nav-link active" id="log-tab" data-toggle="tab"
+                                           href="#log" role="tab"
+                                           aria-controls="log" aria-selected="true"><small class="align-top">Log</small></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/public/future_trajectory.html"></iframe>
+                        <div class="tab-content" id="tabContent">
+                            <div class="tab-pane fade show active" id="log" role="tabpanel"
+                                 aria-labelledby="log-tab">
+                                <iframe class="embed-responsive-item"
+                                        src="widgets/public/future_trajectory_log.html"
+                                ></iframe>
+                            </div>
+                            <div class="tab-pane fade" id="linear" role="tabpanel"
+                                 aria-labelledby="linear-tab">
+                                <iframe class="embed-responsive-item"
+                                        src="widgets/public/future_trajectory.html"
+                                ></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Countrywide Tests Conducted vs Cases</h6></span>
+                <div class="card border-light h-100 bg-info">
+                    <div class="card-header p-1" style="height:2rem">
+                        <span class="align-text-top"><h6><small> Countrywide Tests vs Cases</small></h6></span>
                     </div>
                     <div class="card-body embed-responsive embed-responsive-4by3">
                         <iframe class="embed-responsive-item"
@@ -130,12 +163,10 @@
             </div>
         </div>
 
-        <div class="row" style="height:1%"></div>
-
-        <div class="row mt-2 row-cols-2" style="height:49%">
+        <div class="row mt-1 row-cols-2" style="height:49%">
             <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
+                <div class="card border-light h-100 bg-info">
+                    <div class="card-header p-1" style="height:2rem">
                         <span class="align-text-top"><h6>Countrywide Fatality Rate Age Demographics</h6></span>
                     </div>
                     <div class="card-body embed-responsive embed-responsive-4by3">
@@ -146,8 +177,8 @@
             </div>
 
             <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
+                <div class="card border-light h-100 bg-info">
+                    <div class="card-header p-1" style="height:2rem">
                         <span class="align-text-top"><h6>Imported vs Locally Transmitted Cases</h6></span>
                     </div>
                     <div class="card-body embed-responsive embed-responsive-4by3">
@@ -185,12 +216,16 @@
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
+        $.ajaxSetup({ cache: false });
         updateSADashboard();
     });
+
+
+
 </script>
 
-<script src="assets/js/popper.min.js"/>
-<script src="assets/js/bootstrap.min.js"/>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 
