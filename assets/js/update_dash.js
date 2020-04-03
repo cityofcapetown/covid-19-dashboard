@@ -7,7 +7,7 @@ function addCard(targetDiv, iframeLink, titleString) {
     var $cardHtml = $((
         "<div class=\"card border-light w-100 h-100 bg-info\">" +
           "<div class=\"card-header p-1 ml-1 m-0\">" +
-            "<div class=\"row w-100\">" +
+            "<div class=\"row row-cols-2 m-0\">" +
               "<div class=\"col-8 mt-1\">" +
                 "<h6>" + titleString + "</h6>" +
               "</div>" +
@@ -75,7 +75,7 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
     var $cardHtml = $((
         "<div class=\"card border-light w-100 h-100 bg-info\">" +
           "<div class=\"card-header p-1 ml-1\">" +
-            "<div class=\"row w-100\">" +
+            "<div class=\"row row-cols-2 m-0\">" +
               "<div class=\"col-7 mt-1\">" +
                 "<h6 class=\"m-0\">" + titleString + "</h6>" +
               "</div>" +
