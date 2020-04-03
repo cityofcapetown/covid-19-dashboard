@@ -6,10 +6,10 @@ function setExpandLink(expandElementId, link) {
 function addCard(targetDiv, iframeLink, titleString) {
     var $cardHtml = $((
         "<div class=\"card border-light w-100 h-100 bg-info\">" +
-          "<div class=\"card-header p-1\" style=\"height:3rem\">" +
+          "<div class=\"card-header p-1 ml-1 m-0\">" +
             "<div class=\"row w-100\">" +
               "<div class=\"col-8 mt-1\">" +
-                "<h5>" + titleString + "</h5>" +
+                "<h6>" + titleString + "</h6>" +
               "</div>" +
               "<div class=\"col-4\">" +
                 "<ul class=\"nav nav-tabs card-header-tabs justify-content-end h-100\" id=\"tabList\" role=\"tablist\">" +
@@ -39,8 +39,8 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
     var tabPanes = "";
     var iframeMapsLength = iframeMaps.length;
     for (var i = 0; i < iframeMapsLength; i++) {
-        var tabId = iframeMaps[i].tabId + "Tab";
-        var paneId = iframeMaps[i].tabId + "Pane";
+        var tabId = targetDiv + iframeMaps[i].tabId + "Tab";
+        var paneId = targetDiv + iframeMaps[i].tabId + "Pane";
         var tabTitle = iframeMaps[i].titleString;
         var tabiframeLink = iframeMaps[i].iframeLink;
 
@@ -58,7 +58,7 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
         // Nav Item
         tabNavItems += (
           "<li class=\"nav-item\">" +
-            "<a class=\"card-link nav-link " + tabActiveClass + "\" data-toggle=\"tab\" role=\"tab\" aria-selected=\""+ ariaSelect + "\"" +
+            "<a class=\"card-link nav-link pl-0 pr-1 " + tabActiveClass + "\" data-toggle=\"tab\" role=\"tab\" aria-selected=\""+ ariaSelect + "\"" +
                "id=\"" + tabId + "\" href=\"#" + paneId + "\" aria-controls=\"" + paneId + "\" " +
                "onclick=\"setExpandLink('"+ expandId + "','"+ tabiframeLink +"');\">" +
                tabTitle +
@@ -74,16 +74,16 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
 
     var $cardHtml = $((
         "<div class=\"card border-light w-100 h-100 bg-info\">" +
-          "<div class=\"card-header p-1\" style=\"height:3rem\">" +
+          "<div class=\"card-header p-1 ml-1\">" +
             "<div class=\"row w-100\">" +
-              "<div class=\"col-8 mt-1\">" +
-                "<h5>" + titleString + "</h5>" +
+              "<div class=\"col-7 mt-1\">" +
+                "<h6 class=\"m-0\">" + titleString + "</h6>" +
               "</div>" +
-              "<div class=\"col-4\">" +
+              "<div class=\"col-5\">" +
                 "<ul class=\"nav nav-tabs card-header-tabs justify-content-end h-100\" id=\"tabList\" role=\"tablist\">" +
                   tabNavItems +
                   "<li class=\"nav-item sticky-top\">" +
-                     "<a class=\"card-link nav-link pl-1 pr-0\" id=\""+ expandId + "\" href=\"#\" target=\"_blank\">" +
+                     "<a class=\"card-link nav-link pl-0 pr-0\" id=\""+ expandId + "\" href=\"#\" target=\"_blank\">" +
                        "<img src=\"assets/imgs/external-link-square-alt-solid.svg\" width=\"18\" height=\"18\" style=\"opacity: 0.4;\" class=\"img-fluid\"/>" +
                      "</a>" +
                   "</li>" +
