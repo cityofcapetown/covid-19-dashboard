@@ -82,74 +82,24 @@
 
     <div class="container-fluid" style="height:72vh">
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Media Mentions over Time</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/behavioural_line_social_media_plot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="mentionsCountPlot"> </div>
 
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Nett Media Sentiment over Time</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/behavioural_line_sentiment_social_media_plot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="sentimentPlot"> </div>
         </div>
 
         <div class="row" style="height:1%"></div>
 
         <div class="row mt-2 row-cols-1" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Media Links</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe scrolling="no" class="embed-responsive-item"
-                                src="widgets/private/behavioural_media_links_table.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="mediaLinksTable"> </div>
         </div>
     </div>
 
     <div class="row" style="height:1%"></div>
 
     <div class="row mt-2 row-cols-2">
-        <div class="col h-100">
-            <div class="card border-light h-100">
-                <div class="card-header bg-info" style="height:2rem">
-                    <span class="align-text-top"><h6>Most Popular Positive Facebook Comments</h6></span>
-                </div>
-                <div class="card-body embed-responsive embed-responsive-4by3">
-                    <iframe scrolling="no" class="embed-responsive-item"
-                            src="widgets/private/behavioural_positive_comments_table.html"></iframe>
-                </div>
-            </div>
-        </div>
+        <div class="col h-100" id="positiveCommentTable"> </div>
 
-        <div class="col h-100">
-            <div class="card border-light h-100">
-                <div class="card-header bg-info" style="height:2rem">
-                    <span class="align-text-top"><h6>Most Popular Negative Facebook Comments</h6></span>
-                </div>
-                <div class="card-body embed-responsive embed-responsive-4by3">
-                    <iframe scrolling="no" class="embed-responsive-item"
-                            src="widgets/private/behavioural_negative_comments_table.html"></iframe>
-                </div>
-            </div>
-        </div>
+        <div class="col h-100" id="negativeCommentsTable"> </div>
     </div>
 
     <footer class="pt-3 my-md-3 pt-md-3 border-top">
@@ -179,12 +129,18 @@
 <script>
     $(() => {
         updateBehaviouralDashboard();
+
+        addCard("mentionsCountPlot", "widgets/private/behavioural_line_social_media_plot.html", "Media Mentions over Time");
+        addCard("sentimentPlot", "widgets/private/behavioural_line_sentiment_social_media_plot.html", "Sentiment over Time");
+        addCard("mediaLinksTable", "widgets/private/behavioural_media_links_table.html", "Press Media Links");
+        addCard("positiveCommentTable", "widgets/private/behavioural_positive_comments_table.html", "Most Popular Positive Facebook Comments");
+        addCard("negativeCommentsTable", "widgets/private/behavioural_negative_comments_table.html", "Most Popular Negative Facebook Comments");
     });
 
 </script>
 
-<script src="assets/js/popper.min.js"/>
-<script src="assets/js/bootstrap.min.js"/>
+<script src="assets/js/popper.min.js"> </script>
+<script src="assets/js/bootstrap.min.js"> </script>
 
 </body>
 

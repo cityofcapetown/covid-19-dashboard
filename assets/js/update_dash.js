@@ -25,7 +25,7 @@ function addCard(targetDiv, iframeLink, titleString) {
             "</div>" +
           "</div>" +
           "<div class=\"card-body embed-responsive embed-responsive-4by3\">" + //
-            "<iframe class=\"embed-responsive-item\" src=\"" + iframeLink + "\" id=\"" + iframeId + "\"></iframe>" +
+            "<iframe class=\"embed-responsive-item\" src=\"" + iframeLink + "\" id=\"" + iframeId + "\" scrolling=\"no\"></iframe>" +
           "</div>" +
         "</div>"
     ));
