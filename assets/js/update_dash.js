@@ -4,9 +4,11 @@ function setExpandLink(expandElementId, link) {
 }
 
 function addCard(targetDiv, iframeLink, titleString) {
+    var iframeId = targetDiv + "iframe";
+
     var $cardHtml = $((
-        "<div class=\"card border-light w-100 h-100 bg-info\">" +
-          "<div class=\"card-header p-1 ml-1 m-0\">" +
+        "<div class=\"card border-light w-100 h-100\">" +
+          "<div class=\"card-header p-1 ml-0 m-0 bg-info\">" +
             "<div class=\"row row-cols-2 m-0\">" +
               "<div class=\"col-8 mt-1\">" +
                 "<h6>" + titleString + "</h6>" +
@@ -22,13 +24,16 @@ function addCard(targetDiv, iframeLink, titleString) {
               "</div>" +
             "</div>" +
           "</div>" +
-          "<div class=\"card-body embed-responsive embed-responsive-4by3\">" +
-            "<iframe class=\"embed-responsive-item\" src=\"" + iframeLink + "\"></iframe>" +
+          "<div class=\"card-body embed-responsive embed-responsive-4by3\">" + //
+            "<iframe class=\"embed-responsive-item\" src=\"" + iframeLink + "\" id=\"" + iframeId + "\"></iframe>" +
           "</div>" +
         "</div>"
     ));
 
     $('#' + targetDiv).append( $cardHtml );
+
+    // Attempting to override plot's default style sheet
+    //$('#' + iframeId).contents().find("head").css("margin", "0px");
 };
 
 function addTabbedCard(targetDiv, iframeMaps, titleString) {
@@ -151,5 +156,19 @@ function updateBehaviouralDashboard() {
         $("#last_updated").text(last_updated);
         $("#mentions").text(mentions);
         $("#nett_sentiment").text(nett_sentiment + " %");
+    });
+};
+
+function updateBusinessContinuityDashboard() {
+    $.getJSON('widgets/private/business_continuity_values.json', function( data ) {
+        var last_updated = data.last_updated;
+        var staff_at_work = data.staff_at_work;
+        var staff_working_remotely = data.staff_working_remotely;
+        var staff_sick = data.staff_sick;
+
+        $("#last_updated").text(last_updated);
+        $("#staff_at_work").text(staff_at_work);
+        $("#staff_working_remotely").text(staff_working_remotely);
+        $("#staff_sick").text(staff_sick);
     });
 };

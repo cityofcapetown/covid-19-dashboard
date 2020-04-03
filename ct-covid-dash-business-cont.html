@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/ct-covid-dash.css">
-
 </head>
 
 <body>
@@ -56,7 +55,7 @@
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title">2020-03-19T06:00</h4>
+                    <h4 class="card-title" id="last_updated"> Loading... </h4>
                     <p class="card-text ">Last Updated</p>
                 </div>
             </div>
@@ -66,7 +65,7 @@
                 <img src="assets/imgs/cogs-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title"> x / y (z%)</h4>
+                    <h4 class="card-title" id="staff_at_work"> Loading...</h4>
                     <p class="card-text ">Staff at Work / Staff Employed</p>
                 </div>
             </div>
@@ -76,7 +75,7 @@
                 <img src="assets/imgs/wifi-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title"> y1 </h4>
+                    <h4 class="card-title" id="staff_working_remotely"> Loading... </h4>
                     <p class="card-text ">Staff Working Remotely</p>
                 </div>
             </div>
@@ -86,76 +85,31 @@
                 <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
                      style="height:100px; opacity: 0.2;">
                 <div class="card-img-overlay">
-                    <h4 class="card-title"> x2 </h4>
+                    <h4 class="card-title" id="staff_sick"> Loading... </h4>
                     <p class="card-text ">Staff Sick</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid overflow-hidden" style="height:73vh;">
+    <div class="container-fluid" style="height:73vh;">
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>City Workforce Absenteeism (**NB Synthetic Data**)</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/business_continuity_sick.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="BCSickPlot"> </div>
 
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>City Facility Locations (with headcounts)</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/business_continuity_facility_location_counts.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="BCFacilityLocationMap"> </div>
         </div>
 
         <div class="row" style="height:1%"></div>
 
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Service Request Performance since 2020-03-15</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/business_continuity_service_request_plot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="serviceRequestPlot"> </div>
 
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>City Financial Flows</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/private/business_continuity_line_finance_plot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="financePlot"> </div>
         </div>
     </div>
 
     <div class="row mt-2 row-cols-1">
-        <div class="col">
-            <div class="card border-light embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item align-middle"
-                        src="widgets/private/business_continuity_scm_placeholder.html"></iframe>
-            </div>
-        </div>
+        <div class="col" id="SCMPlot"> </div>
     </div>
 
     <footer class="pt-3 my-md-3 pt-md-3 border-top">
@@ -179,9 +133,26 @@
 </div>
 
 <!-- bootstrap scripts -->
-<script src="assets/js/jquery-3.4.1.slim.min.js"/>
-<script src="assets/js/popper.min.js"/>
-<script src="assets/js/bootstrap.min.js"/>
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        $.ajaxSetup({ cache: false });
+        //updateBusinessContinuityDashboard();
+
+        addCard("BCSickPlot", "widgets/private/business_continuity_sick.html", "Absenteeism Rates (Synthetic Data)");
+        addCard("BCFacilityLocationMap", "widgets/private/business_continuity_facility_location_counts.html", "City Facility Locations (with headcounts)");
+        addCard("serviceRequestPlot", "widgets/private/business_continuity_service_request_plot.html", "SR Performance since 2020-03-15");
+        addCard("financePlot", "widgets/private/business_continuity_line_finance_plot.html", "City Financial Flows");
+
+        addCard("SCMPlot", "widgets/private/business_continuity_scm_placeholder.html", "Supply Change Management");
+    });
+</script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 
