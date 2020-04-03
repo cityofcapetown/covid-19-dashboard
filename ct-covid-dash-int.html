@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -42,9 +42,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">International<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-int-data.html">International Data</a>
-            </li>
         </ul>
     </div>
 </nav>
@@ -85,57 +82,23 @@
 
     <div class="container-fluid" style="height:72vh">
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Case Count Progression by Time</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/public/global_timeline_confirmed.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="globalTimelinePlot"> </div>
 
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Mortality Rate by Country</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/public/global_ranked_fatalities_per_1m.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="globalMortalityPlot"> </div>
         </div>
 
         <div class="row" style="height:1%"></div>
 
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Country Fatality Rate by Cases</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/public/global_mortality_boxplot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="mortalityCasesPlot"> </div>
 
-            <div class="col h-100">
-                <div class="card border-light h-100">
-                    <div class="card-header bg-info" style="height:2rem">
-                        <span class="align-text-top"><h6>Chinese Mortality Rate by Age</h6></span>
-                    </div>
-                    <div class="card-body embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item"
-                                src="widgets/public/china_demographic_mortality_plot.html"></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="col h-100" id="chineseDemographicPlot"> </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="height:110vh">
+        <div class="row mt-2 row-cols-1 h-100">
+            <div class="col h-100" id="globalData"> </div>
         </div>
     </div>
 
@@ -166,13 +129,17 @@
 <script>
     $(() => {
         updateIntDashboard();
+
+        addCard("globalTimelinePlot", "widgets/public/global_timeline_confirmed.html", "Case Count Progression by Time");
+        addCard("globalMortalityPlot", "widgets/public/global_ranked_fatalities_per_1m.html", "Mortality Rate by Country");
+        addCard("mortalityCasesPlot", "widgets/public/global_mortality_boxplot.html", "Country Fatality Rate by Cases");
+        addCard("chineseDemographicPlot", "widgets/public/china_demographic_mortality_plot.html", "Chinese Mortality Rate by Age");
+        addCard("globalData", "widgets/public/browsable_global.html", "Global Data");
     });
-
-
 </script>
 
-<script src="assets/js/popper.min.js"/>
-<script src="assets/js/bootstrap.min.js"/>
+<script src="assets/js/popper.min.js"> </script>
+<script src="assets/js/bootstrap.min.js"> </script>
 
 </body>
 
