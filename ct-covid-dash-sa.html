@@ -46,6 +46,11 @@
 </nav>
 
 <div class="container" id="overlay">
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
     <div class="row row-cols-4 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
@@ -132,6 +137,7 @@
     $(() => {
         $.ajaxSetup({ cache: false });
         updateSADashboard();
+        addDisclaimerAlert("disclaimer");
 
         addCard("countryCasesPlot", "widgets/public/rsa_provincial_confirmed_timeseries.html", "Cases by Province");
         addTabbedCard("countryCaseTrajectory",

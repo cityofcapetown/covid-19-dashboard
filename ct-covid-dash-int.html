@@ -47,7 +47,12 @@
 </nav>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-3 mt-2">
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-3 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
@@ -129,6 +134,7 @@
 <script>
     $(() => {
         updateIntDashboard();
+        addDisclaimerAlert("disclaimer");
 
         addCard("globalTimelinePlot", "widgets/public/global_timeline_confirmed.html", "Case Count Progression by Time");
         addCard("globalMortalityPlot", "widgets/public/global_ranked_fatalities_per_1m.html", "Mortality Rate by Country");

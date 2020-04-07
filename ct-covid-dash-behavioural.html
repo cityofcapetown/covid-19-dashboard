@@ -47,7 +47,12 @@
 </nav>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-3 mt-2">
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-3 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
@@ -129,6 +134,7 @@
 <script>
     $(() => {
         updateBehaviouralDashboard();
+        addDisclaimerAlert("disclaimer");
 
         addCard("mentionsCountPlot", "widgets/private/behavioural_line_social_media_plot.html", "Media Mentions over Time");
         addCard("sentimentPlot", "widgets/private/behavioural_line_sentiment_social_media_plot.html", "Sentiment over Time");

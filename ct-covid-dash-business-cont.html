@@ -46,7 +46,12 @@
 </nav>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-4 mt-2">
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-4 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
@@ -138,6 +143,7 @@
     $(() => {
         $.ajaxSetup({ cache: false });
         //updateBusinessContinuityDashboard();
+        addDisclaimerAlert("disclaimer");
 
         addCard("BCSickPlot", "widgets/private/business_continuity_sick.html", "Absenteeism Rates (Synthetic Data)");
         addCard("BCFacilityLocationMap", "widgets/private/business_continuity_facility_location_counts.html", "City Facility Locations (with headcounts)");

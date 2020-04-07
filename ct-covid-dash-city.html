@@ -46,7 +46,13 @@
 </nav>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-4 mt-2">
+
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-4 mt-1">
         <div class="col">
             <div class="card border-light bg-info">
                 <img src="assets/imgs/clock-regular.svg" class="card-img"
@@ -92,9 +98,9 @@
     <div class="row mt-2 rows-cols-2" style="height: 73vh">
         <div class="col h-100">
             <div class="container-fluid h-100">
-                <div class="row" style="height:49%" id="cityCasesPlot"> </div>
+                <div class="row" style="height:49%" id="cityCasesPlot"></div>
                 <div class="row" style="height:2%"></div>
-                <div class="row" style="height:49%" id="cityDemographicChart"> </div>
+                <div class="row" style="height:49%" id="cityDemographicChart"></div>
             </div>
         </div>
 
@@ -132,6 +138,7 @@
 <script>
     $(() => {
         $.ajaxSetup({ cache: false });
+        addDisclaimerAlert("disclaimer");
         updateCityDashboard();
 
         addTabbedCard("cityCasesPlot",

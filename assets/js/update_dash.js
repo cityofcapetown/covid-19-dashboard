@@ -107,6 +107,20 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
     $('#' + targetDiv).append( $cardHtml );
 };
 
+function addDisclaimerAlert(targetDiv) {
+  var $alertHtml = $((
+      '<div class="alert alert-danger alert-dismissible fade show w-100 mt-2 mb-1" role="alert">' +
+        '<strong>CONFIDENTIAL</strong> This content is solely for the consideration of the City of Cape ' +
+        'Town\'s Senior Leadership, and <strong>should not</strong> be distributed.' +
+        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+          '<span aria-hidden="true">&times;</span>' +
+        '</button>' +
+      '</div>'
+  ));
+
+  $('#' + targetDiv).append( $alertHtml );
+}
+
 function updateCityDashboard() {
     $.getJSON('widgets/private/latest_values.json', function( data ) {
         var latest_update = data.ct_latest_update;
