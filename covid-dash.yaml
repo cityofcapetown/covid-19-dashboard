@@ -1,0 +1,85 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: covid-htpasswd 
+data: 
+  .htpasswd: |
+    <htpass1>
+    <htpass2>
+    <etc>
+
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: covid-dash
+  labels:
+    app: covid-dash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: covid-dash
+  template:
+    metadata:
+      labels:
+        app: covid-dash
+    spec:
+      containers:
+      - name: covid-dash
+        image: docker.io/cityofcapetown/nginx-s3-proxy:v0.2
+        imagePullPolicy: Always
+        env:
+          - name: ACCESS_KEY
+            value: "ACCESS_KEY"
+          - name: SECRET_KEY
+            value: "SECRET_KEY"
+          - name: BUCKET_NAME
+            value: "covid"
+          - name: ROOT_HTML_PATH
+            value: "ct-covid-dash-city.html"
+          - name: BASIC_AUTH
+            value: "yes"
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: "covid-htpasswd"
+          mountPath: "/auth/.htpasswd"
+          subPath: ".htpasswd"
+      restartPolicy: Always
+      volumes:
+        - name: "covid-htpasswd"
+          configMap:
+            name: "covid-htpasswd"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: covid-dash
+spec:
+  ports:
+  - name: http
+    targetPort: 8000
+    port: 80
+  selector:
+    app: covid-dash
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: covid-dash
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+spec:
+  rules:
+  - host:
+    http:
+      paths:
+      - path: /covid-dash
+        backend:
+          serviceName: covid-dash
+          servicePort: http
+
+
+
