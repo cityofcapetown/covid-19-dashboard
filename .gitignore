@@ -1,2 +1,4 @@
 widgets/
 dist/
+build/
+.idea/

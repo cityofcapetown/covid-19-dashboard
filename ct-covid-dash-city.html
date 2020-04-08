@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>City of Cape Town Covid-19 Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/ct-covid-dash.css">
+
+</head>
+<body>
+
+<video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="assets/imgs/ct_timelapse.mp4" type="video/mp4">
+</video>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/imgs/rect_city_logo.png" height="50" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">City<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-sa.html">South Africa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-business-cont.html">Business Continuity</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-behavioural.html">Behavioural</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./ct-covid-dash-int.html">International</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" id="overlay">
+
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-4 mt-1">
+        <div class="col">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/clock-regular.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
+                <div class="card-img-overlay">
+                    <h4 class="card-title" id="last_updated">Loading...</h4>
+                    <p class="card-text">Last Updated</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/notes-medical-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
+                <div class="card-img-overlay">
+                    <h4 class="card-title" id="tests_conducted">Loading...</h4>
+                    <p class="card-text">Tests Conducted (SA)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/ambulance-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
+                <div class="card-img-overlay">
+                    <h4 class="card-title" id="confirmed_cases">Loading...</h4>
+                    <p class="card-text ">Confirmed Cases </p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-light bg-info">
+                <img src="assets/imgs/skull-solid.svg" class="card-img"
+                     style="height:6rem; opacity: 0.2;">
+                <div class="card-img-overlay">
+                    <h4 class="card-title" id="deaths">Loading...</h4>
+                    <p class="card-text ">Deaths (SA)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2 rows-cols-2" style="height: 75vh">
+        <div class="col h-100">
+            <div class="container-fluid h-100">
+                <div class="row" style="height:49%" id="cityCasesPlot"></div>
+                <div class="row" style="height:2%"></div>
+                <div class="row" style="height:49%" id="cityDemographicChart"></div>
+            </div>
+        </div>
+
+        <div class="col h-100" id="mapCard"></div>
+    </div>
+
+    <div class="row mt-2 row-cols-1">
+        <div class="col" style="height:30rem" id="districtBarCharts"></div>
+    </div>
+
+    <footer class="pt-3 my-md-3 pt-md-3 border-top">
+        <div class="row text-center text-muted">
+            <div class="col">
+                <img height="125px" src="./assets/imgs/cct_logo_white_clear_bg_cropped.png"/>
+            </div>
+        </div>
+        <div class="row text-center text-muted mt-3">
+            <div class="col">
+                <p>
+                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance
+                    Management <br/>
+                    Notice something wrong? Please
+                    <a href='mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za'>
+                        let us know</a> straight away!
+                </p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- bootstrap scripts -->
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        $.ajaxSetup({ cache: false });
+        addDisclaimerAlert("disclaimer");
+        updateCityDashboard();
+
+        addTabbedCard("cityCasesPlot",
+          [
+            {tabId:"Linear", iframeLink: "widgets/private/ct_confirmed_timeseries.html", titleString: "Linear"},
+            {tabId:"Log", iframeLink: "widgets/private/ct_confirmed_timeseries_log.html", titleString: "Log"},
+          ],
+          "City Cases over Time");
+
+        addCard("cityDemographicChart", "widgets/private/cct_demographic_confirmed_plot.html", "City Confirmed Percentage by Age");
+        addCard("mapCard", "widgets/private/city_map.html", "City Case Count by Health District");
+        addCard("districtBarCharts", "widgets/private/cct_subdistrict_bar_chart.html", "Health District Cases over Time");
+    });
+</script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+</html>
