@@ -99,11 +99,11 @@
 
             <div class="col h-100" id="countryCaseTrajectory"> </div>
 
-            <div class="col h-100" id="countryTestingPlot"> </div>
+            <div class="col h-100" id="modelCaseTrajectory"> </div>
         </div>
 
         <div class="row mt-1 row-cols-2" style="height:49%">
-            <div class="col h-100" id="countryFatalityDemographicsPlot"> </div>
+            <div class="col h-100" id="countryTestingPlot"> </div>
 
             <div class="col h-100" id="countryTransmissionTypePlot"> </div>
         </div>
@@ -146,13 +146,18 @@
             {tabId:"Linear", iframeLink: "widgets/public/future_trajectory.html", titleString: "Linear"},
           ],
           "Case Trajectory");
+        addTabbedCard("modelCaseTrajectory",
+          [
+            {tabId:"Log", iframeLink: "widgets/private/future_deaths_trajectory.html", titleString: "Log"},
+            {tabId:"Linear", iframeLink: "widgets/private/future_deaths_trajectory_log.html", titleString: "Linear"},
+          ],
+          "Mortality Trajectory");
         addTabbedCard("countryTestingPlot",
           [
             {tabId:"Log", iframeLink: "widgets/public/rsa_tests_vs_cases_log.html", titleString: "Log"},
             {tabId:"Linear", iframeLink: "widgets/public/rsa_tests_vs_cases.html", titleString: "Linear"},
           ],
           "Tests vs Cases");
-        addCard("countryFatalityDemographicsPlot", "widgets/public/rsa_demographic_mortality_plot.html", "Fatality Rate Demographics");
         addCard("countryTransmissionTypePlot", "widgets/public/rsa_transmission_type_timeseries.html", "Transmission Type");
     });
 
