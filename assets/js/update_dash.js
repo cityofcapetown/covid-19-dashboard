@@ -63,7 +63,7 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
         // Nav Item
         tabNavItems += (
           "<li class=\"nav-item\">" +
-            "<a class=\"card-link nav-link pl-0 pr-1 " + tabActiveClass + "\" data-toggle=\"tab\" role=\"tab\" aria-selected=\""+ ariaSelect + "\"" +
+            "<a class=\"card-link nav-link pl-1 pr-1 " + tabActiveClass + "\" data-toggle=\"tab\" role=\"tab\" aria-selected=\""+ ariaSelect + "\"" +
                "id=\"" + tabId + "\" href=\"#" + paneId + "\" aria-controls=\"" + paneId + "\" " +
                "onclick=\"setExpandLink('"+ expandId + "','"+ tabiframeLink +"');\">" +
                tabTitle +
