@@ -99,7 +99,7 @@ for receiver_dict in passwords:
     body = email_template.render(
         username=receiver_dict["username"],
         password=receiver_dict["password"],
-        dashboard_link="ds3.capetown.gov.za/covid-dash2/ct-covid-dash-city.html",
+        dashboard_link="ds3.capetown.gov.za/covid-dash/ct-covid-dash-city.html",
         request_id=message_uuid,
         iso8601_timestamp=iso8601_timestamp
     )
