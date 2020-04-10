@@ -105,6 +105,9 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
     ));
 
     $('#' + targetDiv).append( $cardHtml );
+
+    // Setting expand link to point at the first one
+    setExpandLink(expandId, iframeMaps[0].iframeLink);
 };
 
 function addDisclaimerAlert(targetDiv) {
