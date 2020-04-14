@@ -107,6 +107,11 @@
         <div class="col h-100" id="mapCard"></div>
     </div>
 
+    <div class="row mt-2 row-cols-2">
+        <div class="col" id="provincialForecast"></div>
+        <div class="col" id="provincialCapacityForecast"></div>
+    </div>
+
     <div class="row mt-2 row-cols-1">
         <div class="col" style="height:30rem" id="districtBarCharts"></div>
     </div>
@@ -150,6 +155,8 @@
 
         addCard("cityDemographicChart", "widgets/private/cct_demographic_confirmed_plot.html", "City Confirmed Percentage by Age");
         addCard("mapCard", "widgets/private/city_map.html", "City Case Count by Health District");
+        addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-06</small>");
+        addCard("provincialCapacityForecast", "widgets/private/wc_model_latest_hospital_figures.html", "WC Health Dept. Capacity Forecast <br/><small>as of 2020-04-06</small>");
         addCard("districtBarCharts", "widgets/private/cct_subdistrict_bar_chart.html", "Health District Cases over Time");
     });
 </script>
