@@ -8,7 +8,6 @@ users <- email_addresses %>%
   separate("email_address",into = c("username"), sep = "[@]", remove = F, extra = "drop") %>% 
   mutate(username = tolower(username))
 
-system("cat /usr/share/dict/words > words.txt")
 words <- read.table("words.txt", col.names = c("word")) %>% 
   pull(word) %>% 
   as.character(.) %>% 
