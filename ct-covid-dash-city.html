@@ -113,6 +113,10 @@
     </div>
 
     <div class="row mt-2 row-cols-1">
+        <div class="col" style="height:30rem" id="districtCumulativeBarCharts"></div>
+    </div>
+
+    <div class="row mt-2 row-cols-1">
         <div class="col" style="height:30rem" id="districtBarCharts"></div>
     </div>
 
@@ -157,6 +161,7 @@
         addCard("mapCard", "widgets/private/city_map.html", "City Case Count by Health District");
         addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-06</small>");
         addCard("provincialCapacityForecast", "widgets/private/wc_model_latest_hospital_figures.html", "WC Health Dept. Capacity Forecast <br/><small>as of 2020-04-06</small>");
+        addCard("districtCumulativeBarCharts", "widgets/private/ct_subdistrict_cumulative_daily_counts_bar_chart.html", "Health District Cumulative Cases over Time");
         addCard("districtBarCharts", "widgets/private/cct_subdistrict_bar_chart.html", "Health District Cases over Time");
     });
 </script>
