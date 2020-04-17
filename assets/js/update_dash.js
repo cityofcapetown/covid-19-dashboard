@@ -129,7 +129,7 @@ function updateCityDashboard() {
         var latest_update = data.ct_latest_update;
         var latest_tested = data.rsa_latest_tested;
         var latest_confirmed = data.ct_latest_confirmed;
-        var latest_deaths = data.rsa_latest_deaths;
+        var latest_deaths = data.ct_latest_deaths;
 
         $("#last_updated").text(latest_update);
         $("#tests_conducted").text(latest_tested);
