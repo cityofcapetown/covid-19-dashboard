@@ -81,24 +81,7 @@
         </div>
     </div>
 
-    <footer class="pt-3 my-md-3 pt-md-3 border-top">
-        <div class="row text-center text-muted">
-            <div class="col">
-                <img height="125px" src="./assets/imgs/cct_logo_white_clear_bg_cropped.png"/>
-            </div>
-        </div>
-        <div class="row text-center text-muted mt-3">
-            <div class="col">
-                <p>
-                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance
-                    Management <br/>
-                    Notice something wrong? Please
-                    <a href='mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za'>
-                        let us know</a> straight away!
-                </p>
-            </div>
-        </div>
-    </footer>
+    <div id="footerPlaceholder"></div>
 </div>
 
 <!-- bootstrap scripts -->
@@ -132,8 +115,9 @@
           ],
           "SA Tests vs Cases");
         addCard("countryTransmissionTypePlot", "widgets/public/rsa_transmission_type_timeseries.html", "Transmission Type");
-    });
 
+        addFooter("footerPlaceholder")
+    });
 
 </script>
 

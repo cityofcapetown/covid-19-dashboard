@@ -59,44 +59,27 @@
 
     <div class="container-fluid p-0" style="height:74vh">
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100" id="globalTimelinePlot"> </div>
+            <div class="col h-100" id="globalTimelinePlot"></div>
 
-            <div class="col h-100" id="globalMortalityPlot"> </div>
+            <div class="col h-100" id="globalMortalityPlot"></div>
         </div>
 
         <div class="row" style="height:1%"></div>
 
         <div class="row mt-2 row-cols-2" style="height:49%">
-            <div class="col h-100" id="mortalityCasesPlot"> </div>
+            <div class="col h-100" id="mortalityCasesPlot"></div>
 
-            <div class="col h-100" id="chineseDemographicPlot"> </div>
+            <div class="col h-100" id="chineseDemographicPlot"></div>
         </div>
     </div>
 
     <div class="container-fluid" style="height:110vh">
         <div class="row mt-3 row-cols-1 h-100">
-            <div class="col h-100" id="globalData"> </div>
+            <div class="col h-100" id="globalData"></div>
         </div>
     </div>
 
-    <footer class="pt-3 my-md-3 pt-md-3 border-top">
-        <div class="row text-center text-muted">
-            <div class="col">
-                <img height="125px" src="./assets/imgs/cct_logo_white_clear_bg_cropped.png"/>
-            </div>
-        </div>
-        <div class="row text-center text-muted mt-3">
-            <div class="col">
-                <p>
-                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance
-                    Management <br/>
-                    Notice something wrong? Please
-                    <a href='mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za'>
-                        let us know</a> straight away!
-                </p>
-            </div>
-        </div>
-    </footer>
+    <div id="footerPlaceholder"></div>
 </div>
 
 <!-- bootstrap scripts -->
@@ -114,11 +97,13 @@
         addCard("mortalityCasesPlot", "widgets/public/global_mortality_boxplot.html", "Country Fatality Rate by Cases");
         addCard("chineseDemographicPlot", "widgets/public/china_demographic_mortality_plot.html", "Chinese Mortality Rate by Age");
         addCard("globalData", "widgets/public/browsable_global.html", "Global Data");
+        addFooter("footerPlaceholder")
     });
+
 </script>
 
-<script src="assets/js/popper.min.js"> </script>
-<script src="assets/js/bootstrap.min.js"> </script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 

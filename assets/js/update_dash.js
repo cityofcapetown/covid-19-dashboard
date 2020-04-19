@@ -174,6 +174,29 @@ function addNavbar(targetDiv) {
     $('#' + targetDiv).append( $navbarHtml );
 };
 
+function addFooter(targetDiv) {
+  var $footerHtml = $((
+    '<footer class="pt-3 my-md-3 pt-md-3 border-top">' +
+       '<div class="row text-center text-muted">' +
+         '<div class="col">' +
+           '<img height="125px" src="./assets/imgs/cct_logo_white_clear_bg_cropped.png"/>' +
+         '</div>' +
+       '</div>' +
+       '<div class="row text-center text-muted mt-3">' +
+         '<div class="col">' +
+           '<p>' +
+             'Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance Management <br/>' +
+              'Notice something wrong? Please' +
+              '<a href="mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za"> let us know</a> straight away!' +
+           '</p>' +
+         '</div>' +
+       '</div>' +
+    '</footer>'
+  ));
+
+  $('#' + targetDiv).append( $footerHtml );
+}
+
 function updateCityDashboard() {
     $.getJSON('widgets/private/latest_values.json', function( data ) {
         var latest_update = data.ct_latest_update;

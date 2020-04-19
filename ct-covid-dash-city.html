@@ -94,24 +94,8 @@
         </div>
     </div>
 
-    <footer class="pt-3 my-md-3 pt-md-3 border-top">
-        <div class="row text-center text-muted">
-            <div class="col">
-                <img height="125px" src="./assets/imgs/cct_logo_white_clear_bg_cropped.png"/>
-            </div>
-        </div>
-        <div class="row text-center text-muted mt-3">
-            <div class="col">
-                <p>
-                    Made with <span class="heart">❤</span> by the Data Science Unit in Organisational Performance
-                    Management <br/>
-                    Notice something wrong? Please
-                    <a href='mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za'>
-                        let us know</a> straight away!
-                </p>
-            </div>
-        </div>
-    </footer>
+    <div id="footerPlaceholder"></div>
+
 </div>
 
 <!-- bootstrap scripts -->
@@ -138,7 +122,10 @@
         addCard("provincialCapacityForecast", "widgets/private/wc_model_latest_hospital_figures.html", "WC Health Dept. Capacity Forecast <br/><small>as of 2020-04-06</small>");
         addCard("districtCumulativeBarCharts", "widgets/private/ct_subdistrict_cumulative_daily_counts_bar_chart.html", "Health District Cumulative Cases over Time");
         addCard("districtBarCharts", "widgets/private/cct_subdistrict_confirmed_cases_bar_chart.html", "Health District Cases over Time");
+
+        addFooter("footerPlaceholder")
     });
+
 </script>
 
 <script src="assets/js/popper.min.js"></script>
