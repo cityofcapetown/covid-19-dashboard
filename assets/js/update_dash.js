@@ -124,6 +124,56 @@ function addDisclaimerAlert(targetDiv) {
   $('#' + targetDiv).append( $alertHtml );
 }
 
+function addNavbar(targetDiv) {
+  const NavbarPages = [
+    {title: "Cape Town", link:"ct-covid-dash-city.html"},
+    {title: "South Africa", link:"ct-covid-dash-sa.html"},
+    {title: "Business Continuity", link:"ct-covid-dash-business-cont.html"},
+    {title: "Behavioural", link:"ct-covid-dash-behavioural.html"},
+    {title: "International", link:"ct-covid-dash-int.html"}
+  ];
+  var currentPageFileName = location.href.split("/").slice(-1);
+
+  var navbarItemsHtml = '';
+  var navbarLength = NavbarPages.length;
+  for (var i = 0; i < navbarLength; i++) {
+     navItemClasses = "nav-item"
+     navItemLink = NavbarPages[i].link
+     navItemContent = NavbarPages[i].title
+
+     if (navItemLink == currentPageFileName) {
+        navItemClasses += " active";
+        navItemLink = "#";
+        navItemContent += '<span class="sr-only">(current)</span>';
+     }
+
+     navbarItemsHtml += (
+        '<li class="' + navItemClasses +'">' +
+          '<a class="nav-link" href="' + navItemLink + '">' + navItemContent + '</a>' +
+        '</li>'
+     );
+  }
+
+  var $navbarHtml = $((
+    '<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">' +
+        '<a class="navbar-brand" href="ct-covid-dash-city.html">' +
+            '<img src="./assets/imgs/rect_city_logo.png" height="50" alt="">' +
+        '</a>' +
+        '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"' +
+                'aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
+            '<span class="navbar-toggler-icon"></span>' +
+        '</button>' +
+        '<div class="collapse navbar-collapse" id="navbarNav">' +
+            '<ul class="navbar-nav">' +
+              navbarItemsHtml +
+            '</ul>' +
+        '</div>' +
+    '</nav>'
+    ));
+
+    $('#' + targetDiv).append( $navbarHtml );
+};
+
 function updateCityDashboard() {
     $.getJSON('widgets/private/latest_values.json', function( data ) {
         var latest_update = data.ct_latest_update;

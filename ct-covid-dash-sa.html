@@ -15,35 +15,7 @@
     <source src="assets/imgs/ct_timelapse.mp4" type="video/mp4">
 </video>
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">
-    <a class="navbar-brand" href="#">
-        <img src="./assets/imgs/rect_city_logo.png" height="50" alt="">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-city.html">City</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">South Africa<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-business-cont.html">Business Continuity</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-behavioural.html">Behavioural</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ct-covid-dash-int.html">International</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<div id="navbarPlaceholder"></div>
 
 <div class="container" id="overlay">
     <div class="row row-cols-1">
@@ -95,17 +67,17 @@
     </div>
     <div class="container-fluid p-0" style="height:80vh">
         <div class="row mt-1 row-cols-3" style="height:49%">
-            <div class="col h-100 pr-1" id="countryCasesPlot"> </div>
+            <div class="col h-100 pr-1" id="countryCasesPlot"></div>
 
-            <div class="col h-100 pr-1 pl-1" id="countryCaseTrajectory"> </div>
+            <div class="col h-100 pr-1 pl-1" id="countryCaseTrajectory"></div>
 
-            <div class="col h-100 pl-1" id="modelCaseTrajectory"> </div>
+            <div class="col h-100 pl-1" id="modelCaseTrajectory"></div>
         </div>
 
         <div class="row mt-1 row-cols-2" style="height:49%">
-            <div class="col h-100 pr-1" id="countryTestingPlot"> </div>
+            <div class="col h-100 pr-1" id="countryTestingPlot"></div>
 
-            <div class="col h-100 pl-1" id="countryTransmissionTypePlot"> </div>
+            <div class="col h-100 pl-1" id="countryTransmissionTypePlot"></div>
         </div>
     </div>
 
@@ -136,6 +108,7 @@
 <script>
     $(() => {
         $.ajaxSetup({ cache: false });
+        addNavbar("navbarPlaceholder");
         updateSADashboard();
         addDisclaimerAlert("disclaimer");
 
@@ -160,6 +133,7 @@
           "SA Tests vs Cases");
         addCard("countryTransmissionTypePlot", "widgets/public/rsa_transmission_type_timeseries.html", "Transmission Type");
     });
+
 
 </script>
 
