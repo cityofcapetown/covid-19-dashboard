@@ -231,11 +231,11 @@ function updateBusinessContinuityDashboard() {
         var last_updated = data.last_updated;
         var staff_at_work = data.staff_at_work;
         var staff_working_remotely = data.staff_working_remotely;
-        var staff_sick = data.staff_sick;
+        var staff_covid = data.staff_covid;
 
         $("#last_updated").text(last_updated);
         $("#staff_at_work").text(staff_at_work);
         $("#staff_working_remotely").text(staff_working_remotely);
-        $("#staff_sick").text(staff_sick);
+        $("#staff_covid").text(staff_covid);
     });
 };
