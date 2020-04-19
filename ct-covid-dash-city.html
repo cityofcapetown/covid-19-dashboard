@@ -112,12 +112,14 @@
         <div class="col" id="provincialCapacityForecast"></div>
     </div>
 
-    <div class="row mt-2 row-cols-1">
-        <div class="col" style="height:30rem" id="districtCumulativeBarCharts"></div>
-    </div>
+    <div class="container p-0" id="casesOverTime">
+            <div class="row mt-2 row-cols-1">
+                <div class="col" style="height:30rem" id="districtCumulativeBarCharts"></div>
+            </div>
 
-    <div class="row mt-2 row-cols-1">
-        <div class="col" style="height:30rem" id="districtBarCharts"></div>
+            <div class="row mt-2 row-cols-1">
+                <div class="col" style="height:30rem" id="districtBarCharts"></div>
+            </div>
     </div>
 
     <footer class="pt-3 my-md-3 pt-md-3 border-top">
@@ -155,7 +157,7 @@
             {tabId:"Linear", iframeLink: "widgets/private/ct_confirmed_timeseries.html", titleString: "Linear"},
             {tabId:"Log", iframeLink: "widgets/private/ct_confirmed_timeseries_log.html", titleString: "Log"},
           ],
-          "City Cases over Time");
+          'City Cases over Time <small><a class="text-white" href="#casesOverTime">(<u>more detail</u>)</a></small>');
 
         addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html", "City Confirmed Percentage by Age");
         addCard("mapCard", "widgets/private/city_map.html", "City Case Counts by Ward");
