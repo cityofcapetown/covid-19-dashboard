@@ -30,6 +30,11 @@ for js_file in $(ls dist/assets/js/*.js); do
   ./bin/minio-upload.sh "$js_file" "text/javascript" "$BUCKET_NAME"/assets/js
 done
 
+# Assets - JSON
+for js_file in $(ls dist/assets/js/*.json); do
+  ./bin/minio-upload.sh "$js_file" "application/json" "$BUCKET_NAME"/assets/js
+done
+
 # Assets - imgs
 # PNGs
 for js_file in $(ls dist/assets/imgs/*.png); do
