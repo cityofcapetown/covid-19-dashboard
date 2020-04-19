@@ -189,12 +189,28 @@ function addFooter(targetDiv) {
               'Notice something wrong? Please' +
               '<a href="mailto:Riaz.Arbi@capetown.gov.za,DelynoJohannes.DuToit@capetown.gov.za,Gordon.Inggs@capetown.gov.za"> let us know</a> straight away!' +
            '</p>' +
+           '<p id="assetList">' +
+             'We\'ve had a lot of help - to name but a few: ' +
+           '</p>' +
          '</div>' +
        '</div>' +
     '</footer>'
   ));
 
   $('#' + targetDiv).append( $footerHtml );
+
+  $.getJSON('assets/js/city_assets.json', function( data ) {
+    var people = data;
+    var peopleLength = data.length;
+
+    var $htmlText = $("#assetList").text() + people[0].name;
+    for (var i = 1; i < (peopleLength-1); i++) {
+      $htmlText += ", " + people[i].name;
+    }
+    $htmlText += " and " + people[peopleLength-1].name;
+
+    $("#assetList").text($htmlText);
+  });
 }
 
 function updateCityDashboard() {
