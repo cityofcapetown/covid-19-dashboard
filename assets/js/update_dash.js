@@ -266,15 +266,16 @@ function updateBehaviouralDashboard() {
 };
 
 function updateBusinessContinuityDashboard() {
-    $.getJSON('widgets/private/business_continuity_values.json', function( data ) {
+    $.getJSON('widgets/private/business_continuity_values_v2.json', function( data ) {
         var last_updated = data.last_updated;
         var staff_at_work = data.staff_at_work;
-        var staff_working_remotely = data.staff_working_remotely;
         var staff_covid = data.staff_covid;
+        var staff_reported = data.staff_reported;
+        var staff_essential = data.staff_essential;
 
         $("#last_updated").text(last_updated);
-        $("#staff_at_work").text(staff_at_work);
-        $("#staff_working_remotely").text(staff_working_remotely);
+        $("#staff_at_work").text(staff_at_work + " / " + staff_reported);
+        $("#staff_assessed").text(staff_reported + " / " + staff_essential);
         $("#staff_covid").text(staff_covid);
     });
 };
