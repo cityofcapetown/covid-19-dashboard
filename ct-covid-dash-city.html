@@ -86,6 +86,10 @@
 
     <div class="container p-0" id="casesOverTime">
         <div class="row mt-2 row-cols-1">
+            <div class="col" style="height:30rem" id="cityNewCaseChart"></div>
+        </div>
+
+        <div class="row mt-2 row-cols-1">
             <div class="col" style="height:30rem" id="districtCumulativeBarCharts"></div>
         </div>
 
@@ -109,19 +113,17 @@
         addDisclaimerAlert("disclaimer");
         updateCityDashboard();
 
-        addTabbedCard("cityCasesPlot",
-          [
-            {tabId:"Linear", iframeLink: "widgets/private/ct_confirmed_timeseries.html", titleString: "Linear"},
-            {tabId:"Log", iframeLink: "widgets/private/ct_confirmed_timeseries_log.html", titleString: "Log"},
-          ],
+        addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html",
           'City Cases over Time <small><a class="text-white" href="#casesOverTime">(<u>more detail</u>)</a></small>');
 
         addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html", "City Confirmed Percentage by Age");
         addCard("mapCard", "widgets/private/city_map_widget.html", "City Case Counts by Ward");
         addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-21</small>");
         addCard("provincialCapacityForecast", "widgets/private/wc_model_latest_hospital_figures.html", "WC Health Dept. Capacity Forecast <br/><small>as of 2020-04-21</small>");
+
+        addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
         addCard("districtCumulativeBarCharts", "widgets/private/ct_subdistrict_cumulative_daily_counts_bar_chart.html", "Health District Cumulative Cases over Time");
-        addCard("districtBarCharts", "widgets/private/cct_subdistrict_confirmed_cases_bar_chart.html", "Health District Cases over Time");
+        addCard("districtBarCharts", "widgets/private/ct_subdistrict_daily_counts_bar_chart.html", "Health District Cases over Time");
 
         addFooter("footerPlaceholder")
     });
