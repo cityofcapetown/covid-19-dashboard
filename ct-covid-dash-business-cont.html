@@ -83,8 +83,12 @@
         </div>
     </div>
 
-    <div class="row mt-2 row-cols-1 mt-3">
+    <div class="row row-cols-1 mt-3">
         <div class="col" id="SCMPlot"></div>
+    </div>
+
+    <div class="row row-cols-1 mt-3" style="height: 88vh">
+        <div class="col h-100" id="hrOrgUnitStatus"></div>
     </div>
 
     <div id="footerPlaceholder"></div>
@@ -102,12 +106,13 @@
         updateBusinessContinuityDashboard();
         addDisclaimerAlert("disclaimer");
 
-        addCard("BCSickPlot", "widgets/private/business_continuity_hr_absenteeism_plot.html", "HR Capacity");
+        addCard("BCSickPlot", "widgets/private/business_continuity_hr_absenteeism_plot.html", 'HR Capacity <small><a class="text-white" href="#hrOrgUnitStatus">(<u>more detail</u>)</a></small>');
         addCard("BCFacilityLocationMap", "widgets/private/business_continuity_facility_location_counts.html", "City Facility Locations (with headcounts)");
         addCard("serviceRequestPlot", "widgets/private/business_continuity_service_request_plot.html", "SR Performance since 2020-03-15");
         addCard("financePlot", "widgets/private/business_continuity_line_finance_plot.html", "City Financial Flows");
 
         addCard("SCMPlot", "widgets/private/business_continuity_scm_placeholder.html", "Supply Change Management");
+        addCard("hrOrgUnitStatus", "widgets/private/business_continuity_hr_unit_status.html", "HR Organisation Unit Status");
         addFooter("footerPlaceholder")
     });
 
