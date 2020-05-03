@@ -25,7 +25,7 @@ function addCard(targetDiv, iframeLink, titleString) {
             "</div>" +
           "</div>" +
           "<div class=\"card-body embed-responsive embed-responsive-4by3\">" + //
-            "<iframe class=\"embed-responsive-item\" src=\"" + iframeLink + "\" id=\"" + iframeId + "\" scrolling=\"no\"></iframe>" +
+            "<iframe class=\"embed-responsive-item lazyload\" data-src=\"" + iframeLink + "\" id=\"" + iframeId + "\" scrolling=\"no\"></iframe>" +
           "</div>" +
         "</div>"
     ));
@@ -72,7 +72,7 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
         // Corresponding Tab
         tabPanes += (
           "<div class=\"tab-pane fade " + paneActiveClass + "\" id=\"" + paneId + "\" role=\"tabpanel\" aria-labelledby=\"" + tabId + "\">" +
-            "<iframe class=\"embed-responsive-item\" src=\"" + tabiframeLink + "\"></iframe>" +
+            "<iframe class=\"embed-responsive-item lazyload\" data-src=\"" + tabiframeLink + "\"></iframe>" +
           "</div>"
         );
     }
