@@ -213,6 +213,14 @@ function addFooter(targetDiv) {
   });
 }
 
+function addBackgroundVideoSrc(backgroundVideoSrcId, backgroundVideoId) {
+    $("#" + backgroundVideoSrcId).attr('src', 'assets/imgs/ct_timelapse.mp4');
+
+    var backgroundVideo = $("#" + backgroundVideoId)[0]
+    backgroundVideo.load();
+    backgroundVideo.play();
+}
+
 function updateCityDashboard() {
     $.getJSON('widgets/private/latest_values.json', function( data ) {
         var latest_update = data.ct_latest_update;

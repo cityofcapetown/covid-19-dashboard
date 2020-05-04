@@ -10,12 +10,11 @@
     <script src="assets/js/lazysizes.min.js" async=""></script>
 </head>
 
-<body>
+<body class="bg-dark">
 
 <video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="assets/imgs/ct_timelapse.mp4" type="video/mp4">
+    <source id="backgroundVideoSrc" src="" type="video/mp4">
 </video>
-
 
 <div id="navbarPlaceholder"></div>
 
@@ -115,6 +114,10 @@
         addCard("SCMPlot", "widgets/private/business_continuity_scm_placeholder.html", "Supply Change Management");
         addCard("hrOrgUnitStatus", "widgets/private/business_continuity_hr_unit_status.html", "HR Organisation Unit Status");
         addFooter("footerPlaceholder")
+
+        setTimeout(function() {
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo");
+        }, 10000);
     });
 
 

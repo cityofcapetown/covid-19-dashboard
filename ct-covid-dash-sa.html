@@ -10,10 +10,10 @@
     <script src="assets/js/lazysizes.min.js" async=""></script>
 </head>
 
-<body>
+<body class="bg-dark">
 
 <video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="assets/imgs/ct_timelapse.mp4" type="video/mp4">
+    <source id="backgroundVideoSrc" src="" type="video/mp4">
 </video>
 
 <div id="navbarPlaceholder"></div>
@@ -118,6 +118,10 @@
         addCard("countryTransmissionTypePlot", "widgets/public/rsa_transmission_type_timeseries.html", "Transmission Type");
 
         addFooter("footerPlaceholder")
+
+        setTimeout(function() {
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo");
+        }, 10000);
     });
 
 </script>
