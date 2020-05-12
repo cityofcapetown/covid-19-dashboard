@@ -279,11 +279,11 @@ function updateBusinessContinuityDashboard() {
         var staff_at_work = data.staff_at_work;
         var staff_covid = data.staff_covid;
         var staff_reported = data.staff_reported;
-        var staff_essential = data.staff_essential;
+        var staff_assessed = data.staff_assessed;
 
         $("#last_updated").text(last_updated);
         $("#staff_at_work").text(staff_at_work + " / " + staff_reported);
-        $("#staff_assessed").text(staff_reported + " / " + staff_essential);
+        $("#staff_assessed").text(staff_reported + " / " + staff_assessed);
         $("#staff_covid").text(staff_covid);
     });
 };
