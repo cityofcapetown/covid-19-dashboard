@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>City of Cape Town Covid-19 General Management Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/ct-covid-dash.css">
+    <script src="assets/js/lazysizes.min.js" async=""></script>
+</head>
+
+<body class="bg-dark">
+
+<video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
+    <source id="backgroundVideoSrc" src="" type="video/mp4">
+</video>
+
+<div id="navbarPlaceholder"></div>
+
+<div class="container" id="overlay">
+    {% for directorate_title, directorate_filename_prefix in directorate_tuples %}
+    <p> hello {{ directorate_title }} </p>
+    {% endfor %}
+    <div id="footerPlaceholder"></div>
+</div>
+
+<!-- bootstrap scripts -->
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        //addNavbar("navbarPlaceholder");
+        addFooter("footerPlaceholder")
+
+        setTimeout(function() {
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo");
+        }, 10000);
+    });
+</script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
