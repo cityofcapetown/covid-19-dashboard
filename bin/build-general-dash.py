@@ -5,11 +5,21 @@ import logging
 import jinja2
 
 DIRECTORATE_TUPLES = (
-    # directorate_title, directorate_filename_prefix
-    ("General", "city"),
-    ("Corporate Services", "corporate_services")
+    # directorate_title, directorate_filename_prefix, sr_plot_flag, hr_plot_flag
+    ("Citywide", "city", True, True),
+    ('Water and Waste', "water_and_waste", True, False),
+    ('Energy and Climate Change', "energy_and_climate_change", True, False),
+    ('Finance', "finance", True, False),
+    ("Human Settlements", "human_settlements", True, True),
+    ('Community Service and Health', "community_services_and_health", True, False),
+    ("Transport", "transport", True, True),
+    ("Corporate Services", "corporate_services", True, True),
+    #("Safety and Security", "safety_and_security", False, False),
+    ("Economic Opportunities and Asset Management", "economic_opportunities_and_asset_management", True, True),
+    ("Spatial Planning and Environment", "spatial_planning_and_environment", True, True),
+    ("Urban Management", "urban_management", False, True),
+    ('Office of the City Manager', "city_manager", False, True),
 )
-
 
 if __name__ == "__main__":
     # Setting up logging
