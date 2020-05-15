@@ -284,6 +284,5 @@ function updateBusinessContinuityDashboard() {
         $("#last_updated").text(last_updated);
         $("#staff_at_work").text(staff_at_work + " / " + staff_reported);
         $("#staff_assessed").text(staff_reported + " / " + staff_assessed);
-        $("#staff_covid").text(staff_covid);
     });
 };
