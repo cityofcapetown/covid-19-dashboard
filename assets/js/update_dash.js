@@ -247,8 +247,8 @@ function addFooter(targetDiv) {
   });
 }
 
-function addBackgroundVideoSrc(backgroundVideoSrcId, backgroundVideoId) {
-    $("#" + backgroundVideoSrcId).attr('src', 'assets/imgs/ct_timelapse.mp4');
+function addBackgroundVideoSrc(backgroundVideoSrcId, backgroundVideoId, videoUrl) {
+    $("#" + backgroundVideoSrcId).attr('src', videoUrl);
 
     var backgroundVideo = $("#" + backgroundVideoId)[0]
     backgroundVideo.load();
