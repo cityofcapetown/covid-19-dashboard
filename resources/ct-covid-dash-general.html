@@ -16,12 +16,73 @@
     <source id="backgroundVideoSrc" src="" type="video/mp4">
 </video>
 
-<div id="navbarPlaceholder"></div>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">
+        <a class="navbar-brand" href="ct-covid-dash-city.html">
+            <img src="./assets/imgs/rect_city_logo.png" alt="" height="50">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link" href="ct-covid-dash-general.html">City</a></li>
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">Directorate</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#opening">Covid-19 Information</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        {% for directorate_title, directorate_filename_prefix, _, _ in directorate_tuples %}
+                        <a class="dropdown-item" href="#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="ct-covid-dash-sa.html">South Africa</a></li>
+                <li class="nav-item"><a class="nav-link" href="ct-covid-dash-int.html">International</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
-<div class="container" id="overlay">
-    {% for directorate_title, directorate_filename_prefix in directorate_tuples %}
-    <p> hello {{ directorate_title }} </p>
+<div class="container" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
+    <div id="opening" class="container">
+        <div class="row mt-2 rows-cols-2" style="height: 75vh">
+            <div class="col h-100">
+                <div class="container-fluid h-100">
+                    <div class="row" style="height:49%" id="cityCasesPlot"></div>
+                    <div class="row" style="height:2%"></div>
+                    <div class="col" style="height:49%" id="provincialForecast"></div>
+                </div>
+            </div>
+
+            <div class="col h-100" id="mapCard"></div>
+        </div>
+
+        <div class="container p-0" id="casesOverTime">
+            <div class="row mt-2 row-cols-2">
+                <div class="col" style="height:30rem" id="cityNewCaseChart"></div>
+
+                <div class="row" style="height:30rem" id="cityDemographicChart"></div>
+            </div>
+        </div>
+
+    </div>
+
+    {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+    <div id="{{ directorate_filename_prefix }}" class="container mt-2 pt-2 border-top">
+        <h2> {{ directorate_title}} </h2>
+        <div class="row row-cols-{{ 2 if sr_flag and hr_flag else 1 }}">
+            {% if sr_flag %}
+            <div class="col" id="ServiceRequestTimeSeries_{{ directorate_filename_prefix }}" style="height:30rem"></div>
+            {% endif %}
+            {% if hr_flag %}
+            <div class="col" id="HRTimeSeries_{{ directorate_filename_prefix }}" style="height:30rem"></div>
+            {% endif %}
+        </div>
+    </div>
     {% endfor %}
+
     <div id="footerPlaceholder"></div>
 </div>
 
@@ -32,11 +93,35 @@
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
-        //addNavbar("navbarPlaceholder");
-        addFooter("footerPlaceholder")
+        // General
+        addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html",
+          'City Cases over Time <small><a class="text-white" href="#casesOverTime">(<u>more detail</u>)</a></small>');
+
+        addCard("mapCard", "widgets/private/city_map_widget.html", "City Case Counts over Space");
+
+        addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html", "City Confirmed Percentage by Age");
+        addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-21</small>");
+
+        addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
+
+        addFooter("footerPlaceholder");
+
+        // Directorate Specific
+        {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+        {% if sr_flag %}
+        addCard("ServiceRequestTimeSeries_{{ directorate_filename_prefix }}",
+                "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
+                "Service Request Volumes over Time");
+        {% endif %}
+        {% if hr_flag %}
+        addCard("HRTimeSeries_{{ directorate_filename_prefix }}",
+                "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_absenteeism_plot.html",
+                "HR Capacity over Time");
+        {% endif %}
+        {% endfor %}
 
         setTimeout(function() {
-            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo");
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_above.mp4");
         }, 10000);
     });
 </script>
