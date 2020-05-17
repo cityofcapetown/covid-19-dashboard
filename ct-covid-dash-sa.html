@@ -24,58 +24,21 @@
         </div>
     </div>
 
-    <div class="row row-cols-4 mt-1">
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="last_updated">Loading...</h4>
-                    <p class="card-text">Last Updated</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/notes-medical-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="tests_conducted">Loading...</h4>
-                    <p class="card-text">Tests Conducted</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="confirmed_cases">Loading...</h4>
-                    <p class="card-text ">Confirmed Cases</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="deaths">Loading...</h4>
-                    <p class="card-text ">Deaths</p>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-4 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
+        <div class="col h-100 w-100" id="sATestedStatCard"></div>
+        <div class="col h-100 w-100" id="casesStatCard"></div>
+        <div class="col h-100 w-100" id="deathsStatCard"></div>
     </div>
-    <div class="container-fluid p-0 mt-2" style="height:80vh">
-        <div class="row row-cols-2" style="height:49%">
+
+    <div class="container-fluid p-0 mt-2" style="height:73vh">
+        <div class="row row-cols-2" style="height:49.5%">
             <div class="col h-100" id="countryCasesPlot"></div>
 
             <div class="col h-100" id="countryCaseTrajectory"></div>
-
-
         </div>
 
-        <div class="row ow-cols-2 mt-2" style="height:49%">
+        <div class="row row-cols-2 mt-2" style="height:49.5%">
             <div class="col h-100" id="mortalityTrajectory"></div>
 
             <div class="col h-100" id="mortalityTrajectoryPerMillion"></div>
@@ -93,7 +56,17 @@
     $(() => {
         $.ajaxSetup({ cache: false });
         addNavbar("navbarPlaceholder");
-        updateSADashboard();
+
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var sATestedTextDiv = addStatCard("sATestedStatCard", "assets/imgs/notes-medical-solid.svg", "Tests Conducted (SA)");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_update');
+        setStatCardValue(sATestedTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_tested');
+        setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_confirmed');
+        setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_deaths');
+
         addDisclaimerAlert("disclaimer");
 
         addCard("countryCasesPlot", "widgets/public/rsa_provincial_confirmed_timeseries.html", "Case Numbers by Province");
@@ -124,7 +97,6 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo");
         }, 10000);
     });
-
 </script>
 
 <script src="assets/js/popper.min.js"></script>

@@ -24,37 +24,10 @@
         </div>
     </div>
 
-    <div class="row row-cols-3 mt-1">
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="last_updated">Loading...</h4>
-                    <p class="card-text ">Last Updated</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row card border-light bg-info">
-                <img src="assets/imgs/chart-line-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="mentions">Loading...</h4>
-                    <p class="card-text ">Media Mentions</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/surprise-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="nett_sentiment">Loading...</h4>
-                    <p class="card-text ">Nett Sentiment</p>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-3 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
+        <div class="col h-100 w-100" id="mentionsStatCard"></div>
+        <div class="col h-100 w-100" id="sentimentStatCard"></div>
     </div>
 
     <div class="container-fluid p-0" style="height:74vh">
@@ -88,9 +61,18 @@
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
-        updateBehaviouralDashboard();
         addNavbar("navbarPlaceholder");
         addDisclaimerAlert("disclaimer");
+
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var mentionsTextDiv = addStatCard("mentionsStatCard", "assets/imgs/chart-line-solid.svg",
+                                          "Media Mentions of City");
+        var sentimentTextDiv = addStatCard("sentimentStatCard", "assets/imgs/surprise-regular.svg",
+                                           "Nett Sentiment towards City");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/private/behavioural_values.json', 'last_updated');
+        setStatCardValue(mentionsTextDiv, 'widgets/private/behavioural_values.json', 'mentions');
+        setStatCardValue(sentimentTextDiv, 'widgets/private/behavioural_values.json', 'nett_sentiment', " %");
 
         addCard("mentionsCountPlot", "widgets/private/behavioural_media_count_plot.html", "Media Mentions over Time");
         addCard("sentimentPlot", "widgets/private/behavioural_sentiment_ts_plot.html", "Sentiment over Time");

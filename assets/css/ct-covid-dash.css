@@ -19,7 +19,7 @@
   background-color: rgba(0,0,0,0.6); /* Black background with opacity */
   color: #f1f1f1;
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  margin-top: 76px !important;
+  margin-top: 8vh !important;
 }
 
 #navbar {

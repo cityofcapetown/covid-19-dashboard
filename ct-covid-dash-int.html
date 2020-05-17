@@ -24,40 +24,13 @@
         </div>
     </div>
 
-    <div class="row row-cols-3 mt-1">
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="last_updated">Loading...</h4>
-                    <p class="card-text ">Last Updated</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/ambulance-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="confirmed_cases">Loading...</h4>
-                    <p class="card-text ">Confirmed Cases</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/skull-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="deaths">Loading...</h4>
-                    <p class="card-text ">Deaths</p>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-3 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"> </div>
+        <div class="col h-100 w-100" id="casesStatCard"> </div>
+        <div class="col h-100 w-100" id="deathsStatCard"> </div>
     </div>
 
-    <div class="container-fluid p-0" style="height:74vh">
+    <div class="container-fluid p-0" style="height:73vh">
         <div class="row mt-2 row-cols-2" style="height:49%">
             <div class="col h-100" id="globalTimelinePlot"></div>
 
@@ -88,7 +61,14 @@
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
-        updateIntDashboard();
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/public/latest_values.json', 'global_last_updated');
+        setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'global_last_confirmed_val');
+        setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'global_last_deaths_val');
+
         addNavbar("navbarPlaceholder");
         addDisclaimerAlert("disclaimer");
 

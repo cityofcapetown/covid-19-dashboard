@@ -3,6 +3,40 @@ function setExpandLink(expandElementId, link) {
     return true;
 }
 
+function addStatCard(targetDiv, overlayImg, descriptionText){
+    var cardTextId = targetDiv + "Title";
+
+    var $cardHtml = $((
+        "<div class=\"card border-light bg-info w-100 h-100\">" +
+          "<img src=\""+ overlayImg +"\" class=\"card-img h-100\" style=\"opacity: 0.2;\">" +
+          "<div class=\"card-img-overlay\">" +
+            "<h4 class=\"card-title\" id=\""+ cardTextId + "\">Loading...</h4>" +
+            "<p class=\"card-text\">" + descriptionText + "</p>" +
+          "</div>" +
+        "</div>"
+    ));
+
+    $('#' + targetDiv).append( $cardHtml );
+
+    return cardTextId;
+};
+
+function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix=""){
+    $.getJSON(titleTextJson, function( data ) {
+        var value = data[titleTextId];
+        $("#" + cardTextDiv).text(value + text_suffix);
+    });
+};
+
+function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId){
+    $.getJSON(titleTextJson, function( data ) {
+        var nom = data[titleNominatorTextId];
+        var dom = data[titleDenominatorTextId];
+
+        $("#" + cardTextDiv).text(nom + "/" + dom);
+    });
+};
+
 function addCard(targetDiv, iframeLink, titleString) {
     var iframeId = targetDiv + "iframe";
 
@@ -155,15 +189,15 @@ function addNavbar(targetDiv) {
   }
 
   var $navbarHtml = $((
-    '<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">' +
-        '<a class="navbar-brand" href="ct-covid-dash-city.html">' +
-            '<img src="./assets/imgs/rect_city_logo.png" height="50" alt="">' +
+    '<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top pb-0" id="navbar" style="height: 8vh">' +
+        '<a class="navbar-brand h-100" href="ct-covid-dash-city.html">' +
+            '<img src="./assets/imgs/rect_city_logo.png" class="h-100" alt="">' +
         '</a>' +
         '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"' +
                 'aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
             '<span class="navbar-toggler-icon"></span>' +
         '</button>' +
-        '<div class="collapse navbar-collapse" id="navbarNav">' +
+        '<div class="collapse navbar-collapse" id="navbarNav" class="h-100">' +
             '<ul class="navbar-nav">' +
               navbarItemsHtml +
             '</ul>' +
@@ -220,69 +254,3 @@ function addBackgroundVideoSrc(backgroundVideoSrcId, backgroundVideoId) {
     backgroundVideo.load();
     backgroundVideo.play();
 }
-
-function updateCityDashboard() {
-    $.getJSON('widgets/private/latest_values.json', function( data ) {
-        var latest_update = data.ct_latest_update;
-        var latest_tested = data.rsa_latest_tested;
-        var latest_confirmed = data.ct_latest_confirmed;
-        var latest_deaths = data.ct_latest_deaths;
-
-        $("#last_updated").text(latest_update);
-        $("#tests_conducted").text(latest_tested);
-        $("#confirmed_cases").text(latest_confirmed);
-        $("#deaths").text(latest_deaths);
-    });
-};
-
-function updateSADashboard() {
-    $.getJSON('widgets/public/latest_values.json', function( data ) {
-        var latest_update = data.rsa_latest_update;
-        var latest_tested = data.rsa_latest_tested;
-        var latest_confirmed = data.rsa_latest_confirmed;
-        var latest_deaths = data.rsa_latest_deaths;
-
-        $("#last_updated").text(latest_update);
-        $("#tests_conducted").text(latest_tested);
-        $("#confirmed_cases").text(latest_confirmed);
-        $("#deaths").text(latest_deaths);
-    });
-};
-
-function updateIntDashboard() {
-    $.getJSON('widgets/public/latest_values.json', function( data ) {
-        var latest_update = data.global_last_updated;
-        var latest_confirmed = data.global_last_confirmed_val;
-        var latest_deaths = data.global_last_deaths_val;
-
-        $("#last_updated").text(latest_update);
-        $("#confirmed_cases").text(latest_confirmed);
-        $("#deaths").text(latest_deaths);
-    });
-};
-
-function updateBehaviouralDashboard() {
-    $.getJSON('widgets/private/behavioural_values.json', function( data ) {
-        var last_updated = data.last_updated;
-        var mentions = data.mentions;
-        var nett_sentiment = data.nett_sentiment;
-
-        $("#last_updated").text(last_updated);
-        $("#mentions").text(mentions);
-        $("#nett_sentiment").text(nett_sentiment + " %");
-    });
-};
-
-function updateBusinessContinuityDashboard() {
-    $.getJSON('widgets/private/business_continuity_values_v2.json', function( data ) {
-        var last_updated = data.last_updated;
-        var staff_at_work = data.staff_at_work;
-        var staff_covid = data.staff_covid;
-        var staff_reported = data.staff_reported;
-        var staff_assessed = data.staff_assessed;
-
-        $("#last_updated").text(last_updated);
-        $("#staff_at_work").text(staff_at_work + " / " + staff_reported);
-        $("#staff_assessed").text(staff_reported + " / " + staff_assessed);
-    });
-};

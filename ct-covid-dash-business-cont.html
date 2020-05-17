@@ -24,40 +24,13 @@
         </div>
     </div>
 
-    <div class="row row-cols-3 mt-1">
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clock-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="last_updated"> Loading... </h4>
-                    <p class="card-text ">Last Updated</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card pl-0 border-light bg-info">
-                <img src="assets/imgs/cogs-solid.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="staff_at_work"> Loading... </h4>
-                    <p class="card-text">City Staff Working</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clipboard-regular.svg" class="card-img bg-info"
-                     style="height:100px; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="staff_assessed"> Loading... </h4>
-                    <p class="card-text ">City Staff Assessed</p>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-3 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"> </div>
+        <div class="col h-100 w-100" id="staffWorkingStatCard"> </div>
+        <div class="col h-100 w-100" id="staffAssessedStatCard"> </div>
     </div>
 
-    <div class="container-fluid p-0" style="height:74vh;">
+    <div class="container-fluid p-0" style="height:73vh;">
         <div class="row mt-2 row-cols-2" style="height:49%">
             <div class="col h-100" id="BCSickPlot"></div>
 
@@ -93,7 +66,19 @@
     $(() => {
         $.ajaxSetup({ cache: false });
         addNavbar("navbarPlaceholder");
-        updateBusinessContinuityDashboard();
+
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var staffWorkingTextDiv = addStatCard("staffWorkingStatCard", "assets/imgs/cogs-solid.svg",
+                                              "Staff Working / Assessed");
+        var staffAssessedTextDiv = addStatCard("staffAssessedStatCard", "assets/imgs/clipboard-regular.svg",
+                                               "Staff Assessed using HR Form");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/private/business_continuity_values_v2.json', 'last_updated');
+        setStatCardValueFractions(staffWorkingTextDiv, 'widgets/private/business_continuity_values_v2.json',
+        'staff_at_work', 'staff_reported');
+        setStatCardValueFractions(staffAssessedTextDiv, 'widgets/private/business_continuity_values_v2.json',
+        'staff_reported', 'staff_assessed');
+
         addDisclaimerAlert("disclaimer");
 
         addCard("BCSickPlot", "widgets/private/business_continuity_city_hr_absenteeism_plot.html", 'HR Capacity <small><a class="text-white" href="#hrOrgUnitStatus">(<u>more detail</u>)</a></small>');

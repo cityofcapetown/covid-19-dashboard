@@ -20,63 +20,28 @@
 <div class="container" id="overlay">
 
     <div class="row row-cols-1">
-        <div class="col" id="disclaimer">
-        </div>
+        <div class="col" id="disclaimer"></div>
     </div>
 
-    <div class="row row-cols-4 mt-1">
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/clock-regular.svg" class="card-img"
-                     style="height:6rem; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="last_updated">Loading...</h4>
-                    <p class="card-text">Last Updated</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/notes-medical-solid.svg" class="card-img"
-                     style="height:6rem; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="tests_conducted">Loading...</h4>
-                    <p class="card-text">Tests Conducted (SA)</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/ambulance-solid.svg" class="card-img"
-                     style="height:6rem; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="confirmed_cases">Loading...</h4>
-                    <p class="card-text ">Confirmed Cases </p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card border-light bg-info">
-                <img src="assets/imgs/skull-solid.svg" class="card-img"
-                     style="height:6rem; opacity: 0.2;">
-                <div class="card-img-overlay">
-                    <h4 class="card-title" id="deaths">Loading...</h4>
-                    <p class="card-text ">Deaths</p>
-                </div>
-            </div>
-        </div>
+    <div class="row row-cols-4 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
+        <div class="col h-100 w-100" id="sATestedStatCard"></div>
+        <div class="col h-100 w-100" id="casesStatCard"></div>
+        <div class="col h-100 w-100" id="deathsStatCard"></div>
     </div>
 
-    <div class="row mt-2 rows-cols-2" style="height: 75vh">
-        <div class="col h-100">
-            <div class="container-fluid h-100">
-                <div class="row" style="height:49%" id="cityCasesPlot"></div>
-                <div class="row" style="height:2%"></div>
-                <div class="row" style="height:49%" id="cityDemographicChart"></div>
+    <div class="container p-0" id="opening" style="height: 73vh">
+        <div class="row mt-2 rows-cols-2 h-100">
+            <div class="col h-100">
+                <div class="container-fluid h-100">
+                    <div class="row" style="height:49.5%" id="cityCasesPlot"></div>
+                    <div class="row" style="height:1%"></div>
+                    <div class="row" style="height:49.5%" id="cityDemographicChart"></div>
+                </div>
             </div>
-        </div>
 
-        <div class="col h-100" id="mapCard"></div>
+            <div class="col h-100" id="mapCard"></div>
+        </div>
     </div>
 
     <div class="row mt-2 row-cols-2">
@@ -114,10 +79,19 @@
 <script src="assets/js/update_dash.js"></script>
 <script type="text/javascript">
     $(() => {
-        $.ajaxSetup({ cache: false });
         addNavbar("navbarPlaceholder");
         addDisclaimerAlert("disclaimer");
-        updateCityDashboard();
+
+        // Stat Widgets
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var sATestedTextDiv = addStatCard("sATestedStatCard", "assets/imgs/notes-medical-solid.svg", "Tests Conducted (SA)");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/private/latest_values.json', 'ct_latest_update');
+        setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested');
+        setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed');
+        setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');
 
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html",
           'Cases over Time <small><a class="text-white" href="#casesOverTime">(<u>more detail</u>)</a></small>');
