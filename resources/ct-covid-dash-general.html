@@ -33,9 +33,9 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#opening">Covid-19 Information</a>
                         <div role="separator" class="dropdown-divider"></div>
-                        {% for directorate_title, directorate_filename_prefix, _, _ in directorate_tuples %}
+                        {% for directorate_title, directorate_filename_prefix, _, _ in directorate_tuples -%}
                         <a class="dropdown-item" href="#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
-                        {% endfor %}
+                        {% endfor -%}
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="ct-covid-dash-sa.html">South Africa</a></li>
@@ -52,33 +52,78 @@
                 <div class="container-fluid h-100">
                     <div class="row" style="height:49%" id="cityCasesPlot"></div>
                     <div class="row" style="height:2%"></div>
-                    <div class="col" style="height:49%" id="provincialForecast"></div>
+                    <div class="row" style="height:49%" id="provincialForecast"></div>
                 </div>
             </div>
 
             <div class="col h-100" id="mapCard"></div>
         </div>
 
-        <div class="container p-0" id="casesOverTime">
+        <div class="container" id="casesOverTime">
             <div class="row mt-2 row-cols-2">
-                <div class="col" style="height:30rem" id="cityNewCaseChart"></div>
+                <div class="col pl-0" style="height:30rem" id="cityNewCaseChart"></div>
 
-                <div class="row" style="height:30rem" id="cityDemographicChart"></div>
+                <div class="col pr-0" style="height:30rem" id="cityDemographicChart"></div>
             </div>
         </div>
 
     </div>
 
     {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+    <!-- {{ directorate_title }} -->
     <div id="{{ directorate_filename_prefix }}" class="container mt-2 pt-2 border-top">
         <h2> {{ directorate_title}} </h2>
-        <div class="row row-cols-{{ 2 if sr_flag and hr_flag else 1 }}">
-            {% if sr_flag %}
-            <div class="col" id="ServiceRequestTimeSeries_{{ directorate_filename_prefix }}" style="height:30rem"></div>
-            {% endif %}
-            {% if hr_flag %}
-            <div class="col" id="HRTimeSeries_{{ directorate_filename_prefix }}" style="height:30rem"></div>
-            {% endif %}
+        {% set num_cols = 1 %}
+        {% set num_cols = num_cols + (1 if sr_flag else 0) %}
+        {% set num_cols = num_cols + (1 if hr_flag else 0) %}
+        {% set col_width = 10 if num_cols == 2 else 5 %}
+        <div class="row row-cols-{{ num_cols }}" style="height:30rem">
+            <div class="col-2 pr-1 h-100 w-100 pr-2" id="stats_{{ directorate_filename_prefix }}">
+                <div class="row w-100" style="height:30%">
+                    <div class="card border-light bg-info w-100 h-100">
+                        <img src="assets/imgs/cogs-solid.svg" class="card-img h-100"
+                             style="opacity: 0.2">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title" id="working_{{directorate_filename_prefix}}">Loading...</h4>
+                            <p class="card-text ">Staff Working</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row w-100" style="height:5%"></div>
+
+                <div class="row w-100" style="height:30%">
+                    <div class="card border-light bg-info w-100 h-100">
+                        <img src="assets/imgs/clipboard-regular.svg" class="card-img h-100"
+                             style="opacity: 0.2">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title" id="assessed_{{directorate_filename_prefix}}">Loading...</h4>
+                            <p class="card-text ">Staff Assessed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row w-100" style="height:5%"></div>
+
+                <div class="row w-100" style="height:30%">
+                    <div class="card border-light bg-info w-100 h-100">
+                        <img src="assets/imgs/clock-regular.svg" class="card-img h-100"
+                             style="opacity: 0.2">
+                        <div class="card-img-overlay">
+                            <h4 class="card-title" id="duration_{{directorate_filename_prefix}}">Loading...</h4>
+                            <p class="card-text ">SR Duration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if sr_flag -%}
+            <div class="col-{{ col_width }} pl-2 {{ 'pr-2' if hr_flag else ''}} h-100"
+                 id="serviceRequestTimeSeries_{{ directorate_filename_prefix }}"></div>
+            {% endif -%}
+            {% if hr_flag -%}
+            <div class="col-{{ col_width }} {{ 'pl-2' if sr_flag else ''}} h-100"
+                 id="hRTimeSeries_{{ directorate_filename_prefix }}"></div>
+            {% endif -%}
         </div>
     </div>
     {% endfor %}
@@ -99,25 +144,28 @@
 
         addCard("mapCard", "widgets/private/city_map_widget.html", "City Case Counts over Space");
 
-        addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html", "City Confirmed Percentage by Age");
-        addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-21</small>");
+        addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
+            "City Confirmed Percentage by Age");
+        addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html",
+            "WC Health Dept. Disease Forecast <br/><small>as of 2020-04-29</small>");
 
         addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
 
         addFooter("footerPlaceholder");
 
         // Directorate Specific
-        {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
-        {% if sr_flag %}
-        addCard("ServiceRequestTimeSeries_{{ directorate_filename_prefix }}",
+        {%- for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+        // {{ directorate_title }}
+        {% if sr_flag -%}
+        addCard("serviceRequestTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
                 "Service Request Volumes over Time");
-        {% endif %}
-        {% if hr_flag %}
-        addCard("HRTimeSeries_{{ directorate_filename_prefix }}",
+        {% endif -%}
+        {% if hr_flag -%}
+        addCard("hRTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_absenteeism_plot.html",
                 "HR Capacity over Time");
-        {% endif %}
+        {% endif -%}
         {% endfor %}
 
         setTimeout(function() {
