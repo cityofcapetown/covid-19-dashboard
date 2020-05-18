@@ -73,11 +73,12 @@
         var staffAssessedTextDiv = addStatCard("staffAssessedStatCard", "assets/imgs/clipboard-regular.svg",
                                                "Staff Assessed using HR Form");
 
-        setStatCardValue(lastUpdateTextDiv, 'widgets/private/business_continuity_values_v2.json', 'last_updated');
-        setStatCardValueFractions(staffWorkingTextDiv, 'widgets/private/business_continuity_values_v2.json',
-        'staff_at_work', 'staff_reported');
-        setStatCardValueFractions(staffAssessedTextDiv, 'widgets/private/business_continuity_values_v2.json',
-        'staff_reported', 'staff_assessed');
+        setStatCardValue(lastUpdateTextDiv, 'widgets/private/business_continuity_city_values.json',
+                         'city_last_updated');
+        setStatCardValueFractions(staffWorkingTextDiv, 'widgets/private/business_continuity_city_values.json',
+                                  'city_staff_at_work', 'city_staff_reported');
+        setStatCardValueFractions(staffAssessedTextDiv, 'widgets/private/business_continuity_city_values.json',
+                                  'city_staff_reported', 'city_staff_assessed');
 
         addDisclaimerAlert("disclaimer");
 
