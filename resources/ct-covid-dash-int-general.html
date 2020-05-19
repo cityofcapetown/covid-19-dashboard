@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <title>City of Cape Town Covid-19 Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/ct-covid-dash.css">
+    <script src="assets/js/lazysizes.min.js" async=""></script>
+</head>
+
+<body class="bg-dark">
+
+<video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
+    <source id="backgroundVideoSrc" src="" type="video/mp4">
+</video>
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar" style="height: 8vh">
+        <a class="navbar-brand h-100" href="ct-covid-dash-city.html">
+            <img src="./assets/imgs/rect_city_logo.png" alt="" class="h-100">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="ct-covid-dash-general.html">City</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">Directorate</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="ct-covid-dash-general.html#opening">Covid-19 Information</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        {% for directorate_title, directorate_filename_prefix, _, _ in directorate_tuples -%}
+                        <a class="dropdown-item" href="ct-covid-dash-general.html#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
+                        {% endfor -%}
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="ct-covid-dash-sa-general.html">South Africa</a></li>
+                <li class="nav-item active"><a class="nav-link" href="ct-covid-dash-int-general.html">International</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container" id="overlay">
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer">
+        </div>
+    </div>
+
+    <div class="row row-cols-3 mt-1" style="height:11vh">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"> </div>
+        <div class="col h-100 w-100" id="casesStatCard"> </div>
+        <div class="col h-100 w-100" id="deathsStatCard"> </div>
+    </div>
+
+    <div class="container-fluid p-0" style="height:73vh">
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100" id="globalTimelinePlot"></div>
+
+            <div class="col h-100" id="globalMortalityPlot"></div>
+        </div>
+
+        <div class="row" style="height:1%"></div>
+
+        <div class="row mt-2 row-cols-2" style="height:49%">
+            <div class="col h-100" id="mortalityCasesPlot"></div>
+
+            <div class="col h-100" id="chineseDemographicPlot"></div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-0" style="height:110vh">
+        <div class="row mt-3 row-cols-1 h-100">
+            <div class="col h-100" id="globalData"></div>
+        </div>
+    </div>
+
+    <div id="footerPlaceholder"></div>
+</div>
+
+<!-- bootstrap scripts -->
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/public/latest_values.json', 'global_last_updated');
+        setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'global_last_confirmed_val');
+        setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'global_last_deaths_val');
+
+        addNavbar("navbarPlaceholder");
+        addDisclaimerAlert("disclaimer");
+
+        addCard("globalTimelinePlot", "widgets/public/global_timeline_confirmed.html", "Case Count Progression by Time");
+        addCard("globalMortalityPlot", "widgets/public/global_ranked_fatalities_per_1m.html", "Mortality Rate by Country");
+        addCard("mortalityCasesPlot", "widgets/public/global_mortality_boxplot.html", "Country Fatality Rate by Cases");
+        addCard("chineseDemographicPlot", "widgets/public/china_demographic_mortality_plot.html", "Chinese Mortality Rate by Age");
+        addCard("globalData", "widgets/public/browsable_global.html", "Global Data");
+        addFooter("footerPlaceholder")
+
+        setTimeout(function() {
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_above.mp4");
+        }, 10000);
+    });
+
+</script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

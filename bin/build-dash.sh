@@ -23,6 +23,8 @@ cp *.html $BUILD_DIR_PATH/
 # General Dashboard
 RESOURCES_PATH="./resources"
 python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-general.html" --output-path $BUILD_DIR_PATH/
+python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-sa-general.html" --output-path $BUILD_DIR_PATH/
+python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-int-general.html" --output-path $BUILD_DIR_PATH/
 
 # Zipping up
 DIST_DEFAULT_PATH="./dist"

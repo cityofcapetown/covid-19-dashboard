@@ -7,7 +7,7 @@ import jinja2
 DIRECTORATE_TUPLES = (
     # directorate_title, directorate_filename_prefix, sr_plot_flag, hr_plot_flag
     ("Citywide", "city", True, True),
-    ('Water and Waste', "water_and_waste", True, False),
+    ('Water and Waste', "water_and_waste", True, True),
     ('Energy and Climate Change', "energy_and_climate_change", True, False),
     ('Finance', "finance", True, False),
     ("Human Settlements", "human_settlements", True, True),
