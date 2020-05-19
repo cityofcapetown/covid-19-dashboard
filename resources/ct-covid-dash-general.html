@@ -86,22 +86,26 @@
         {% set num_cols = num_cols + (1 if hr_flag else 0) %}
         {% set col_width = 10 if num_cols == 2 else 5 %}
         <div class="row row-cols-{{ num_cols }}" style="height:30rem">
-            <div class="col-2 pr-1 h-100 w-100 pr-2" id="stats_{{ directorate_filename_prefix }}">
-                <div class="row w-100" style="height:30%" id="staffWorking_{{ directorate_filename_prefix }}"> </div>
+            <div class="col-2 pr-1 h-100 w-100" id="stats_{{ directorate_filename_prefix }}">
+                <div class="row w-100" style="height:30%" id="staffWorking_{{ directorate_filename_prefix }}"></div>
                 <div class="row w-100" style="height:5%"></div>
-                <div class="row w-100" style="height:30%" id="staffAssessed_{{ directorate_filename_prefix }}"> </div>
+                <div class="row w-100" style="height:30%" id="staffAssessed_{{ directorate_filename_prefix }}"></div>
                 <div class="row w-100" style="height:5%"></div>
-                <div class="row w-100" style="height:30%" id="serviceInOut_{{ directorate_filename_prefix }}"> </div>
+                <div class="row w-100" style="height:30%" id="serviceInOut_{{ directorate_filename_prefix }}"></div>
             </div>
             {% if sr_flag -%}
-            <div class="col-{{ col_width }} pl-2 {{ 'pr-2' if hr_flag else ''}} h-100"
+            <div class="col-{{ col_width }} pl-1 {{ '' if hr_flag else 'pr-0'}} h-100"
                  id="serviceRequestTimeSeries_{{ directorate_filename_prefix }}"></div>
             {% endif -%}
             {% if hr_flag -%}
-            <div class="col-{{ col_width }} {{ 'pl-2' if sr_flag else ''}} h-100"
+            <div class="col-{{ col_width }} pl-1 pr-0 h-100"
                  id="hRTimeSeries_{{ directorate_filename_prefix }}"></div>
             {% endif -%}
         </div>
+        {% if sr_flag -%}
+        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
+             id="serviceRequestMap_{{ directorate_filename_prefix }}"></div>
+        {% endif -%}
     </div>
     {% endfor %}
 
@@ -150,6 +154,19 @@
         addCard("serviceRequestTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
                 "Service Request Volumes over Time");
+
+        addTabbedCard("serviceRequestMap_{{ directorate_filename_prefix }}",
+                [
+                {%- for service_period_time_period_prefix, service_period_time_period_title in service_request_time_periods %}
+                    {
+                        tabId: "mapTab_{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}",
+                        iframeLink: "widgets/private/business_continuity_service_request_map/{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}_map.html",
+                        titleString: "{{ service_period_time_period_title }}"
+                     } {{ "," if not loop.last else "" }}
+                {%- endfor %}
+                ],
+                "Service Request Volumes over Space");
+
         {% endif -%}
         {% if hr_flag -%}
         var staffWorkingText_{{ directorate_filename_prefix }} = addStatCard("staffWorking_{{ directorate_filename_prefix }}",

@@ -21,6 +21,14 @@ DIRECTORATE_TUPLES = (
     ('Office of the City Manager', "city_manager", False, True),
 )
 
+SERVICE_REQUEST_TIME_PERIOD_TUPLES = (
+    # (time_period_prefix, time_period_Title)
+    ("last_week", "Last Week"),
+    ("last_day", "Last Day"),
+    ("last_month", "Last Month"),
+    ("since_sod", "Since 2020-03-15")
+)
+
 if __name__ == "__main__":
     # Setting up logging
     logging.basicConfig(level=logging.INFO,
@@ -45,7 +53,8 @@ if __name__ == "__main__":
 
     logging.info("Generating HTML")
     template = jinja2.Template(template_code)
-    rendered_file = template.render(directorate_tuples=DIRECTORATE_TUPLES)
+    rendered_file = template.render(directorate_tuples=DIRECTORATE_TUPLES,
+                                    service_request_time_periods=SERVICE_REQUEST_TIME_PERIOD_TUPLES)
 
     logging.info("Writing out HTML file")
     *_, template_filename = os.path.split(template_filepath)
