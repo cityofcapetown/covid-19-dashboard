@@ -2,3 +2,4 @@ widgets/
 dist/
 build/
 .idea/
+.Rproj.user
