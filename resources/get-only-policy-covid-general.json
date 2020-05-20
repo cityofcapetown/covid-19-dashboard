@@ -4,14 +4,14 @@
     {
       "Action": [
         "s3:GetObject",
-        "s3:PutObject",
-	"s3:ListBucket",
-	"s3:GetBucketLocation"
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
       ],
       "Effect": "Allow",
       "Resource": [
         "arn:aws:s3:::covid/*-general.html",
         "arn:aws:s3:::covid/assets/*",
+        "arn:aws:s3:::covid/data/public/*",
         "arn:aws:s3:::covid/widgets/public/*",
         "arn:aws:s3:::covid/widgets/private/libdir/*",
         "arn:aws:s3:::covid/widgets/private/business_continuity_*_hr_absenteeism_plot.html",
