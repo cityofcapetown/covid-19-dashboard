@@ -150,7 +150,11 @@
         // {{ directorate_title }}
         {% if sr_flag -%}
         var serviceInOutText_{{ directorate_filename_prefix }} = addStatCard("serviceInOut_{{ directorate_filename_prefix }}",
-                                                                             "assets/imgs/chart-line-solid.svg", "Service Requests Opened/Closed");
+                                                                             "assets/imgs/chart-line-solid.svg", "Service Requests Opened/Closed in last week");
+        setStatCardValueFractions(serviceInOutText_{{ directorate_filename_prefix }},
+                                  'widgets/private/business_continuity_service_request_map/last_week_{{ directorate_filename_prefix }}_hex_l7_service_request_count.json',
+                                  "opened_total", "closed_total");
+
         addCard("serviceRequestTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
                 "Service Request Volumes over Time");
