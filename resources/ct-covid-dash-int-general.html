@@ -46,10 +46,6 @@
 </div>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-1">
-        <div class="col" id="disclaimer">
-        </div>
-    </div>
 
     <div class="row row-cols-3 mt-1" style="height:11vh">
         <div class="col h-100 w-100" id="lastUpdatedStatCard"> </div>
@@ -97,7 +93,6 @@
         setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'global_last_deaths_val');
 
         addNavbar("navbarPlaceholder");
-        addDisclaimerAlert("disclaimer");
 
         addCard("globalTimelinePlot", "widgets/public/global_timeline_confirmed.html", "Case Count Progression by Time");
         addCard("globalMortalityPlot", "widgets/public/global_ranked_fatalities_per_1m.html", "Mortality Rate by Country");

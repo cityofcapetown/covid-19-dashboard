@@ -46,10 +46,6 @@
 </div>
 
 <div class="container" id="overlay">
-    <div class="row row-cols-1">
-        <div class="col" id="disclaimer">
-        </div>
-    </div>
 
     <div class="row row-cols-4 mt-1" style="height:11vh">
         <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
@@ -93,8 +89,6 @@
         setStatCardValue(sATestedTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_tested');
         setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_confirmed');
         setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'rsa_latest_deaths');
-
-        addDisclaimerAlert("disclaimer");
 
         addCard("countryCasesPlot", "widgets/public/rsa_provincial_confirmed_timeseries.html", "Case Numbers by Province");
         addTabbedCard("countryCaseTrajectory",
