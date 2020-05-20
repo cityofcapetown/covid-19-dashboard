@@ -86,7 +86,7 @@
         {% set num_cols = num_cols + (1 if hr_flag else 0) %}
         {% set col_width = 10 if num_cols == 2 else 5 %}
         <div class="row row-cols-{{ num_cols }}" style="height:30rem">
-            <div class="col-2 pr-1 h-100 w-100" id="stats_{{ directorate_filename_prefix }}">
+            <div class="col-2 pr-0 h-100 w-100" id="stats_{{ directorate_filename_prefix }}">
                 <div class="row w-100" style="height:30%" id="staffWorking_{{ directorate_filename_prefix }}"></div>
                 <div class="row w-100" style="height:5%"></div>
                 <div class="row w-100" style="height:30%" id="staffAssessed_{{ directorate_filename_prefix }}"></div>
