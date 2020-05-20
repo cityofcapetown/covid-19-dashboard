@@ -61,6 +61,7 @@
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 
 <!-- custom code for dynamically updating data -->
+<script src="assets/js/numeral.min.js"></script>
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
@@ -76,9 +77,9 @@
         setStatCardValue(lastUpdateTextDiv, 'widgets/private/business_continuity_city_values.json',
                          'city_last_updated');
         setStatCardValueFractions(staffWorkingTextDiv, 'widgets/private/business_continuity_city_values.json',
-                                  'city_staff_at_work', 'city_staff_reported');
+                                  'city_staff_at_work', 'city_staff_reported', true);
         setStatCardValueFractions(staffAssessedTextDiv, 'widgets/private/business_continuity_city_values.json',
-                                  'city_staff_reported', 'city_staff_assessed');
+                                  'city_staff_reported', 'city_staff_assessed', true);
 
         addDisclaimerAlert("disclaimer");
 

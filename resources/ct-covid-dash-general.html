@@ -116,6 +116,7 @@
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 
 <!-- custom code for dynamically updating data -->
+<script src="assets/js/numeral.min.js"></script>
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
@@ -127,8 +128,8 @@
         var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
 
         setStatCardValue(lastUpdateTextDiv, 'widgets/private/latest_values.json', 'ct_latest_update');
-        setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested');
-        setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed');
+        setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested', "", true);
+        setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed', "", true);
         setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');
 
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html",
@@ -150,10 +151,10 @@
         // {{ directorate_title }}
         {% if sr_flag -%}
         var serviceInOutText_{{ directorate_filename_prefix }} = addStatCard("serviceInOut_{{ directorate_filename_prefix }}",
-                                                                             "assets/imgs/chart-line-solid.svg", "Service Requests Opened/Closed in last week");
+                                                                             "assets/imgs/chart-line-solid.svg", "SRs Opened/Closed in last week");
         setStatCardValueFractions(serviceInOutText_{{ directorate_filename_prefix }},
                                   'widgets/private/business_continuity_service_request_map/last_week_{{ directorate_filename_prefix }}_hex_l7_service_request_count.json',
-                                  "opened_total", "closed_total");
+                                  "opened_total", "closed_total", true);
 
         addCard("serviceRequestTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
@@ -180,10 +181,10 @@
 
         setStatCardValueFractions(staffWorkingText_{{ directorate_filename_prefix }},
                                   'widgets/private/business_continuity_{{ directorate_filename_prefix }}_values.json',
-                                  '{{ directorate_filename_prefix }}_staff_at_work', '{{ directorate_filename_prefix }}_staff_reported');
+                                  '{{ directorate_filename_prefix }}_staff_at_work', '{{ directorate_filename_prefix }}_staff_reported', true);
         setStatCardValueFractions(staffAssessedText_{{ directorate_filename_prefix }},
                                   'widgets/private/business_continuity_{{ directorate_filename_prefix }}_values.json',
-                                  '{{ directorate_filename_prefix }}_staff_reported', '{{ directorate_filename_prefix }}_staff_assessed');
+                                  '{{ directorate_filename_prefix }}_staff_reported', '{{ directorate_filename_prefix }}_staff_assessed', true);
 
         addCard("hRTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_absenteeism_plot.html",

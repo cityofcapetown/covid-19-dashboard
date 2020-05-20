@@ -81,6 +81,7 @@
 <!-- bootstrap scripts -->
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <!-- custom code for dynamically updating data -->
+<script src="assets/js/numeral.min.js"></script>
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
@@ -89,8 +90,8 @@
         var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
 
         setStatCardValue(lastUpdateTextDiv, 'widgets/public/latest_values.json', 'global_last_updated');
-        setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'global_last_confirmed_val');
-        setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'global_last_deaths_val');
+        setStatCardValue(casesTextDiv, 'widgets/public/latest_values.json', 'global_last_confirmed_val', "", true);
+        setStatCardValue(deathsTextDiv, 'widgets/public/latest_values.json', 'global_last_deaths_val', "", true);
 
         addNavbar("navbarPlaceholder");
 

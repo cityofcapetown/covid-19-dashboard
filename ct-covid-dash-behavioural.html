@@ -58,6 +58,7 @@
 <!-- bootstrap scripts -->
 <script src="assets/js/jquery-3.4.1.min.js"></script>
 <!-- custom code for dynamically updating data -->
+<script src="assets/js/numeral.min.js"></script>
 <script src="assets/js/update_dash.js"></script>
 <script>
     $(() => {
@@ -71,7 +72,7 @@
                                            "Nett Sentiment towards City");
 
         setStatCardValue(lastUpdateTextDiv, 'widgets/private/behavioural_values.json', 'last_updated');
-        setStatCardValue(mentionsTextDiv, 'widgets/private/behavioural_values.json', 'mentions');
+        setStatCardValue(mentionsTextDiv, 'widgets/private/behavioural_values.json', 'mentions', "", true);
         setStatCardValue(sentimentTextDiv, 'widgets/private/behavioural_values.json', 'nett_sentiment', " %");
 
         addCard("mentionsCountPlot", "widgets/private/behavioural_media_count_plot.html", "Media Mentions over Time");

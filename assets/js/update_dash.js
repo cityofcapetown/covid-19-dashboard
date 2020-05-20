@@ -21,17 +21,31 @@ function addStatCard(targetDiv, overlayImg, descriptionText){
     return cardTextId;
 };
 
-function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix=""){
+function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix="", numeral_format=false){
     $.getJSON(titleTextJson, function( data ) {
-        var value = data[titleTextId];
+        if (numeral_format) {
+            var floatValue = parseFloat(data[titleTextId]);
+            var value = numeral(floatValue).format("0.0a");
+        } else {
+            value = data[titleTextId];
+        }
+
         $("#" + cardTextDiv).text(value + text_suffix);
     });
 };
 
-function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId){
+function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId, numeral_format=false){
     $.getJSON(titleTextJson, function( data ) {
-        var nom = data[titleNominatorTextId];
-        var dom = data[titleDenominatorTextId];
+        if (numeral_format) {
+            var floatNom = parseFloat(data[titleNominatorTextId]);
+            var nom = numeral(floatNom).format("0.0a");
+
+            var floatDom = parseFloat(data[titleDenominatorTextId]);
+            var dom = numeral(floatDom).format("0.0a");
+        } else {
+            var nom = data[titleNominatorTextId];
+            var dom = data[titleDenominatorTextId];
+        }
 
         $("#" + cardTextDiv).text(nom + "/" + dom);
     });
