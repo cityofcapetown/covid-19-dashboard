@@ -25,7 +25,7 @@ function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix="
     $.getJSON(titleTextJson, function( data ) {
         if (numeral_format) {
             var floatValue = parseFloat(data[titleTextId]);
-            var value = numeral(floatValue).format("0.0a");
+            var value = numeral(floatValue).format("0.[0]a");
         } else {
             value = data[titleTextId];
         }
@@ -38,10 +38,10 @@ function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTex
     $.getJSON(titleTextJson, function( data ) {
         if (numeral_format) {
             var floatNom = parseFloat(data[titleNominatorTextId]);
-            var nom = numeral(floatNom).format("0.0a");
+            var nom = numeral(floatNom).format("0.[0]a");
 
             var floatDom = parseFloat(data[titleDenominatorTextId]);
-            var dom = numeral(floatDom).format("0.0a");
+            var dom = numeral(floatDom).format("0.[0]a");
         } else {
             var nom = data[titleNominatorTextId];
             var dom = data[titleDenominatorTextId];
