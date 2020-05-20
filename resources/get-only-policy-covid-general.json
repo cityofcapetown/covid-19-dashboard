@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+	"s3:ListBucket",
+	"s3:GetBucketLocation"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::covid/*-general.html",
+        "arn:aws:s3:::covid/assets/*",
+        "arn:aws:s3:::covid/widgets/public/*",
+        "arn:aws:s3:::covid/widgets/private/libdir/*",
+        "arn:aws:s3:::covid/widgets/private/business_continuity_*_hr_absenteeism_plot.html",
+        "arn:aws:s3:::covid/widgets/private/business_continuity_*_service_request_count_plot.html",
+        "arn:aws:s3:::covid/widgets/private/business_continuity_*_values.json",
+        "arn:aws:s3:::covid/widgets/private/business_continuity_service_request_map/*",
+        "arn:aws:s3:::covid/widgets/private/city_map_*",
+        "arn:aws:s3:::covid/widgets/private/ct_*",
+        "arn:aws:s3:::covid/widgets/private/cct_*",
+        "arn:aws:s3:::covid/widgets/private/wc_model_*",
+        "arn:aws:s3:::covid/widgets/private/latest_values.json"
+      ],
+      "Sid": ""
+    }
+  ]
+}

@@ -3,3 +3,5 @@ dist/
 build/
 .idea/
 .Rproj.user
+resources/covid-dash-secrets.yaml
+resources/covid-dash-general-secrets.yaml
