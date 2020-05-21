@@ -106,6 +106,10 @@
         <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
              id="serviceRequestMap_{{ directorate_filename_prefix }}"></div>
         {% endif -%}
+        {% if hr_flag -%}
+        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
+             id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"></div>
+        {% endif -%}
     </div>
     {% endfor %}
 
@@ -189,6 +193,10 @@
         addCard("hRTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_absenteeism_plot.html",
                 "HR Capacity over Time");
+
+        addCard("hrOrgUnitStatus_{{ directorate_filename_prefix }}",
+                "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_unitstatus_plot.html",
+                "Organisational Unit Status");
         {% endif -%}
         {% endfor %}
 
@@ -196,6 +204,7 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_above.mp4");
         }, 10000);
     });
+
 </script>
 
 <script src="assets/js/popper.min.js"></script>
