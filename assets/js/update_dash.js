@@ -203,14 +203,14 @@ function addNavbar(targetDiv) {
   }
 
   var $navbarHtml = $((
-    '<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top pb-0" id="navbar" style="height: 8vh">' +
-        '<a class="navbar-brand h-100" href="ct-covid-dash-city.html">' +
-            '<img src="./assets/imgs/rect_city_logo.png" class="h-100" alt="">' +
-        '</a>' +
+    '<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top p-0 align-items-center" id="navbar" style="height:8vh">' +
         '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"' +
                 'aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">' +
             '<span class="navbar-toggler-icon"></span>' +
         '</button>' +
+        '<a class="navbar-brand h-100 align-middle pl-2" href="ct-covid-dash-city.html" style="max-height:75px">' +
+            '<img src="./assets/imgs/rect_city_logo.png" class="h-100 align-middle" alt="">' +
+        '</a>' +
         '<div class="collapse navbar-collapse" id="navbarNav">' +
             '<ul class="navbar-nav">' +
               navbarItemsHtml +
