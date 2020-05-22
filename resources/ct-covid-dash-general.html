@@ -105,6 +105,10 @@
         {% if sr_flag -%}
         <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
              id="serviceRequestMap_{{ directorate_filename_prefix }}"></div>
+        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
+             id="openServiceRequestFocusMap_{{ directorate_filename_prefix }}"></div>
+        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
+             id="allServiceRequestFocusMap_{{ directorate_filename_prefix }}"></div>
         {% endif -%}
         {% if hr_flag -%}
         <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
@@ -162,7 +166,7 @@
 
         addCard("serviceRequestTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_service_request_count_plot.html",
-                "Service Request Volumes over Time");
+                'Service Requests over Time <small><a class="text-white" href="#serviceRequestMap_{{ directorate_filename_prefix }}">(<u>more detail</u>)</a></small>');
 
         addTabbedCard("serviceRequestMap_{{ directorate_filename_prefix }}",
                 [
@@ -171,10 +175,34 @@
                         tabId: "mapTab_{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}",
                         iframeLink: "widgets/private/business_continuity_service_request_map/{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}_map.html",
                         titleString: "{{ service_period_time_period_title }}"
-                     } {{ "," if not loop.last else "" }}
+                     }{{ "," if not loop.last else "" }}
                 {%- endfor %}
                 ],
-                "Service Request Volumes over Space");
+                "Service Requests over Space");
+
+        addTabbedCard("openServiceRequestFocusMap_{{ directorate_filename_prefix }}",
+                [
+                {%- for service_period_time_period_prefix, service_period_time_period_title in service_request_time_periods %}
+                    {
+                        tabId: "openFocusMapTab_{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}",
+                        iframeLink: "widgets/private/business_continuity_service_request_map/{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}_open_focused_map.html",
+                        titleString: "{{ service_period_time_period_title }}"
+                     }{{ "," if not loop.last else "" }}
+                {%- endfor %}
+                ],
+                "Service Requests over Space");
+
+        addTabbedCard("allServiceRequestFocusMap_{{ directorate_filename_prefix }}",
+                [
+                {%- for service_period_time_period_prefix, service_period_time_period_title in service_request_time_periods %}
+                    {
+                        tabId: "focusMapTab_{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}",
+                        iframeLink: "widgets/private/business_continuity_service_request_map/{{ service_period_time_period_prefix }}_{{ directorate_filename_prefix }}_focused_map.html",
+                        titleString: "{{ service_period_time_period_title }}"
+                     }{{ "," if not loop.last else "" }}
+                {%- endfor %}
+                ],
+                "Service Requests over Space");
 
         {% endif -%}
         {% if hr_flag -%}
@@ -192,7 +220,7 @@
 
         addCard("hRTimeSeries_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_absenteeism_plot.html",
-                "HR Capacity over Time");
+                'HR Capacity over Time <small><a class="text-white" href="#hrOrgUnitStatus_{{ directorate_filename_prefix }}">(<u>more detail</u>)</a></small>');
 
         addCard("hrOrgUnitStatus_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_unitstatus_plot.html",

@@ -54,6 +54,18 @@
         <div class="col h-100" id="hrOrgUnitStatus"></div>
     </div>
 
+    <div class="row row-cols-1 mt-3" style="height: 88vh">
+        <div class="col h-100" id="sRVolumeDetail"></div>
+    </div>
+
+    <div class="row row-cols-1 mt-3" style="height: 88vh">
+        <div class="col h-100" id="sROpenRequestDetail"></div>
+    </div>
+
+    <div class="row row-cols-1 mt-3" style="height: 88vh">
+        <div class="col h-100" id="sRAllRequestDetail"></div>
+    </div>
+
     <div id="footerPlaceholder"></div>
 </div>
 
@@ -85,11 +97,90 @@
 
         addCard("BCSickPlot", "widgets/private/business_continuity_city_hr_absenteeism_plot.html", 'HR Capacity <small><a class="text-white" href="#hrOrgUnitStatus">(<u>more detail</u>)</a></small>');
         addCard("BCFacilityLocationMap", "widgets/private/business_continuity_facility_location_counts.html", "City Facility Locations (with headcounts)");
-        addCard("serviceRequestPlot", "widgets/private/business_continuity_city_service_request_count_plot.html", "Service Request Volumes over Time");
+        addCard("serviceRequestPlot", "widgets/private/business_continuity_city_service_request_count_plot.html", 'Service Requests over Time  <small><a class="text-white" href="#sRVolumeDetail">(<u>more detail</u>)</a></small>');
         addCard("financePlot", "widgets/private/business_continuity_line_finance_plot.html", "City Financial Flows");
 
         addCard("SCMPlot", "widgets/private/business_continuity_scm_placeholder.html", "Supply Change Management");
         addCard("hrOrgUnitStatus", "widgets/private/business_continuity_city_hr_unitstatus_plot.html", "Organisational Unit Status");
+
+        addTabbedCard("sRVolumeDetail",
+            [
+                {
+                    tabId: "mapTab_last_week_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_week_city_map.html",
+                    titleString: "Last Week"
+                 },
+                {
+                    tabId: "mapTab_last_day_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_day_city_map.html",
+                    titleString: "Last Day"
+                 },
+                {
+                    tabId: "mapTab_last_month_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_month_city_map.html",
+                    titleString: "Last Month"
+                 },
+                {
+                    tabId: "mapTab_since_sod_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/since_sod_city_map.html",
+                    titleString: "Since 2020-03-15"
+                 }
+            ],
+            "Service Requests over Space"
+        );
+
+        addTabbedCard("sROpenRequestDetail",
+            [
+                {
+                    tabId: "mapTab_last_week_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_week_city_open_focused_map.html",
+                    titleString: "Last Week"
+                 },
+                {
+                    tabId: "mapTab_last_day_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_day_city_open_focused_map.html",
+                    titleString: "Last Day"
+                 },
+                {
+                    tabId: "mapTab_last_month_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_month_city_open_focused_map.html",
+                    titleString: "Last Month"
+                 },
+                {
+                    tabId: "mapTab_since_sod_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/since_sod_city_open_focused_map.html",
+                    titleString: "Since 2020-03-15"
+                 }
+            ],
+            "Open Service Requests over Space"
+        );
+
+        addTabbedCard("sRAllRequestDetail",
+            [
+                {
+                    tabId: "mapTab_last_week_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_week_city_focused_map.html",
+                    titleString: "Last Week"
+                 },
+                {
+                    tabId: "mapTab_last_day_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_day_city_focused_map.html",
+                    titleString: "Last Day"
+                 },
+                {
+                    tabId: "mapTab_last_month_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/last_month_city_focused_map.html",
+                    titleString: "Last Month"
+                 },
+                {
+                    tabId: "mapTab_since_sod_city",
+                    iframeLink: "widgets/private/business_continuity_service_request_map/since_sod_city_focused_map.html",
+                    titleString: "Since 2020-03-15"
+                 }
+            ],
+            "All Service Requests over Space"
+        );
+
         addFooter("footerPlaceholder")
 
         setTimeout(function() {
