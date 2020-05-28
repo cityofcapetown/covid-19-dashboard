@@ -9,7 +9,7 @@ DIRECTORATE_TUPLES = (
     ("Citywide", "city", True, True),
     ('Water and Waste', "water_and_waste", True, True),
     ('Energy and Climate Change', "energy_and_climate_change", True, False),
-    ('Finance', "finance", True, False),
+    ('Finance', "finance", True, True),
     ("Human Settlements", "human_settlements", True, True),
     ('Community Service and Health', "community_services_and_health", True, False),
     ("Transport", "transport", True, True),
