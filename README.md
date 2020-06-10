@@ -33,4 +33,20 @@ The default behaviour is to copy everything to the `build` directory, then creat
 `#ToDo`
 
 ### Deploying
-`#ToDo`
+#### Minio Permissions
+1. Create the user: `mc admin user add edge <access key e.g. covid-general-read-only> <secret key e.g. blash-fish-ten-59>`
+2. Add the permission's policy: `mc admin policy add edge <policy name e.g. getonly-covid-general> <path to policy JSON e.g. resources/get-only-policy-covid-general.json> `
+3. Apply the permissions to the user: `mc admin policy set edge <policy name e.g. getonly-covid-general> user=<user name e.g. covid-general-read-only>`
+
+If new permissions need to be added, repeat steps (2) and (3)
+
+#### Kubernetes Secrets
+1. Copy the secrets file (e.g. `my-secrets-file.yaml`) to wherever you have access to `kubectl`
+2. Create the secrets in the namespace: `kubectl apply --namespace covid-dash -f <path to secrets file e.g. my-secrets-file.yaml>`
+
+#### Deploying the Kubernetes Infrastructure
+1. Copy the deployment file (e.g. `resources/covid-dash-general.yaml`) to wherever you have access to `kubectl`
+2. Deploy: `kubectl apply --namespace covid-dash -f <path to deployment file e.g. covid-dash-general.yaml>`
+
+#### Removing the Kubernetes Deployment
+1. Use the deployment file: `kubectl delete --namespace covid-dash -f <path to deployment file e.g. covid-dash-general.yaml>`
