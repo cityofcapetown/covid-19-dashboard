@@ -4,3 +4,4 @@ build/
 .idea/
 .Rproj.user
 resources/*-secrets.yaml
+venv/
