@@ -126,7 +126,7 @@
 
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html", 'Cases over Time');
 
-        addCard("mapCard", "widgets/private/case_count_maps/city_all_map_widget.html", "Case Counts over Space");
+        addCard("mapCard", "widgets/private/case_count_maps/city_all_hotspot_map_widget.html", "Case Counts over Space");
 
         addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
             "Fatality Rate by Age");
@@ -146,7 +146,7 @@
           'Daily Cases over Time');
         addCard("{{ plot_prefix }}_CumulativeCount", "widgets/private/{{ plot_prefix }}_cumulative_counts.html",
           'Cumulative Cases over Time');
-        addCard("{{ plot_prefix }}_MapCard", "widgets/private/case_count_maps/city_{{ district_filename_prefix }}_map_widget.html", "Case Counts over Space");
+        addCard("{{ plot_prefix }}_MapCard", "widgets/private/case_count_maps/city_{{ district_filename_prefix }}_hotspot_map_widget.html", "Case Counts over Space");
 
         var cumulativeCasesText_{{ district_filename_prefix }} = addStatCard("cumulativeCases_{{ district_filename_prefix }}", "assets/imgs/clipboard-regular.svg", "Total Cases");
         setStatCardNestedValue(cumulativeCasesText_{{ district_filename_prefix }},
