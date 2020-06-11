@@ -21,18 +21,39 @@ function addStatCard(targetDiv, overlayImg, descriptionText){
     return cardTextId;
 };
 
+function setStatValue(cardTextDiv, cardValue, text_suffix="", numeral_format=false){
+   if (numeral_format) {
+        var floatValue = parseFloat(cardValue);
+        var value = numeral(floatValue).format("0.[0]a");
+   } else {
+        value = cardValue;
+   }
+
+   $("#" + cardTextDiv).text(value + text_suffix);
+};
+
 function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix="", numeral_format=false){
     $.getJSON(titleTextJson, function( data ) {
-        if (numeral_format) {
-            var floatValue = parseFloat(data[titleTextId]);
-            var value = numeral(floatValue).format("0.[0]a");
-        } else {
-            value = data[titleTextId];
-        }
-
-        $("#" + cardTextDiv).text(value + text_suffix);
+        setStatValue(cardTextDiv, data[titleTextId], text_suffix, numeral_format)
     });
 };
+
+function setStatCardNestedValue(cardTextDiv, titleTextJson, titleTextIds, text_suffix="", numeral_format=false){
+    $.getJSON(titleTextJson, function( data ) {
+        var value = data[titleTextIds[0]]
+        console.log(value)
+
+        titleTextIds.forEach(function (item, index) {
+            console.log(value)
+            console.log(item)
+            if (index > 0){
+                value = value[item];
+            }
+        });
+
+        setStatValue(cardTextDiv, value, text_suffix, numeral_format)
+    });
+}
 
 function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId, numeral_format=false){
     $.getJSON(titleTextJson, function( data ) {

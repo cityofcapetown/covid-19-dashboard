@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>City of Cape Town Covid-19 Hotspots Data Viewer</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/ct-covid-dash.css">
+    <script src="assets/js/lazysizes.min.js" async=""></script>
+</head>
+
+<body class="bg-dark">
+
+<video id="backgroundVideo" autoplay="autoplay" muted="muted" loop="loop">
+    <source id="backgroundVideoSrc" src="" type="video/mp4">
+</video>
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top p-0" id="navbar" style="height: 8vh">
+        <a class="navbar-brand h-100 align-middle pl-2" href="ct-covid-dash-hotspots.html" style="max-height:75px">
+            <img src="./assets/imgs/rect_city_logo.png" class="h-100 align-middle" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true" aria-expanded="false">District</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#opening">City of Cape Town</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        {% for district_name, district_filename_prefix in district_tuples -%}
+                        <a class="dropdown-item" href="#{{ district_filename_prefix }}">{{ district_name }} </a>
+                        {% endfor -%}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
+
+    <div class="row row-cols-4 mt-1" style="height:6rem">
+        <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
+        <div class="col h-100 w-100" id="sATestedStatCard"></div>
+        <div class="col h-100 w-100" id="casesStatCard"></div>
+        <div class="col h-100 w-100" id="deathsStatCard"></div>
+    </div>
+
+    <div id="opening" class="container p-0">
+        <div class="row mt-2 rows-cols-2" style="height: 92vh">
+            <div class="col h-100 pr-1">
+                <div class="container-fluid h-100">
+                    <div class="row" style="height:49.5%" id="cityCasesPlot"></div>
+                    <div class="row" style="height:1%"></div>
+                    <div class="row" style="height:49.5%" id="provincialForecast"></div>
+                </div>
+            </div>
+
+            <div class="col h-100 pl-1" id="mapCard"></div>
+        </div>
+
+        <div class="container p-0" id="casesOverTime">
+            <div class="row mt-2 row-cols-2">
+                <div class="col pr-1" style="height:30rem" id="cityNewCaseChart"></div>
+
+                <div class="col pl-1" style="height:30rem" id="cityDemographicChart"></div>
+            </div>
+        </div>
+
+    </div>
+
+    {%- for district_name, district_filename_prefix in district_tuples %}
+    <!-- {{ district_name }} -->
+    <div id="{{ district_filename_prefix }}" class="container mt-2 pt-2 border-top">
+        {% set district_title = district_name.title().replace(" ", "_") %}
+        {% set plot_prefix = "cct_" + district_title %}
+
+        <h2> {{ district_name}} </h2>
+        <div class="row mt-2 rows-cols-3" style="height:60vh">
+            <div class="col-2 pr-0 h-100 w-100" id="stats_{{ district_filename_prefix }}">
+                <div class="row w-100" style="height:30%" id="cumulativeCases_{{ district_filename_prefix }}"></div>
+                <div class="row w-100" style="height:5%"></div>
+                <div class="row w-100" style="height:30%" id="activeCases_{{ district_filename_prefix }}"></div>
+                <div class="row w-100" style="height:5%"></div>
+                <div class="row w-100" style="height:30%" id="cumulativeDeaths_{{ district_filename_prefix }}"></div>
+            </div>
+            <div class="col-5 pl-1 h-100"
+                 id="{{ plot_prefix }}_DailyCounts"></div>
+            <div class="col-5 pl-1 pr-0 h-100"
+                 id="{{ plot_prefix }}_CumulativeCount"></div>
+        </div>
+
+        <div class="row row-cols-1 mt-2 pt-2" id="{{ plot_prefix }}_MapCard" style="height:92rem"></div>
+
+    </div>
+    {% endfor %}
+
+    <div id="footerPlaceholder"></div>
+</div>
+
+<!-- bootstrap scripts -->
+<script src="assets/js/jquery-3.4.1.min.js"></script>
+
+<!-- custom code for dynamically updating data -->
+<script src="assets/js/numeral.min.js"></script>
+<script src="assets/js/update_dash.js"></script>
+<script>
+    $(() => {
+        // General
+        // Stat Widgets
+        var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
+        var sATestedTextDiv = addStatCard("sATestedStatCard", "assets/imgs/notes-medical-solid.svg", "Tests Conducted (SA)");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
+
+        setStatCardValue(lastUpdateTextDiv, 'widgets/private/latest_values.json', 'ct_latest_update');
+        setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested', "", true);
+        setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed', "", true);
+        setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');
+
+
+        addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html",
+          'Cases over Time);
+
+        addCard("mapCard", "widgets/private/case_count_maps/city_all_map_widget.html", "Case Counts over Space");
+
+        addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
+            "Fatality Rate by Age");
+        addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html",
+            "National (NCEM) Forecast Model <br/><small>as of 2020-06-01</small>");
+
+        addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
+
+        addFooter("footerPlaceholder");
+
+        // District Specific
+        {%- for district_name, district_filename_prefix in district_tuples %}
+        // {{ district_name }}
+        {%- set district_title = district_name.title().replace(" ", "_") %}
+        {%- set plot_prefix = "cct_" + district_title %}
+        addCard("{{ plot_prefix }}_DailyCounts", "widgets/private/{{ plot_prefix }}_daily_counts_bar_chart.html",
+          'Daily Cases over Time');
+        addCard("{{ plot_prefix }}_CumulativeCount", "widgets/private/{{ plot_prefix }}_cumulative_counts.html",
+          'Cumulative Cases over Time');
+        addCard("{{ plot_prefix }}_MapCard", "widgets/private/case_count_maps/city_{{ district_filename_prefix }}_map_widget.html", "Case Counts over Space");
+
+        var cumulativeCasesText_{{ district_filename_prefix }} = addStatCard("cumulativeCases_{{ district_filename_prefix }}", "assets/imgs/clipboard-regular.svg", "Total Cases");
+        setStatCardNestedValue(cumulativeCasesText_{{ district_filename_prefix }},
+                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                               ["All", "total_count"], "", true);
+
+        var activeCasesText_{{ district_filename_prefix }} = addStatCard("activeCases_{{ district_filename_prefix }}", "assets/imgs/ambulance-solid.svg", "Active Cases");
+        setStatCardNestedValue(activeCasesText_{{ district_filename_prefix }},
+                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                               ["Active", "total_count"], "", true);
+
+        var cumulativeDeathsText_{{ district_filename_prefix }} = addStatCard("cumulativeDeaths_{{ district_filename_prefix }}", "assets/imgs/skull-solid.svg", "Active Cases");
+        /*setStatCardNestedValue(activeCasesText_{{ district_filename_prefix }},
+                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                               ["Active", "total_count"], "", true);*/
+
+        {% endfor %}
+
+        setTimeout(function() {
+            addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_above.mp4");
+        }, 10000);
+    });
+
+
+</script>
+
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

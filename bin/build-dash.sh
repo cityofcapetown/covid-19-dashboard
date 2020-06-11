@@ -26,6 +26,9 @@ python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-gene
 python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-sa-general.html" --output-path $BUILD_DIR_PATH/
 python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-int-general.html" --output-path $BUILD_DIR_PATH/
 
+# Hotspots Data Viewer
+python3 bin/build-hotspots-dash.py --template "$RESOURCES_PATH/ct-covid-dash-hotspots.html" --output-path $BUILD_DIR_PATH/
+
 # Zipping up
 DIST_DEFAULT_PATH="./dist"
 DIST_PATH=${3:-$DIST_DEFAULT_PATH}
