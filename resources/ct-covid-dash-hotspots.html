@@ -44,6 +44,14 @@
 
 <div class="container" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
 
+    <div class="row row-cols-1">
+        <div class="col" id="disclaimer"></div>
+    </div>
+
+    <div class="row row-cols-1">
+        <div class="col" id="betaDisclaimer"></div>
+    </div>
+
     <div class="row row-cols-4 mt-1" style="min-height:6rem;height:8vh">
         <div class="col h-100 w-100" id="lastUpdatedStatCard"></div>
         <div class="col h-100 w-100" id="sATestedStatCard"></div>
@@ -112,6 +120,10 @@
 <script>
     $(() => {
         // General
+        // Disclaimers
+        addGeneralDisclaimerAlert("disclaimer");
+        addBetaDisclaimerAlert("betaDisclaimer");
+
         // Stat Widgets
         var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
         var sATestedTextDiv = addStatCard("sATestedStatCard", "assets/imgs/notes-medical-solid.svg", "Tests Conducted (SA)");
