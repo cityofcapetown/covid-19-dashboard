@@ -41,11 +41,8 @@ function setStatCardValue(cardTextDiv, titleTextJson, titleTextId, text_suffix="
 function setStatCardNestedValue(cardTextDiv, titleTextJson, titleTextIds, text_suffix="", numeral_format=false){
     $.getJSON(titleTextJson, function( data ) {
         var value = data[titleTextIds[0]]
-        console.log(value)
 
         titleTextIds.forEach(function (item, index) {
-            console.log(value)
-            console.log(item)
             if (index > 0){
                 value = value[item];
             }
