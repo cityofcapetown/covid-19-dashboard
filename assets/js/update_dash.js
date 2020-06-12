@@ -207,7 +207,7 @@ function addGeneralDisclaimerAlert(targetDiv) {
 function addBetaDisclaimerAlert(targetDiv) {
   var $alertHtml = $((
       '<div class="alert alert-warning alert-dismissible fade show w-100 mt-2 mb-1" role="alert">' +
-        'This vulernability viewer is currently in <strong>Beta testing</strong>, ' +
+        'This vulnerability viewer is currently in <strong>Beta testing</strong>, ' +
         'and is liable to change without warning. It should be used with <strong>caution</strong>.' +
         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
           '<span aria-hidden="true">&times;</span>' +
