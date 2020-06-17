@@ -7,13 +7,13 @@ import jinja2
 DISTRICT_TUPLES = (
     # ('City', 'all'),
     ('Eastern', 'eastern'),
-    ('Klipfontein', 'klipfontein'),
-    ('Southern', 'southern'),
-    ('Mitchells Plain', 'mitchells_plain'),
     ('Khayelitsha', 'khayelitsha'),
+    ('Klipfontein', 'klipfontein'),
+    ('Mitchells Plain', 'mitchells_plain'),
     ('Northern', 'northern'),
-    ('Western', 'western'),
+    ('Southern', 'southern'),
     ('Tygerberg', 'tygerberg'),
+    ('Western', 'western'),
 )
 
 if __name__ == "__main__":
