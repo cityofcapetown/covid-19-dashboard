@@ -58,7 +58,7 @@
         <div class="col h-100 w-100" id="deathsStatCard"></div>
     </div>
 
-    <div id="opening" class="container p-0">
+    <div id="opening" class="container-fluid p-0">
         <div class="row mt-2 rows-cols-2" style="height: 72vh">
             <div class="col h-100 pr-1">
                 <div class="container-fluid h-100">
@@ -71,7 +71,7 @@
             <div class="col h-100 pl-1" id="mapCard"></div>
         </div>
 
-        <div class="container p-0" id="casesOverTime">
+        <div class="container-fluid p-0" id="casesOverTime">
             <div class="row mt-2 row-cols-2">
                 <div class="col pr-1" style="height:30rem" id="cityNewCaseChart"></div>
 
@@ -83,7 +83,7 @@
 
     {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
     <!-- {{ directorate_title }} -->
-    <div id="{{ directorate_filename_prefix }}" class="container mt-2 pt-2 border-top">
+    <div id="{{ directorate_filename_prefix }}" class="container-fluid mt-2 pt-2 border-top">
         <h2> {{ directorate_title}} </h2>
         {% set num_cols = 1 %}
         {% set num_cols = num_cols + (1 if sr_flag else 0) %}
