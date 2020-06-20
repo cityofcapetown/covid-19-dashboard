@@ -10,7 +10,7 @@
   position: fixed; /* Sit on top of the page content */
   overflow-y: scroll;
   scroll-behavior: smooth;
-  width: 100%; /* Full width (cover the whole page) */
+  max-width: 1336px;
   height: auto; /* Full height (cover the whole page) */
   top: 0;
   left: 0;
