@@ -60,26 +60,50 @@
     </div>
 
     <div id="opening" class="container-fluid py-0 px-3">
-        <div class="row mt-2 rows-cols-2" style="height: 77vh">
-            <div class="col h-100 pr-1">
-                <div class="container-fluid h-100">
-                    <div class="row" style="height:49.5%" id="cityCasesPlot"></div>
-                    <div class="row" style="height:1%"></div>
-                    <div class="row" style="height:49.5%" id="provincialForecast"></div>
+        <div class="row mt-2 rows-cols-2" style="height: 30vh">
+            <div class="col pr-1 h-100" id="cityCasesPlot"></div>
+            <div class="col pl-1 h-100" id="provincialForecast"></div>
+        </div>
+
+        <div class="row h-100 mt-2 rows-cols-1" id="mapCardInfo">
+            <div class="col w-100">
+                <a class="btn btn-info w-100" data-toggle="collapse" href="#userGuideCollapse" role="button"
+                   aria-expanded="false"
+                   aria-controls="userGuideCollapse" style="height: 6vh" id="userGuideButton">
+                    Spatial Data User Guide
+                </a>
+                <div class="collapse w-100" id="userGuideCollapse">
+                    <div class="card card-body text-dark h-100 w-100">
+                        <ul>
+                            <li><strong>Caution</strong>: Case data on hex level is incomplete (see completeness level
+                                in bottom left corner)
+                            </li>
+                            <li><strong>Caution</strong>: Socio-Economic Vulnerability Index WCPG (2020) - Large
+                                enumeration areas north of Blaauwberg and east of Atlantis likely reflect incorrectly
+                                large areas with high vulnerability.
+                            </li>
+                            <li>Layers will display in order added (i.e. unselect and reselect a layer to bring to
+                                top)
+                            </li>
+                            <li>We advise that you don't use more than 2 or 3 layers at one time.</li>
+                            <li>Base map detail (e.g. suburb and street names) appear as you zoom in.</li>
+                            <li>Use the expand link (the arrow in top right corner) to open in a new tab.</li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            <div class="col h-100 pl-1" id="mapCard"></div>
         </div>
 
-        <div class="container-fluid p-0" id="casesOverTime">
-            <div class="row mt-2 row-cols-2">
-                <div class="col pr-1" style="height:30rem" id="cityNewCaseChart"></div>
+        <div class="row row-cols-1 mt-2 pt-2 px-3" style="height: 90vh" id="mapCard"></div>
+    </div>
 
-                <div class="col pl-1" style="height:30rem" id="cityDemographicChart"></div>
-            </div>
+    <div class="container-fluid mt-2" id="casesOverTime">
+        <div class="row mt-2 row-cols-2">
+            <div class="col pr-1" style="height:30rem" id="cityNewCaseChart"></div>
+
+            <div class="col pl-1" style="height:30rem" id="cityDemographicChart"></div>
         </div>
-
     </div>
 
     {%- for district_name, district_filename_prefix in district_tuples %}
@@ -143,7 +167,7 @@
         addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
             "Fatality Rate by Age");
         addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html",
-            "Western Cape Forecast <br/><small>NCEM Model, as of 2020-06-01</small>");
+            "Western Cape Forecast <small>(NCEM Model, as of 2020-06-01)</small>");
 
         addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
 
@@ -181,6 +205,17 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
