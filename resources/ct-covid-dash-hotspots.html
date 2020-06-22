@@ -60,49 +60,171 @@
     </div>
 
     <div id="opening" class="container-fluid py-0 px-3">
-        <div class="row mt-2 rows-cols-2" style="height: 30vh">
-            <div class="col pr-1 h-100" id="cityCasesPlot"></div>
+        <div class="row mt-2 rows-cols-2" style="height: 45vh">
+            <div class="col pr-1 h-100" id="cityNewCaseChart"></div>
             <div class="col pl-1 h-100" id="provincialForecast"></div>
         </div>
 
-        <div class="row h-100 mt-2 rows-cols-1" id="mapCardInfo">
-            <div class="col w-100">
+        <div class="row h-100 mt-2 rows-cols-2" id="mapCardInfo">
+            <div class="col w-100 pr-1">
                 <a class="btn btn-info w-100" data-toggle="collapse" href="#userGuideCollapse" role="button"
                    aria-expanded="false"
                    aria-controls="userGuideCollapse" style="height: 6vh" id="userGuideButton">
                     Spatial Data User Guide
                 </a>
-                <div class="collapse w-100" id="userGuideCollapse">
-                    <div class="card card-body text-dark h-100 w-100">
-                        <ul>
-                            <li><strong>Caution</strong>: Case data on hex level is incomplete (see completeness level
-                                in bottom left corner)
-                            </li>
-                            <li><strong>Caution</strong>: Socio-Economic Vulnerability Index WCPG (2020) - Large
-                                enumeration areas north of Blaauwberg and east of Atlantis likely reflect incorrectly
-                                large areas with high vulnerability.
-                            </li>
-                            <li>Layers will display in order added (i.e. unselect and reselect a layer to bring to
-                                top)
-                            </li>
-                            <li>We advise that you don't use more than 2 or 3 layers at one time.</li>
-                            <li>Base map detail (e.g. suburb and street names) appear as you zoom in.</li>
-                            <li>Use the expand link (the arrow in top right corner) to open in a new tab.</li>
+            </div>
+            <div class="col w-100 pl-1">
+                <a class="btn btn-info w-100" data-toggle="collapse" href="#metadataCollapse" role="button"
+                   aria-expanded="false"
+                   aria-controls="userGuideCollapse" style="height: 6vh" id="metadataButton">
+                    Spatial Data Metadata
+                </a>
+            </div>
+        </div>
 
-                        </ul>
-                    </div>
+        <div class="h-100 mt-0 rows-cols-1">
+            <div class="col collapse w-100 pr-3 pl-0" id="userGuideCollapse">
+                <div class="card card-body text-dark h-100 w-100">
+                    <ul>
+                        <li><strong>Caution</strong>: Case data on hex level is incomplete (see completeness level
+                            in bottom left corner)
+                        </li>
+                        <li><strong>Caution</strong>: Socio-Economic Vulnerability Index WCPG (2020) - Large
+                            enumeration areas north of Blaauwberg and east of Atlantis likely reflect incorrectly
+                            large areas with high vulnerability.
+                        </li>
+                        <li>Layers will display in order added (i.e. unselect and reselect a layer to bring to
+                            top)
+                        </li>
+                        <li>The layer names in capitals (e.g. POPULATION DENSITY) are the different vulnerability themes
+                            by which we have organised the data. The ticks next to the vulnerability theme controls the
+                            layers immediately below.
+                        </li>
+                        <li>We advise that you don't use more than 2 or 3 layers at one time.</li>
+                        <li>Base map detail (e.g. suburb and street names) appear as you zoom in.</li>
+                        <li>Use the expand link (the arrow in top right corner) to open in a new tab.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="h-100 mt-0 rows-cols-1">
+            <div class="col collapse w-100 pl-3 pr-0" id="metadataCollapse">
+                <div class="card card-body text-dark h-100 w-100">
+                    <ul>
+                        <li><strong>Active Covid-19 cases (hexes):</strong> Last 14 days' positive cases per Health
+                            Hex. Refer to red text in bottom left for level of
+                            completeness (WCPG Dept of Health, updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_hex_l8_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>Active Covid-19 cases (district):</strong> Last 14 days' positive cases per Health
+                            District. Refer to red text in bottom left for level of completeness (WCPG Dept of Health,
+                            updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_district_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>All Covid-19 (hexes):</strong> Cumulative positive cases with traceable addresses.
+                            Refer to red text in bottom left for level of
+                            completeness (WCPG Dept of Health, updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_hex_l8_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>All Covid-19 (districts):</strong> Cumulative positive cases per Health District.
+                            Refer to red text in bottom left for level of
+                            completeness (WCPG Dept of Health, updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_district_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>Covid-19 Mortality (hexes):</strong> Cumulative deceased with traceabe addresses.
+                            Refer to red text in bottom left for level of
+                            completeness (WCPG Dept of Health, updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_hex_l8_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>Covid-19 Mortality (district):</strong> Cumulative deceased per Health District.
+                            Refer to red text in bottom left for level of
+                            completeness (WCPG Dept of Health, updated daily, 2020). <a
+                                    href='widgets/private/case_count_maps/city_all_district_case_count.geojson'>Download
+                                link</a></li>
+                        <li><strong>Health District:</strong> WCPG Dept. of Health sub-district names for City of Cape
+                            Town District.
+                            (WCPG Dept of Health, static, 2020). <a
+                                    href='widgets/private/case_count_maps/health_districts.geojson'>Download link</a>
+                        </li>
+                        <li><strong>Healthcare Facilities:</strong> Hospitals and clinics, both public and private (CoCT
+                            Health & WCPG Dept Health, static, 2020). <a
+                                    href='widgets/private/case_count_maps/health_care_facilities.geojson'>Download
+                                link</a></li>
+                        <li><strong>2019 Population Estimate:</strong> Draft Land Use Model baseline. (CoCT Urban
+                            Planning and Design, static, 2020). <a
+                                    href='widgets/private/case_count_maps/sl_du_pop_est_2019_hex9.geojson'>Download
+                                link</a>
+                        </li>
+                        <li><strong>WCPG SEVI:</strong> Socio-Economic Vulnerability Index (WCPG, static, 2020). <a
+                                href='widgets/private/case_count_maps/province_sevi_hex9.geojson'>Download link</a></li>
+                        <li><strong>Public Transport Interchanges:</strong> CoCT Interchanges of bus, taxi, train or
+                            park & ride (CoCT Transport, static, 2018). <a
+                                    href='widgets/private/case_count_maps/public_transport_interchanges.geojson'>Download
+                                link</a></li>
+                        <li><strong>Public Transport Activity:</strong> Concentrations of public transport users (CoCT
+                            Transport, static, 2018). <a
+                                    href='widgets/private/case_count_maps/public_transport_activity_levels_hex9.geojson'>Download
+                                link</a></li>
+                        <li><strong>Shopping Centres:</strong> Shopping centres >5000sqm (CoCT Valuations, static,
+                            2020). <a
+                                    href='widgets/private/case_count_maps/shopping_centres_above_5000sqm_rode_2020.geojson'>Download
+                                link</a></li>
+                        <li><strong>SASSA Collection Points:</strong> Retail stores used for SASSA collection (SASSA,
+                            static, 2020). <a
+                                    href='widgets/private/case_count_maps/retail_stores.geojson'>Download link</a></li>
+                        <li><strong>Trading locations:</strong> Licensed informal trading areas, excludes
+                            unlicensed trading (static, 2018). <a
+                                    href='widgets/private/case_count_maps/trading_location.geojson'>Download link</a>
+                        </li>
+                        <li><strong>SASSA Offices:</strong> SASSA Office locations (SASSA, static, 2020). <a
+                                href='widgets/private/case_count_maps/sassa_local_office_coc.geojson'>Download link</a>
+                        </li>
+                        <li><strong>WCPG Schools:</strong> Western Cape Education department Schools (WCPG Education
+                            Dept, static, 2019). <a
+                                    href='widgets/private/case_count_maps/wced_metro_schools_2019.geojson'>Download
+                                link</a>
+                        </li>
+                        <li><strong>Rental Stock (houses):</strong> CoCT managed houses. (CoCT Public Housing, static,
+                            2020) <a
+                                    href='widgets/private/case_count_maps/city_house_counts.geojson'>Download link</a>
+                        </li>
+                        <li><strong>Rental Stock (flats):</strong> CoCT managed flats. (CoCT Public Housing, static,
+                            2020)<a
+                                    href='widgets/private/case_count_maps/city_flats_counts.geojson'>Download link</a>
+                        </li>
+                        <li><strong>Rental stock (hostels):</strong> CoCT managed hostels. (CoCT Public Housing, static,
+                            2020)<a
+                                    href='widgets/private/case_count_maps/city_hostel_counts.geojson'>Download link</a>
+                        </li>
+                        <li><strong>Areas of Informality 2019:</strong> Infomal settlements and other areas with
+                            informal structures (CoCT Informal Settlements, static, 2019). <a
+                                    href='widgets/private/case_count_maps/areas_of_informality_2019.geojson'>Download
+                                link</a></li>
+                        <li><strong>Old Age Facilities (by use):</strong> Older Persons homes without data (CoCT
+                            Valuations, static, 2020). <a
+                                    href='widgets/private/case_count_maps/olderpersons_res_fac_valrole.geojson'>Download
+                                link</a></li>
+                        <li><strong>Old Age Facilitites:</strong> Older Persons homes with information (CoCT
+                            Environmental Health
+                            & WCPG Dept Soc Serv, static, 2020). <a
+                                    href='widgets/private/case_count_maps/olderpersons_res_fac_cct.geojson'>Download
+                                link</a></li>
+                        <li><strong>Adult Homeless Shelters:</strong> Registered homeless shelters (WCPG Dept Soc Dev,
+                            static, 2019). <a
+                                    href='widgets/private/case_count_maps/adult_homeless_shelters_coct.geojson'>Download
+                                link</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div class="row row-cols-1 mt-2 pt-2 px-3" style="height: 90vh" id="mapCard"></div>
+        <div class="row row-cols-1 mt-2 px-3" style="height: 90vh" id="mapCard"></div>
     </div>
 
     <div class="container-fluid mt-2" id="casesOverTime">
-        <div class="row mt-2 row-cols-2">
-            <div class="col pr-1" style="height:30rem" id="cityNewCaseChart"></div>
-
-            <div class="col pl-1" style="height:30rem" id="cityDemographicChart"></div>
+        <div class="row mt-2 row-cols-2" style="height:30rem">
+            <div class="col pr-1 h-100" id="cityCasesPlot"></div>
+            <div class="col pl-1 h-100" id="cityDemographicChart"></div>
         </div>
     </div>
 
@@ -205,6 +327,19 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
