@@ -76,7 +76,7 @@ spec:
             - name: BACKEND_SERVER
               value: "hotspots-nginx-minio-proxy:8000"
             - name: LDAP_URL
-              value: "ldap://gwd-edc-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
+              value: "ldap://cbd-civic-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
             - name: BIND_DN
               valueFrom:
                 secretKeyRef:
