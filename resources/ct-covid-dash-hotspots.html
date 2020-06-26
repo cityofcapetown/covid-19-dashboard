@@ -86,7 +86,7 @@
             <div class="col collapse w-100 pr-3 pl-0" id="userGuideCollapse">
                 <div class="card card-body text-dark h-100 w-100">
                     <ul>
-                        <li><strong>Caution</strong>: Case data on hex level is incomplete (see completeness level
+                        <li><strong>Caution</strong>: Case data on hex level is incomplete (see incompleteness level
                             in bottom left corner)
                         </li>
                         <li><strong>Caution</strong>: Socio-Economic Vulnerability Index WCPG (2020) - Large
@@ -280,8 +280,12 @@
 
         setStatCardValue(lastUpdateTextDiv, 'widgets/private/latest_values.json', 'ct_latest_update');
         setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested', "", true);
-        setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed', "", true);
-        setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');
+
+        /*setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed', "", true);
+        setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');*/
+
+        setStatCardNestedValue(casesTextDiv, 'widgets/private/case_count_maps/city_all_district_case_count.json', ["All", "total_count"], "", true);
+        setStatCardNestedValue(deathsTextDiv, 'widgets/private/case_count_maps/city_all_district_case_count.json', ["Deaths", "total_count"], "", true);
 
 
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html", 'Cases over Time');
