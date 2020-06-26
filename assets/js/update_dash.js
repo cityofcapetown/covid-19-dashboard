@@ -4,10 +4,11 @@ function setExpandLink(expandElementId, link) {
 }
 
 function addStatCard(targetDiv, overlayImg, descriptionText){
+    var cardElementId = targetDiv + "Element";
     var cardTextId = targetDiv + "Title";
 
     var $cardHtml = $((
-        "<div class=\"card border-light bg-info w-100 h-100\">" +
+        "<div class=\"card border-light bg-info w-100 h-100\" id='"+ cardElementId + "'>" +
           "<img src=\""+ overlayImg +"\" class=\"card-img h-100\" style=\"opacity: 0.2;\">" +
           "<div class=\"card-img-overlay\">" +
             "<h4 class=\"card-title\" id=\""+ cardTextId + "\">Loading...</h4>" +
@@ -49,6 +50,40 @@ function setStatCardNestedValue(cardTextDiv, titleTextJson, titleTextIds, text_s
         });
 
         setStatValue(cardTextDiv, value, text_suffix, numeral_format)
+    });
+}
+
+function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, titleTextIds, trendTextIds){
+    $.getJSON(textJson, function( data ) {
+        var titleTextValue = data[titleTextIds[0]]
+        titleTextIds.forEach(function (item, index) {
+            if (index > 0){
+                titleTextValue = titleTextValue[item];
+            }
+        });
+
+        var trendTextValue = data[trendTextIds[0]]
+        trendTextIds.forEach(function (item, index) {
+            if (index > 0){
+                trendTextValue = trendTextValue[item];
+            }
+        });
+
+        var change_indicator = "▲"
+        var bg_class = "bg-danger"
+        if ((trendTextValue > -0.005) && (trendTextValue < 0.005)){
+            change_indicator = "-"
+            bg_class = "bg-info"
+        } else if (trendTextValue < 0){
+            change_indicator = "▼"
+            bg_class = "bg-success"
+        }
+        $("#" + cardElementDiv).removeClass("bg-info")
+        $("#" + cardElementDiv).addClass(bg_class)
+
+        var text = numeral(titleTextValue).format("0.[0]a") + " (" + change_indicator + numeral(trendTextValue).format("+0.%") + ")"
+
+        setStatValue(cardTextDiv, text)
     });
 }
 

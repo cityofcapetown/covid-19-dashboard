@@ -275,16 +275,14 @@
         // Stat Widgets
         var lastUpdateTextDiv = addStatCard("lastUpdatedStatCard", "assets/imgs/clock-regular.svg", "Last Updated");
         var sATestedTextDiv = addStatCard("sATestedStatCard", "assets/imgs/notes-medical-solid.svg", "Tests Conducted (SA)");
-        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Confirmed Cases");
+        var casesTextDiv = addStatCard("casesStatCard", "assets/imgs/ambulance-solid.svg", "Total Cases (w/w change)");
         var deathsTextDiv = addStatCard("deathsStatCard", "assets/imgs/skull-solid.svg", "Deaths");
 
         setStatCardValue(lastUpdateTextDiv, 'widgets/private/latest_values.json', 'ct_latest_update');
         setStatCardValue(sATestedTextDiv, 'widgets/private/latest_values.json', 'rsa_latest_tested', "", true);
 
-        /*setStatCardValue(casesTextDiv, 'widgets/private/latest_values.json', 'ct_latest_confirmed', "", true);
-        setStatCardValue(deathsTextDiv, 'widgets/private/latest_values.json', 'ct_latest_deaths');*/
-
-        setStatCardNestedValue(casesTextDiv, 'widgets/private/case_count_maps/city_all_district_case_count.json', ["All", "total_count"], "", true);
+        setStatCardNestedValueWithTrend(casesTextDiv, "casesStatCardElement", 'widgets/private/case_count_maps/city_all_district_case_count.json',
+                                        ["All", "total_count"], ["All", "latest_relative_increase"]);
         setStatCardNestedValue(deathsTextDiv, 'widgets/private/case_count_maps/city_all_district_case_count.json', ["Deaths", "total_count"], "", true);
 
 
@@ -312,10 +310,10 @@
           'Cumulative Cases over Time');
         addCard("{{ plot_prefix }}_MapCard", "widgets/private/case_count_maps/city_{{ district_filename_prefix }}_hotspot_map_widget.html", "Spatial Data");
 
-        var cumulativeCasesText_{{ district_filename_prefix }} = addStatCard("cumulativeCases_{{ district_filename_prefix }}", "assets/imgs/clipboard-regular.svg", "Total Cases");
-        setStatCardNestedValue(cumulativeCasesText_{{ district_filename_prefix }},
-                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
-                               ["All", "total_count"], "", true);
+        var cumulativeCasesText_{{ district_filename_prefix }} = addStatCard("cumulativeCases_{{ district_filename_prefix }}", "assets/imgs/clipboard-regular.svg", "Total Cases<br>(w/w change)");
+        setStatCardNestedValueWithTrend(cumulativeCasesText_{{ district_filename_prefix }}, "cumulativeCases_{{ district_filename_prefix }}Element",
+                                        'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                                        ["All", "total_count"], ["All", "latest_relative_increase"]);
 
         var activeCasesText_{{ district_filename_prefix }} = addStatCard("activeCases_{{ district_filename_prefix }}", "assets/imgs/ambulance-solid.svg", "Active Cases");
         setStatCardNestedValue(activeCasesText_{{ district_filename_prefix }},
