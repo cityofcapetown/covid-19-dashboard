@@ -33,7 +33,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#opening">Covid-19 Information</a>
                         <div role="separator" class="dropdown-divider"></div>
-                        {% for directorate_title, directorate_filename_prefix, _, _, _ in directorate_tuples -%}
+                        {% for directorate_title, directorate_filename_prefix, *_, in directorate_tuples -%}
                         <a class="dropdown-item" href="#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
                         {% endfor -%}
                     </div>
