@@ -5,20 +5,51 @@ import logging
 import jinja2
 
 DIRECTORATE_TUPLES = (
-    # directorate_title, directorate_filename_prefix, sr_plot_flag, hr_plot_flag
-    ("Citywide", "city", True, True),
-    ('Water and Waste', "water_and_waste", True, True),
-    ('Energy and Climate Change', "energy_and_climate_change", True, False),
-    ('Finance', "finance", True, True),
-    ("Human Settlements", "human_settlements", True, True),
-    ('Community Service and Health', "community_services_and_health", True, False),
-    ("Transport", "transport", True, True),
-    ("Corporate Services", "corporate_services", True, True),
-    #("Safety and Security", "safety_and_security", False, False),
-    ("Economic Opportunities and Asset Management", "economic_opportunities_and_asset_management", True, True),
-    ("Spatial Planning and Environment", "spatial_planning_and_environment", True, True),
-    ("Urban Management", "urban_management", False, True),
-    ('Office of the City Manager', "city_manager", False, True),
+    # directorate_title, directorate_filename_prefix, sr_plot_flag, hr_plot_flag, department tuples
+    ("Citywide", "city", True, True, ()),
+    ('Water and Waste', "water_and_waste", True, True, (
+        'Project Monitoring Unit', 'Water and Sanitation Services', 'Solid Waste Management',
+    )),
+    ('Energy and Climate Change', "energy_and_climate_change", True, False, ()),
+    ('Finance', "finance", True, True, (
+        "Revenue", "Supply Chain Management", "Expenditure", "Valuations", "Grant Funding", "Budgets", "Finance",
+        "Treasury Services", "Support Services", "Cape Town Stadium"
+    )),
+    ("Human Settlements", "human_settlements", True, True, (
+        "Informal Settlements", "Public Housing", "Operational Policy and Planning", "Finance", "Support Services",
+        "Housing Development", "Project Management Office HS"
+    )),
+    ('Community Service and Health', "community_services_and_health", True, False, (
+        "Planning and Development and PMO", "Recreation and Parks", "City Health"
+    )),
+    ("Transport", "transport", True, True, (
+        "Roads Infrastructure and Management", "Transport Planning", "Public Transport Operations", "Network Management",
+        "Integrated Transport Portfolio", "Business Enablement", "Administrative Support", "Finance",
+        "Project Management Office Transport"
+    )),
+    ("Corporate Services", "corporate_services", True, True, (
+        "Organisational Effectiveness andInnovation", "Information Systems and Technology", "Policy and Strategy",
+        "Communications", "Legal Services", "Information and Knowledge Management", "Human Resources",
+        "Executive Committees and Corporate Services Operations", "Resilience", "Customer Relations",
+        "Organisational Performance Management", "Corp Project Programme and Portfolio Man", "Office Administration"
+    )),
+    # ("Safety and Security", "safety_and_security", False, False),
+    ("Economic Opportunities and Asset Management", "economic_opportunities_and_asset_management", True, True, (
+        "Strategic Assets", "Facilities Management", "Property Management", "Enterprise and Investment",
+        "Support Services", "Fleet Management", "Finance", "Office Administration Manager_EOAM", "PMO - EOAM",
+    )),
+    ("Spatial Planning and Environment", "spatial_planning_and_environment", True, True, (
+        "Environmental Management", "Urban Planning and Design", "Urban Catalytic Investment", "Development Management",
+        "Project Management Office", "HR Business Partner", "Finance", "Support Services"
+    )),
+    ("Urban Management", "urban_management", False, True, (
+        "Area North", "PMO", "MURP Area East", "MURP Area North", "MURP Technical Support", "MURP Area Central",
+        "MURP Area South", "Area South", "Area East", "Councillor Support", "HR Business Partner", "Support Services",
+        "Finance", "Public Participation", "City Improvement Districts", "EPWP and CDW", "Area Central"
+    )),
+    ('Office of the City Manager', "city_manager", False, True, (
+        "Probity", "Legal Compliance", "Office of the CM"
+    )),
 )
 
 SERVICE_REQUEST_TIME_PERIOD_TUPLES = (

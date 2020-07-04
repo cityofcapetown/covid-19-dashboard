@@ -33,7 +33,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#opening">Covid-19 Information</a>
                         <div role="separator" class="dropdown-divider"></div>
-                        {% for directorate_title, directorate_filename_prefix, _, _ in directorate_tuples -%}
+                        {% for directorate_title, directorate_filename_prefix, _, _, _ in directorate_tuples -%}
                         <a class="dropdown-item" href="#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
                         {% endfor -%}
                     </div>
@@ -81,7 +81,7 @@
 
     </div>
 
-    {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+    {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag, depts_tuple in directorate_tuples %}
     <!-- {{ directorate_title }} -->
     <div id="{{ directorate_filename_prefix }}" class="container-fluid mt-2 pt-2 border-top">
         <h2> {{ directorate_title}} </h2>
@@ -117,6 +117,12 @@
         {% if hr_flag -%}
         <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
              id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"></div>
+        {%- for dept_name in depts_tuple -%}
+            {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
+            {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
+        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
+             id="hRTimeSeries_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}"></div>
+        {%- endfor -%}
         {% endif -%}
     </div>
     {% endfor %}
@@ -162,7 +168,7 @@
         addFooter("footerPlaceholder");
 
         // Directorate Specific
-        {%- for directorate_title, directorate_filename_prefix, sr_flag, hr_flag in directorate_tuples %}
+        {%- for directorate_title, directorate_filename_prefix, sr_flag, hr_flag, depts_tuple in directorate_tuples %}
         // {{ directorate_title }}
         {% if sr_flag -%}
         var serviceInOutText_{{ directorate_filename_prefix }} = addStatCard("serviceInOut_{{ directorate_filename_prefix }}",
@@ -232,6 +238,13 @@
         addCard("hrOrgUnitStatus_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_unitstatus_plot.html",
                 "Organisational Unit Status");
+        {%- for dept_name in depts_tuple -%}
+            {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
+            {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
+        addCard("hRTimeSeries_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}",
+            "widgets/private/business_continuity_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}_hr_absenteeism_plot.html",
+            '{{ dept_name.lower().title() }} HR Capacity over Time');
+        {%- endfor -%}
         {% endif -%}
         {% endfor %}
 
