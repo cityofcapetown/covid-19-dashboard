@@ -33,7 +33,7 @@ DIRECTORATE_TUPLES = (
         "Executive Committees and Corporate Services Operations", "Resilience", "Customer Relations",
         "Organisational Performance Management", "Corp Project Programme and Portfolio Man", "Office Administration"
     )),
-    # ("Safety and Security", "safety_and_security", False, False),
+    # ("Safety and Security", "safety_and_security", False, False, ()),
     ("Economic Opportunities and Asset Management", "economic_opportunities_and_asset_management", True, True, (
         "Strategic Assets", "Facilities Management", "Property Management", "Enterprise and Investment",
         "Support Services", "Fleet Management", "Finance", "Office Administration Manager_EOAM", "PMO - EOAM",
@@ -62,7 +62,7 @@ SERVICE_REQUEST_TIME_PERIOD_TUPLES = (
 
 if __name__ == "__main__":
     # Setting up logging
-    logging.basicConfig(level=logging.INFO,
+    logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s-%(module)s.%(funcName)s [%(levelname)s]: %(message)s')
 
     parser = argparse.ArgumentParser(
@@ -83,6 +83,7 @@ if __name__ == "__main__":
         template_code = template_file.read()
 
     logging.info("Generating HTML")
+    logging.debug(f"template=\n{template_code}")
     template = jinja2.Template(template_code)
     rendered_file = template.render(directorate_tuples=DIRECTORATE_TUPLES,
                                     service_request_time_periods=SERVICE_REQUEST_TIME_PERIOD_TUPLES)
