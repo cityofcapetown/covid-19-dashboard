@@ -83,7 +83,6 @@ if __name__ == "__main__":
         template_code = template_file.read()
 
     logging.info("Generating HTML")
-    logging.debug(f"template=\n{template_code}")
     template = jinja2.Template(template_code)
     rendered_file = template.render(directorate_tuples=DIRECTORATE_TUPLES,
                                     service_request_time_periods=SERVICE_REQUEST_TIME_PERIOD_TUPLES)
