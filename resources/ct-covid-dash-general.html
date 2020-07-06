@@ -243,7 +243,7 @@
             {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
         addCard("hRTimeSeries_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}",
             "widgets/private/business_continuity_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}_hr_absenteeism_plot.html",
-            '{{ dept_name.lower().title() }} HR Capacity over Time');
+            '{{ dept_name.lower().title() }} Dept. HR Capacity over Time');
         {%- endfor -%}
         {% endif -%}
         {% endfor %}
