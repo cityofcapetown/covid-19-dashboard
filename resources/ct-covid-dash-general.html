@@ -115,8 +115,10 @@
              id="allServiceRequestFocusMap_{{ directorate_filename_prefix }}"></div>
         {% endif -%}
         {% if hr_flag -%}
-        <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
-             id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"></div>
+        <div class="row row-cols-2 mt-2 pt-2" style="height:30rem">
+            <div class="col-8 pr-1 pl-0 h-100" id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"> </div>
+            <div class="col-4 pl-1 pr-0 h-100" id="ohsPositiveCases_{{ directorate_filename_prefix }}"> </div>
+        </div>
         {%- for dept_name in depts_tuple -%}
             {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
             {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
@@ -238,6 +240,9 @@
         addCard("hrOrgUnitStatus_{{ directorate_filename_prefix }}",
                 "widgets/private/business_continuity_{{ directorate_filename_prefix }}_hr_unitstatus_plot.html",
                 "Organisational Unit Status");
+        addCard("ohsPositiveCases_{{ directorate_filename_prefix }}",
+                "widgets/private/{{ directorate_filename_prefix }}_ohs_cases_plot.html",
+                "Covid-19 Cases (<small>as reported to OHS</small>)");
         {%- for dept_name in depts_tuple -%}
             {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
             {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
