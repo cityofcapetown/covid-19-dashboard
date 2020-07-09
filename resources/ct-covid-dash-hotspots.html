@@ -310,8 +310,8 @@
 
         setStatCardNestedValueWithTrend(casesTextDiv, "casesStatCardElement", 'widgets/private/case_count_maps/city_all_district_case_count.json',
                                         ["All", "total_count"], ["All", "latest_relative_increase"]);
-        setStatCardNestedValue(deathsTextDiv, 'widgets/private/case_count_maps/city_all_district_case_count.json', ["Deaths", "total_count"], "", true);
-
+        setStatCardNestedValueWithTrend(deathsTextDiv, "deathsStatCardElement", 'widgets/private/case_count_maps/city_all_district_case_count.json',
+                                        ["Deaths", "total_count"], ["Deaths", "latest_relative_increase"], "", true);
 
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html", 'Cases over Time');
 
@@ -342,16 +342,15 @@
                                         'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
                                         ["All", "total_count"], ["All", "latest_relative_increase"]);
 
-        var activeCasesText_{{ district_filename_prefix }} = addStatCard("activeCases_{{ district_filename_prefix }}", "assets/imgs/ambulance-solid.svg", "Active Cases");
-        setStatCardNestedValue(activeCasesText_{{ district_filename_prefix }},
-                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
-                               ["Active", "total_count"], "", true);
+        var activeCasesText_{{ district_filename_prefix }} = addStatCard("activeCases_{{ district_filename_prefix }}", "assets/imgs/ambulance-solid.svg", "Active Cases<br>(w/w trend)");
+        setStatCardNestedValueWithTrend(activeCasesText_{{ district_filename_prefix }}, "activeCases_{{ district_filename_prefix }}Element",
+                                        'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                                        ["Active", "total_count"], ["Active", "latest_relative_increase"], "", true);
 
-        var cumulativeDeathsText_{{ district_filename_prefix }} = addStatCard("cumulativeDeaths_{{ district_filename_prefix }}", "assets/imgs/skull-solid.svg", "Deaths");
-        setStatCardNestedValue(cumulativeDeathsText_{{ district_filename_prefix }},
-                               'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
-                               ["Deaths", "total_count"], "", true);
-
+        var cumulativeDeathsText_{{ district_filename_prefix }} = addStatCard("cumulativeDeaths_{{ district_filename_prefix }}", "assets/imgs/skull-solid.svg", "Deaths<br>(w/w trend)");
+        setStatCardNestedValueWithTrend(cumulativeDeathsText_{{ district_filename_prefix }}, "cumulativeDeaths_{{ district_filename_prefix }}Element",
+                                        'widgets/private/case_count_maps/city_{{ district_filename_prefix }}_district_case_count.json',
+                                        ["Deaths", "total_count"], ["Deaths", "latest_relative_increase"], "", true);
         {% endfor %}
 
         setTimeout(function() {
