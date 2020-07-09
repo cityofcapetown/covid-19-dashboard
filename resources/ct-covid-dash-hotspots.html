@@ -43,7 +43,6 @@
 </div>
 
 <div class="container-fluid p-0" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
-
     <div class="row row-cols-1 py-0 px-3">
         <div class="col" id="disclaimer"></div>
     </div>
@@ -86,6 +85,14 @@
         <div class="h-100 mt-0 rows-cols-1">
             <div class="col collapse w-100 pr-3 pl-0" id="userGuideCollapse">
                 <div class="card card-body text-dark h-100 w-100">
+                    <p>
+                        <a target="_blank"
+                           href="https://collaborate.capetown.gov.za/sites/IDPOPMts/Data%20Science/Covid-19/VulnerabilityViewer/UserGuide/Vulnerablility%20viewer_user%20guide.pptx?d=wdd6726fcc1cf4a008c81530c3780bb01">
+                            Click here for illustrated User Guide
+                        </a>
+                    </p>
+                    <p>
+                        <strong> Brief Notes:</strong>
                     <ul>
                         <li><strong>Caution</strong>: Case data on hex level is incomplete (see incompleteness level
                             in bottom left corner)
@@ -105,9 +112,10 @@
                         <li>Base map detail (e.g. suburb and street names) appear as you zoom in.</li>
                         <li>Use the expand link (the arrow in top right corner) to open in a new tab.</li>
                         <li>You can stop the background video by right clicking on it, outside of the dark overlay.
-                            Select Pause or Stop (depending on your browser) in the menu appears.
+                            Select Pause or Stop (depending on your browser) in the menu that appears.
                         </li>
                     </ul>
+                    </p>
                 </div>
             </div>
         </div>
@@ -261,7 +269,8 @@
                 <div class="row w-100" style="height:5%"></div>
                 <div class="row w-100" style="height:30%" id="activeCases_{{ district_filename_prefix }}"></div>
                 <div class="row w-100" style="height:5%"></div>
-                <div class="row w-100" style="height:30%" id="cumulativeDeaths_{{ district_filename_prefix }}"></div>
+                <div class="row w-100" style="height:30%"
+                     id="cumulativeDeaths_{{ district_filename_prefix }}"></div>
             </div>
             <div class="col-5 pl-1 h-100"
                  id="{{ plot_prefix }}_DailyCounts"></div>
@@ -353,6 +362,14 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
+
+
+
+
+
+
+
+
 
 
 
