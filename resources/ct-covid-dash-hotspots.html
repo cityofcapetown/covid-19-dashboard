@@ -249,6 +249,8 @@
         <div class="row row-cols-1 mt-2 px-3" style="height: 90vh" id="mapCard"></div>
 
         <div class="row row-cols-1 mt-2 px-3" id="tableCard" style="height: 30.05em"></div>
+
+        <div class="row row-cols-1 mt-2 px-3" id="perCapitaTableCard" style="height: 30.05em"></div>
     </div>
 
     <div class="container-fluid mt-2" id="casesOverTime">
@@ -318,6 +320,7 @@
         addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html", 'Cases over Time');
 
         addCard("tableCard", "widgets/private/subdistrict_stats_table_widgets/city_covid19_subdistrict_stats_table.html", "Subdistrict Summary", scrolling="yes");
+        addCard("perCapitaTableCard", "widgets/private/subdistrict_stats_table_widgets/city_per_capita_covid19_subdistrict_stats_table.html", "Subdistrict Per Capita Summary", scrolling="yes");
 
         addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
             "Fatality Rate by Age");
