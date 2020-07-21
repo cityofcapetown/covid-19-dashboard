@@ -272,6 +272,42 @@
         <div class="row row-cols-1 mt-2 px-3" id="tableCard" style="height: 28.5em"></div>
 
         <div class="row row-cols-1 mt-2 px-3" id="perCapitaTableCard" style="height: 29.5em"></div>
+
+        <div class="row h-100 mt-2 rows-cols-1 px-3" id="report">
+            <div class="col w-100 px-0">
+                <a class="btn btn-info w-100 border-light" data-toggle="collapse" href="#reportCollapse"
+                   role="button"
+                   aria-expanded="false"
+                   aria-controls="reportsCollapse" style="height: 4vh; min-height:40px" id="reportsButton">
+                    Weekly Reports
+                </a>
+            </div>
+        </div>
+
+        <div class="h-100 mt-0 rows-cols-1">
+            <div class="col collapse w-100 pr-1 pl-1" id="reportCollapse">
+                <div class="card card-body text-dark h-100 w-100">
+                    <p>
+                        <strong>Weekly Reports:</strong>
+                    <ul>
+                        <li>
+                            <a target="_blank"
+                               href="https://collaborate.capetown.gov.za/sites/IDPOPMts/Data%20Science/Covid-19/VulnerabilityViewer/Reports/09072020%20Weekly%20Health%20Data%20Feedback.pdf?d=wd410de975555467e92a7563e34321a5b">
+                                2020-07-09
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank"
+                               href="https://collaborate.capetown.gov.za/sites/IDPOPMts/Data%20Science/Covid-19/VulnerabilityViewer/Reports/16072020%20Weekly%20Health%20Data%20Feedback.pdf?d=w277888829dbb42fab4a20b039e9f88a2">
+                                2020-07-16
+                            </a>
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="container-fluid mt-2" id="casesOverTime">
@@ -302,8 +338,6 @@
             <div class="col-5 pl-1 pr-0 h-100"
                  id="{{ plot_prefix }}_CumulativeCount"></div>
         </div>
-
-        <div class="row row-cols-1 mt-2 pt-2 px-3" id="{{ plot_prefix }}_MapCard" style="height:90vh"></div>
 
     </div>
     {% endfor %}
@@ -387,6 +421,9 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
+
+
+
 </script>
 
 <script src="assets/js/popper.min.js"></script>
