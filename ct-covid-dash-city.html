@@ -50,8 +50,13 @@
     </div>
 
     <div class="container-fluid p-0" id="casesOverTime">
-        <div class="row mt-2 row-cols-1">
-            <div class="col" style="height:30rem" id="cityNewCaseChart"></div>
+        <div class="row mt-2 row-cols-2" style="height:30rem">
+            <div class="col h-100" id="cityNewCasesPlot"></div>
+            <div class="col h-100" id="cityDeathsPlot"></div>
+        </div>
+        <div class="row mt-2 row-cols-2" style="height:30rem">
+            <div class="col h-100" id="cityGenAdmissionsPlot"></div>
+            <div class="col h-100" id="cityIcuAdmissionsPlot"></div>
         </div>
 
         <div class="row mt-2 row-cols-1">
@@ -101,7 +106,11 @@
         addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html", "Western Cape Forecast <br/><small>NCEM Model, as of 2020-06-22</small>");
         addCard("provincialCapacityForecast", "widgets/private/wc_model_latest_hospital_figures.html", "Western Cape Capacity Forecast <br/><small>NCEM Model, as of 2020-06-22</small>");
 
-        addCard("cityNewCaseChart", "widgets/private/ct_daily_counts_bar_chart.html", "New City Cases over Time");
+        addCard("cityNewCasesPlot", "widgets/private/ct-cov2-daily-cases.html", 'Cases over Time');
+        addCard("cityDeathsPlot", "widgets/private/ct-cov2-daily-deaths.html", 'Fatalities over Time');
+        addCard("cityGenAdmissionsPlot", "widgets/private/ct-cov2-daily-gen-admissions.html", 'General Hospital Admissions over Time');
+        addCard("cityIcuAdmissionsPlot", "widgets/private/ct-cov2-daily-icu-admissions.html", 'ICU Hospital Admissions over Time');
+
         addCard("districtCumulativeBarCharts", "widgets/private/ct_subdistrict_cumulative_daily_counts_bar_chart.html", "Health District Cumulative Cases over Time");
         addCard("districtBarCharts", "widgets/private/ct_subdistrict_daily_counts_bar_chart.html", "Health District Cases over Time");
 
@@ -117,6 +126,8 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse.mp4");
         }, 10000);
     });
+
+
 
 </script>
 

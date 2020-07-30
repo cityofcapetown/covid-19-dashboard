@@ -324,7 +324,11 @@
     <div class="container-fluid mt-2" id="casesOverTime">
         <div class="row mt-2 row-cols-2" style="height:30rem">
             <div class="col pr-1 h-100" id="cityCasesPlot"></div>
-            <div class="col pl-1 h-100" id="cityDemographicChart"></div>
+            <div class="col pl-1 h-100" id="cityDeathsPlot"></div>
+        </div>
+        <div class="row mt-2 row-cols-2" style="height:30rem">
+            <div class="col pr-1 h-100" id="cityGenAdmissionsPlot"></div>
+            <div class="col pl-1 h-100" id="cityIcuAdmissionsPlot"></div>
         </div>
     </div>
 
@@ -383,13 +387,14 @@
         setStatCardNestedValueWithTrend(deathsTextDiv, "deathsStatCardElement", 'widgets/private/case_count_maps/city_all_district_case_count.json',
                                         ["Deaths", "total_count"], ["Deaths", "latest_relative_increase"], "", true);
 
-        addCard("cityCasesPlot", "widgets/private/ct_cumulative_daily_counts_bar_chart.html", 'Cases over Time');
+        addCard("cityCasesPlot", "widgets/private/ct-cov2-daily-cases.html", 'Cases over Time');
+        addCard("cityDeathsPlot", "widgets/private/ct-cov2-daily-deaths.html", 'Fatalities over Time');
+        addCard("cityGenAdmissionsPlot", "widgets/private/ct-cov2-daily-gen-admissions.html", 'General Hospital Admissions over Time');
+        addCard("cityIcuAdmissionsPlot", "widgets/private/ct-cov2-daily-icu-admissions.html", 'ICU Hospital Admissions over Time');
 
         addCard("tableCard", "widgets/private/subdistrict_stats_table_widgets/city_covid19_subdistrict_stats_table.html", "Subdistrict Summary", scrolling="yes");
         addCard("perCapitaTableCard", "widgets/private/subdistrict_stats_table_widgets/city_per_capita_covid19_subdistrict_stats_table.html", "Subdistrict Per Capita Summary", scrolling="yes");
 
-        addCard("cityDemographicChart", "widgets/private/cct_demographic_case_fatality_plot.html",
-            "Fatality Rate by Age");
         addCard("provincialForecast", "widgets/private/wc_model_latest_disease_figures.html",
             "Western Cape Forecast <small>(NCEM Model, as of 2020-06-22)</small>");
 
@@ -432,10 +437,6 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
-
-
-
-
 
 </script>
 
