@@ -411,7 +411,7 @@
     <!-- {{ district_name }} -->
     <div id="{{ district_filename_prefix }}" class="container-fluid mt-2 pt-2 border-top px-3">
         {% set district_title = district_name.title().replace(" ", "_") %}
-        {% set plot_prefix = "cct_" + district_title %}
+        {% set plot_prefix = "cct_City_of_Cape_Town_-_" + district_title %}
 
         <h2> {{ district_name}} </h2>
         <div class="row mt-2 rows-cols-3 px-3" style="height:60vh">
@@ -481,7 +481,7 @@
         {%- for district_name, district_filename_prefix in district_tuples %}
         // {{ district_name }}
         {%- set district_title = district_name.title().replace(" ", "_") %}
-        {%- set plot_prefix = "cct_" + district_title %}
+        {%- set plot_prefix = "cct_City_of_Cape_Town_-_" + district_title %}
         addCard("{{ plot_prefix }}_DailyCounts", "widgets/private/{{ plot_prefix }}_daily_counts_bar_chart.html",
           'Daily Cases over Time');
         addCard("{{ plot_prefix }}_CumulativeCount", "widgets/private/{{ plot_prefix }}_cumulative_counts.html",
