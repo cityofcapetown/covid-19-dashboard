@@ -37,10 +37,16 @@ done
 
 # Assets - imgs
 # PNGs
-for js_file in $(ls dist/assets/imgs/*.png); do
-  ./bin/minio-upload.sh "$js_file" "image/png" "$BUCKET_NAME"/assets/imgs
+for png_file in $(ls dist/assets/imgs/*.png); do
+  ./bin/minio-upload.sh "$png_file" "image/png" "$BUCKET_NAME"/assets/imgs
 done
 
-for js_file in $(ls dist/assets/imgs/*.svg); do
-  ./bin/minio-upload.sh "$js_file" "image/svg+xml" "$BUCKET_NAME"/assets/imgs
+# SVGs
+for svg_file in $(ls dist/assets/imgs/*.svg); do
+  ./bin/minio-upload.sh "$svg_file" "image/svg+xml" "$BUCKET_NAME"/assets/imgs
+done
+
+# MP4s
+for mp4_file in $(ls dist/assets/imgs/*.mp4); do
+  ./bin/minio-upload.sh "$mp4_file" "video/mp4" "$BUCKET_NAME"/assets/imgs
 done
