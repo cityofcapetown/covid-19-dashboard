@@ -22,10 +22,25 @@
   margin-top: 8vh !important;
 }
 
-#navbar {
-  z-index: 3;
-  width: 100%;
+#wrapper {
+  position: fixed; /*Sit on top of the page content */
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+  color: #f1f1f1;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+
+  display: flex;
+  width: auto;
+  align-items: stretch;
 }
+
+#overlayWithSidebar {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+ }
 
 .datatable-iframe {
   overflow: hidden;
@@ -34,3 +49,76 @@
 .card-link:not(.active) {
     color: #f8f9fa!important;
 }
+
+.expandControl {
+    display: inline-block;
+    -webkit-transition: .35s linear;
+    -moz-transition: .35s linear;
+    -o-transition: .35s linear;
+    transition: .35s linear;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.collapsed > * > .expandControl {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+#sidebar {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: all 0.3s;
+    color: #f1f1f1;
+    background-color: #fcfdff;
+    z-index: 3;
+    min-height: 100vh;
+    min-width: 110px;
+    max-width: 110px;
+    scroll-behavior: smooth;
+}
+
+#sidebar.collapse {
+    display: unset;
+}
+
+#sidebar.collapse.show {
+    min-width: 310px;
+    max-width: 310px;
+    display: unset;
+}
+
+#bigBrand.collapsed {
+    display: none;
+}
+
+#littleBrand {
+    display: none;
+}
+
+#littleBrand.collapsed {
+    display: unset;
+}
+
+.show .sectionExpand {
+    display: unset;
+}
+
+.sectionExpand {
+    display: none;
+}
+
+/*.show .iconLink {
+    display: none;
+
+}*/
+
+/*.iconLink {
+    display: unset;
+}*/

@@ -87,7 +87,7 @@ function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, 
     });
 }
 
-function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId, numeral_format=false){
+function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTextId, titleDenominatorTextId, numeral_format=false, colour=false){
     $.getJSON(titleTextJson, function( data ) {
         if (numeral_format) {
             var floatNom = parseFloat(data[titleNominatorTextId]);
@@ -101,10 +101,24 @@ function setStatCardValueFractions(cardTextDiv, titleTextJson, titleNominatorTex
         }
 
         $("#" + cardTextDiv).text(nom + "/" + dom);
+
+        var fracVal = (floatNom / floatDom);
+        var cardElementId = cardTextDiv.replace("Title", "Element")
+        if (colour && (fracVal > 0.8)) {
+            $("#" + cardElementId).removeClass("bg-info")
+            $("#" + cardElementId).addClass("bg-success")
+        } else if (colour && (fracVal > 0.6)) {
+            $("#" + cardElementId).removeClass("bg-info")
+            $("#" + cardElementId).addClass("bg-warning")
+        } else if (colour && fracVal <= 0.6) {
+            console.log("Danger!")
+            $("#" + cardElementId).removeClass("bg-info")
+            $("#" + cardElementId).addClass("bg-danger")
+        }
     });
 };
 
-function addCard(targetDiv, iframeLink, titleString) {
+function addCard(targetDiv, iframeLink, titleString, scrolling="no") {
     var iframeId = targetDiv + "iframe";
 
     var $cardHtml = $((
@@ -126,7 +140,8 @@ function addCard(targetDiv, iframeLink, titleString) {
             "</div>" +
           "</div>" +
           "<div class=\"card-body embed-responsive embed-responsive-4by3\">" + //
-            "<iframe class=\"embed-responsive-item lazyload\" data-src=\"" + iframeLink + "\" id=\"" + iframeId + "\" scrolling=\"no\"></iframe>" +
+            "<iframe class=\"embed-responsive-item lazyload\" data-src=\"" + iframeLink + "\" id=\"" + iframeId + "\" " +
+                     "scrolling=\"" + scrolling + "\"></iframe>" +
           "</div>" +
         "</div>"
     ));
