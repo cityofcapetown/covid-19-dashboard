@@ -1,85 +1,133 @@
-kind: ConfigMap 
-apiVersion: v1 
-metadata:
-  name: covid-htpasswd 
-data: 
-  .htpasswd: |
-    <htpass1>
-    <htpass2>
-    <etc>
-
----
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: covid-dash
+  name: nginx-minio-proxy
+  namespace: covid-dash
   labels:
-    app: covid-dash
+    app: nginx-minio-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: covid-dash
+      app: nginx-minio-proxy
   template:
     metadata:
       labels:
-        app: covid-dash
+        app: nginx-minio-proxy
     spec:
       containers:
-      - name: covid-dash
-        image: docker.io/cityofcapetown/nginx-s3-proxy:v0.2
-        imagePullPolicy: Always
-        env:
-          - name: ACCESS_KEY
-            value: "ACCESS_KEY"
-          - name: SECRET_KEY
-            value: "SECRET_KEY"
-          - name: BUCKET_NAME
-            value: "covid"
-          - name: ROOT_HTML_PATH
-            value: "ct-covid-dash-city.html"
-          - name: BASIC_AUTH
-            value: "yes"
-        ports:
-        - containerPort: 8000
-        volumeMounts:
-        - name: "covid-htpasswd"
-          mountPath: "/auth/.htpasswd"
-          subPath: ".htpasswd"
+        - name: nginx-minio-proxy
+          image: docker.io/cityofcapetown/nginx-s3-proxy:v0.3
+          imagePullPolicy: Always
+          env:
+            - name: ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: covid-dash-secrets
+                  key: "minio_access_key"
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: covid-dash-secrets
+                  key: "minio_secret_key"
+            - name: BUCKET_NAME
+              value: "covid"
+            - name: ROOT_HTML_PATH
+              value: "ct-covid-dash-general.html"
+          ports:
+            - containerPort: 8000
       restartPolicy: Always
-      volumes:
-        - name: "covid-htpasswd"
-          configMap:
-            name: "covid-htpasswd"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: covid-dash
+  name: nginx-minio-proxy
+  namespace: covid-dash
 spec:
   ports:
-  - name: http
-    targetPort: 8000
-    port: 80
+    - name: http
+      targetPort: 8000
+      port: 8000
   selector:
-    app: covid-dash
+    app: nginx-minio-proxy
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: nginx-ldap-proxy
+  namespace: covid-dash
+  labels:
+    app: nginx-ldap-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-ldap-proxy
+  template:
+    metadata:
+      labels:
+        app: nginx-ldap-proxy
+    spec:
+      containers:
+        - name: nginx-ldap-proxy
+          image: docker.io/cityofcapetown/nginx-ldap-proxy:v0.1
+          imagePullPolicy: Always
+          env:
+            - name: BACKEND_SERVER
+              value: "nginx-minio-proxy:8000"
+            - name: LDAP_URL
+              value: "ldap://gwd-edc-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
+            - name: BIND_DN
+              valueFrom:
+                secretKeyRef:
+                  name: covid-dash-secrets
+                  key: "bind_dn"
+            - name: BIND_DN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: covid-dash-secrets
+                  key: "bind_dn_password"
+            - name: LDAP_WELCOME_MSG
+              value: "Please sign in using your normal City Windows credentials"
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ldap-proxy
+  namespace: covid-dash
+  labels:
+    run: nginx-ldap-proxy
+  annotations:
+    traefik.ingress.kubernetes.io/affinity: "true"
+spec:
+  ports:
+    - name: http
+      targetPort: 80
+      port: 80
+  selector:
+    app: nginx-ldap-proxy
+  sessionAffinity: "ClientIP"
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: covid-dash
+  namespace: covid-dash
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
 spec:
   rules:
-  - host:
-    http:
-      paths:
-      - path: /covid-dash
-        backend:
-          serviceName: covid-dash
-          servicePort: http
+    - host:
+      http:
+        paths:
+          - path: /covid-dash
+            backend:
+              serviceName: nginx-ldap-proxy
+              servicePort: http
 
 
 

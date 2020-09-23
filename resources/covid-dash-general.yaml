@@ -1,22 +1,22 @@
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: nginx-minio-proxy
+  name: general-nginx-minio-proxy
   namespace: covid-dash
   labels:
-    app: nginx-minio-proxy
+    app: general-nginx-minio-proxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-minio-proxy
+      app: general-nginx-minio-proxy
   template:
     metadata:
       labels:
-        app: nginx-minio-proxy
+        app: general-nginx-minio-proxy
     spec:
       containers:
-        - name: nginx-minio-proxy
+        - name: general-nginx-minio-proxy
           image: docker.io/cityofcapetown/nginx-s3-proxy:v0.3
           imagePullPolicy: Always
           env:
@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-minio-proxy
+  name: general-nginx-minio-proxy
   namespace: covid-dash
 spec:
   ports:
@@ -49,34 +49,34 @@ spec:
       targetPort: 8000
       port: 8000
   selector:
-    app: nginx-minio-proxy
+    app: general-nginx-minio-proxy
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
-  name: nginx-ldap-proxy
+  name: general-nginx-ldap-proxy
   namespace: covid-dash
   labels:
-    app: nginx-ldap-proxy
+    app: general-nginx-ldap-proxy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: nginx-ldap-proxy
+      app: general-nginx-ldap-proxy
   template:
     metadata:
       labels:
-        app: nginx-ldap-proxy
+        app: general-nginx-ldap-proxy
     spec:
       containers:
-        - name: nginx-ldap-proxy
+        - name: general-nginx-ldap-proxy
           image: docker.io/cityofcapetown/nginx-ldap-proxy:v0.1
           imagePullPolicy: Always
           env:
             - name: BACKEND_SERVER
-              value: "nginx-minio-proxy:8000"
+              value: "general-nginx-minio-proxy:8000"
             - name: LDAP_URL
-              value: "ldap://gwd-edc-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
+              value: "ldap://cbd-civic-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
             - name: BIND_DN
               valueFrom:
                 secretKeyRef:
@@ -96,10 +96,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-ldap-proxy
+  name: general-nginx-ldap-proxy
   namespace: covid-dash
   labels:
-    run: nginx-ldap-proxy
+    run: general-nginx-ldap-proxy
   annotations:
     traefik.ingress.kubernetes.io/affinity: "true"
 spec:
@@ -108,7 +108,7 @@ spec:
       targetPort: 80
       port: 80
   selector:
-    app: nginx-ldap-proxy
+    app: general-nginx-ldap-proxy
   sessionAffinity: "ClientIP"
 ---
 apiVersion: extensions/v1beta1
@@ -126,7 +126,7 @@ spec:
         paths:
           - path: /covid-dash-general
             backend:
-              serviceName: nginx-ldap-proxy
+              serviceName: general-nginx-ldap-proxy
               servicePort: http
 
 

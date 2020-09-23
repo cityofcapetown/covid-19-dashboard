@@ -29,6 +29,9 @@ python3 bin/build-general-dash.py --template "$RESOURCES_PATH/ct-covid-dash-int-
 # Hotspots Data Viewer
 python3 bin/build-hotspots-dash.py --template "$RESOURCES_PATH/ct-covid-dash-hotspots.html" --output-path $BUILD_DIR_PATH/
 
+# Vulnerability Viewer
+python3 bin/build-vulnerability-dash.py --template "$RESOURCES_PATH/ct-vulnerability-viewer.html" --output-path $BUILD_DIR_PATH/
+
 # Zipping up
 DIST_DEFAULT_PATH="./dist"
 DIST_PATH=${3:-$DIST_DEFAULT_PATH}
