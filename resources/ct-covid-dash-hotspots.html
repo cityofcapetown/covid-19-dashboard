@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh"
+          content="9; URL='https://datascience.capetown.gov.za/vulnerability-viewer/ct-vulnerability-viewer.html#socioEconomicVulnerabilitySection'"/>
     <title>City of Cape Town Covid-19 Vulnerability Data Viewer</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -43,6 +45,10 @@
 </div>
 
 <div class="container-fluid p-0" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
+    <div class="row row-cols-1">
+        <div class="col" id="redirect"></div>
+    </div>
+
     <div class="row row-cols-1 py-0 px-3">
         <div class="col" id="disclaimer"></div>
     </div>
@@ -470,6 +476,7 @@
         // General
         // Disclaimers
         addGeneralDisclaimerAlert("disclaimer");
+        addRedirectAlert("redirect");
         addBetaDisclaimerAlert("betaDisclaimer");
 
         // Stat Widgets
@@ -536,10 +543,6 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_street.mp4");
         }, 10000);
     });
-
-
-
-
 </script>
 
 <script src="assets/js/popper.min.js"></script>

@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh"
+          content="9; URL='https://datascience.capetown.gov.za/vulnerability-viewer/ct-vulnerability-viewer.html'"/>
     <title>City of Cape Town Covid-19 General Management Dashboard</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -33,7 +35,8 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#opening">Covid-19 Information</a>
                         <div role="separator" class="dropdown-divider"></div>
-                        {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag, depts_tuple in directorate_tuples -%}
+                        {% for directorate_title, directorate_filename_prefix, sr_flag, hr_flag, depts_tuple in
+                        directorate_tuples -%}
                         <a class="dropdown-item" href="#{{ directorate_filename_prefix }}">{{ directorate_title }} </a>
                         {% endfor -%}
                     </div>
@@ -46,6 +49,9 @@
 </div>
 
 <div class="container" id="overlay" data-spy="scroll" data-target="#navbar" data-offset="0">
+    <div class="row row-cols-1">
+        <div class="col" id="redirect"></div>
+    </div>
 
     <div class="row row-cols-1">
         <div class="col" id="disclaimer"></div>
@@ -71,16 +77,16 @@
             <div class="col h-100 pl-1" id="mapCard"></div>
         </div>
 
-    <div class="container-fluid mt-2" id="casesOverTime">
-        <div class="row mt-2 row-cols-2" style="height:30rem">
-            <div class="col pl-0 pr-1 h-100" id="cityNewCasesPlot"></div>
-            <div class="col pr-0 pl-1 h-100" id="cityDeathsPlot"></div>
+        <div class="container-fluid mt-2" id="casesOverTime">
+            <div class="row mt-2 row-cols-2" style="height:30rem">
+                <div class="col pl-0 pr-1 h-100" id="cityNewCasesPlot"></div>
+                <div class="col pr-0 pl-1 h-100" id="cityDeathsPlot"></div>
+            </div>
+            <div class="row mt-2 row-cols-2" style="height:30rem">
+                <div class="col pl-0 pr-1 h-100" id="cityGenAdmissionsPlot"></div>
+                <div class="col pr-0 pl-1 h-100" id="cityIcuAdmissionsPlot"></div>
+            </div>
         </div>
-        <div class="row mt-2 row-cols-2" style="height:30rem">
-            <div class="col pl-0 pr-1 h-100" id="cityGenAdmissionsPlot"></div>
-            <div class="col pr-0 pl-1 h-100" id="cityIcuAdmissionsPlot"></div>
-        </div>
-    </div>
 
     </div>
 
@@ -119,12 +125,12 @@
         {% endif -%}
         {% if hr_flag -%}
         <div class="row row-cols-2 mt-2 pt-2" style="height:30rem">
-            <div class="col-8 pr-1 pl-0 h-100" id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"> </div>
-            <div class="col-4 pl-1 pr-0 h-100" id="ohsPositiveCases_{{ directorate_filename_prefix }}"> </div>
+            <div class="col-8 pr-1 pl-0 h-100" id="hrOrgUnitStatus_{{ directorate_filename_prefix }}"></div>
+            <div class="col-4 pl-1 pr-0 h-100" id="ohsPositiveCases_{{ directorate_filename_prefix }}"></div>
         </div>
         {%- for dept_name in depts_tuple -%}
-            {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
-            {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
+        {% set dept_file_prefix = dept_name[:dept_name.index("(")] if "(" in dept_name else dept_name %}
+        {% set dept_file_prefix = dept_file_prefix.strip().lower().replace(" ", "_") %}
         <div class="row row-cols-1 mt-2 pt-2" style="height:30rem"
              id="hRTimeSeries_{{ directorate_filename_prefix }}_{{ dept_file_prefix }}"></div>
         {%- endfor -%}
@@ -145,6 +151,7 @@
     $(() => {
         // General
         // Disclaimer
+        addRedirectAlert("redirect");
         addGeneralDisclaimerAlert("disclaimer");
 
         // Stat Widgets
@@ -266,7 +273,6 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse_above.mp4");
         }, 10000);
     });
-
 </script>
 
 <script src="assets/js/popper.min.js"></script>

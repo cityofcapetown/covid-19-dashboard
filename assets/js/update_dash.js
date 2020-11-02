@@ -268,6 +268,20 @@ function addBetaDisclaimerAlert(targetDiv) {
   $('#' + targetDiv).append( $alertHtml );
 }
 
+function addRedirectAlert(targetDiv) {
+  var $alertHtml = $((
+      '<div class="alert alert-warning fade show w-100 mt-2 mb-1" role="alert">' +
+        'You are being redirected to <a href="https://datascience.capetown.gov.za/vulnerability-viewer/ct-vulnerability-viewer.html">' +
+        'the new version of the Vulnerability Viewer</a>.<br>' +
+        'Click on the link above to go there sooner! ' +
+        'It <strong> should have </strong> all of this content and more. Please let the Data Science unit know if it does not.<br>' +
+        'When prompted, please use your normal City Windows credentials to log in.' +
+      '</div>'
+  ));
+
+  $('#' + targetDiv).append( $alertHtml );
+}
+
 function addNavbar(targetDiv) {
   const NavbarPages = [
     {title: "Cape Town", link:"ct-covid-dash-city.html"},

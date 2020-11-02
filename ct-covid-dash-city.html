@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="9; URL='https://datascience.capetown.gov.za/vulnerability-viewer/ct-vulnerability-viewer.html#serviceDeliverySection'" />
     <title>City of Cape Town Covid-19 Dashboard</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -18,8 +19,11 @@
 <div id="navbarPlaceholder"></div>
 
 <div class="container-fluid" id="overlay">
-
     <div class="row row-cols-1">
+        <div class="col" id="redirect"></div>
+    </div>
+
+    <div class="row">
         <div class="col" id="disclaimer"></div>
     </div>
 
@@ -84,6 +88,7 @@
 <script type="text/javascript">
     $(() => {
         addNavbar("navbarPlaceholder");
+        addRedirectAlert("redirect");
         addDisclaimerAlert("disclaimer");
 
         // Stat Widgets
@@ -126,9 +131,6 @@
             addBackgroundVideoSrc("backgroundVideoSrc", "backgroundVideo", "assets/imgs/ct_timelapse.mp4");
         }, 10000);
     });
-
-
-
 </script>
 
 <script src="assets/js/popper.min.js"></script>
