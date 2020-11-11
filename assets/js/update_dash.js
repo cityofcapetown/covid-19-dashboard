@@ -11,7 +11,7 @@ function addStatCard(targetDiv, overlayImg, descriptionText){
         "<div class=\"card border-light bg-info w-100 h-100\" id='"+ cardElementId + "'>" +
           "<img src=\""+ overlayImg +"\" class=\"card-img h-100\" style=\"opacity: 0.2;\">" +
           "<div class=\"card-img-overlay\">" +
-            "<h4 class=\"card-title\" id=\""+ cardTextId + "\">Loading...</h4>" +
+            "<h5 class=\"card-title\" id=\""+ cardTextId + "\">Loading...</h5>" +
             "<p class=\"card-text\">" + descriptionText + "</p>" +
           "</div>" +
         "</div>"
@@ -53,7 +53,7 @@ function setStatCardNestedValue(cardTextDiv, titleTextJson, titleTextIds, text_s
     });
 }
 
-function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, titleTextIds, trendTextIds){
+function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, titleTextIds, trendTextIds, percent_val=false, increase_bad=true){
     $.getJSON(textJson, function( data ) {
         var titleTextValue = data[titleTextIds[0]]
         titleTextIds.forEach(function (item, index) {
@@ -70,18 +70,25 @@ function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, 
         });
 
         var change_indicator = "▲"
-        var bg_class = "bg-danger"
-        if ((trendTextValue > -0.005) && (trendTextValue < 0.005)){
+
+        var bg_class = increase_bad ? "bg-danger" : 'bg-success'
+        if ((trendTextValue > -0.0005) && (trendTextValue < 0.0005)){
             change_indicator = "-"
             bg_class = "bg-info"
         } else if (trendTextValue < 0){
             change_indicator = "▼"
-            bg_class = "bg-success"
+            bg_class = increase_bad ? "bg-success" : 'bg-danger'
         }
         $("#" + cardElementDiv).removeClass("bg-info")
         $("#" + cardElementDiv).addClass(bg_class)
 
-        var text = numeral(titleTextValue).format("0.[0]a") + " (" + change_indicator + numeral(trendTextValue).format("+0.%") + ")"
+        var val = numeral(titleTextValue)
+        var formattedVal = val.format("0.[0]a")
+        if (percent_val) {
+            formattedVal = val.format("0.[0]%");
+        }
+
+        var text = formattedVal + " (" + change_indicator + numeral(trendTextValue).format("+0.[0]%") + ")"
 
         setStatValue(cardTextDiv, text)
     });
