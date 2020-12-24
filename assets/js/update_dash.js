@@ -70,7 +70,6 @@ function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, 
         });
 
         var change_indicator = "▲"
-
         var bg_class = increase_bad ? "bg-danger" : 'bg-success'
         if ((trendTextValue > -0.0005) && (trendTextValue < 0.0005)){
             change_indicator = "-"
