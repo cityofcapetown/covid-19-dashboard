@@ -218,8 +218,8 @@ function addTabbedCard(targetDiv, iframeMaps, titleString) {
               "</div>" +
             "</div>" +
           "</div>" +
-          "<div class=\"card-body embed-responsive embed-responsive-4by3\">" +
-            "<div class=\"tab-content bg-white\">" +
+          "<div class=\"card-body embed-responsive embed-responsive-4by3 bg-white\">" +
+            "<div class=\"tab-content\">" +
               tabPanes +
             "</div>" +
           "</div>" +
