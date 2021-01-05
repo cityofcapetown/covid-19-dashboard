@@ -84,7 +84,7 @@ function setStatCardNestedValueWithTrend(cardTextDiv, cardElementDiv, textJson, 
         var val = numeral(titleTextValue)
         var formattedVal = val.format("0.[0]a")
         if (percent_val) {
-            formattedVal = val.format("0.[0]%");
+            formattedVal = val.format("0.[00]%");
         }
 
         var text = formattedVal + " (" + change_indicator + numeral(trendTextValue).format("+0.[0]%") + ")"
