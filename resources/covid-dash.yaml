@@ -1,115 +1,20 @@
-kind: Deployment
-apiVersion: extensions/v1beta1
-metadata:
-  name: nginx-minio-proxy
-  namespace: covid-dash
-  labels:
-    app: nginx-minio-proxy
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx-minio-proxy
-  template:
-    metadata:
-      labels:
-        app: nginx-minio-proxy
-    spec:
-      containers:
-        - name: nginx-minio-proxy
-          image: docker.io/cityofcapetown/nginx-s3-proxy:v0.3
-          imagePullPolicy: Always
-          env:
-            - name: ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: covid-dash-secrets
-                  key: "minio_access_key"
-            - name: SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: covid-dash-secrets
-                  key: "minio_secret_key"
-            - name: BUCKET_NAME
-              value: "covid"
-            - name: ROOT_HTML_PATH
-              value: "ct-covid-dash-general.html"
-          ports:
-            - containerPort: 8000
-      restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-minio-proxy
+  name: datascience
   namespace: covid-dash
 spec:
+  externalName: datascience.capetown.gov.za
   ports:
-    - name: http
-      targetPort: 8000
-      port: 8000
-  selector:
-    app: nginx-minio-proxy
----
-kind: Deployment
-apiVersion: extensions/v1beta1
-metadata:
-  name: nginx-ldap-proxy
-  namespace: covid-dash
-  labels:
-    app: nginx-ldap-proxy
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx-ldap-proxy
-  template:
-    metadata:
-      labels:
-        app: nginx-ldap-proxy
-    spec:
-      containers:
-        - name: nginx-ldap-proxy
-          image: docker.io/cityofcapetown/nginx-ldap-proxy:v0.1
-          imagePullPolicy: Always
-          env:
-            - name: BACKEND_SERVER
-              value: "nginx-minio-proxy:8000"
-            - name: LDAP_URL
-              value: "ldap://gwd-edc-dc02.capetown.gov.za:3268/dc=capetown,dc=gov,dc=za?sAMAccountName?sub?(objectClass=person)"
-            - name: BIND_DN
-              valueFrom:
-                secretKeyRef:
-                  name: covid-dash-secrets
-                  key: "bind_dn"
-            - name: BIND_DN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: covid-dash-secrets
-                  key: "bind_dn_password"
-            - name: LDAP_WELCOME_MSG
-              value: "Please sign in using your normal City Windows credentials"
-          ports:
-            - containerPort: 80
-      restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ldap-proxy
-  namespace: covid-dash
-  labels:
-    run: nginx-ldap-proxy
-  annotations:
-    traefik.ingress.kubernetes.io/affinity: "true"
-spec:
-  ports:
-    - name: http
-      targetPort: 80
-      port: 80
-  selector:
-    app: nginx-ldap-proxy
-  sessionAffinity: "ClientIP"
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  sessionAffinity: None
+  type: ExternalName
+status:
+  loadBalancer: {}
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -118,7 +23,8 @@ metadata:
   namespace: covid-dash
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/redirect-regex: ^https?://ds3.capetown.gov.za/covid-dash/(.*)
+    traefik.ingress.kubernetes.io/redirect-replacement: https://datascience.capetown.gov.za/vulnerability-viewer/ct-vulnerability-viewer.html
 spec:
   rules:
     - host:
@@ -126,8 +32,5 @@ spec:
         paths:
           - path: /covid-dash
             backend:
-              serviceName: nginx-ldap-proxy
-              servicePort: http
-
-
-
+              serviceName: datascience
+              servicePort: https
